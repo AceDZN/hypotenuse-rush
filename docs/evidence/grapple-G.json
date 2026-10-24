@@ -1,0 +1,192 @@
+{
+  "game": "Hypotenuse Rush",
+  "coordinateSystem": "metres; +X forward, +Y up, +Z right; player position at capsule feet, harness +1.05m",
+  "mode": "playing",
+  "player": {
+    "position": {
+      "x": 240.7681,
+      "y": 7.2513,
+      "z": -1.419
+    },
+    "velocity": {
+      "x": 4.2533,
+      "y": 6.9898,
+      "z": 2.9609
+    },
+    "harness": {
+      "x": 240.7681,
+      "y": 8.3013,
+      "z": -1.419
+    },
+    "grounded": false
+  },
+  "camera": {
+    "position": {
+      "x": 233.2588,
+      "y": 8.3398,
+      "z": 3.7814
+    },
+    "yaw": 0.65,
+    "pitch": 0.05
+  },
+  "selected": "G",
+  "reach": 13,
+  "attached": "G",
+  "hold": 0.35,
+  "cooldown": 0,
+  "time": 38.5967,
+  "checkpoints": 3,
+  "nextCheckpoint": null,
+  "finish": {
+    "x": 350,
+    "y": 9,
+    "z": 4
+  },
+  "survey": false,
+  "assisted": true,
+  "hints": 1,
+  "falls": 0,
+  "overreaches": 1,
+  "obstructions": 0,
+  "grabs": 7,
+  "releases": 6,
+  "reason": "attached",
+  "respawnIn": 0,
+  "anchors": [
+    {
+      "id": "J",
+      "position": {
+        "x": 213,
+        "y": 14.052000000000001,
+        "z": 3
+      },
+      "distance": 28.699518903841746,
+      "squared": 823.6623853119697,
+      "dx": -27.76805992036722,
+      "dy": 5.75065042568947,
+      "dz": 4.418965178905887,
+      "face": 28.117475082117295,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "G",
+      "position": {
+        "x": 243,
+        "y": 19.052,
+        "z": 2
+      },
+      "distance": 11.49988539025582,
+      "squared": 132.24736398901928,
+      "dx": 2.2319400796327784,
+      "dy": 10.750650425689468,
+      "dz": 3.4189651789058866,
+      "face": 4.0829988260642605,
+      "reachable": true,
+      "reason": "ready"
+    }
+  ],
+  "art": "loaded",
+  "helmetLoaded": true,
+  "archLoaded": true,
+  "records": {
+    "assisted": null,
+    "unassisted": null
+  },
+  "events": [
+    {
+      "type": "grab",
+      "time": 26.897,
+      "anchor": "E",
+      "reach": 13,
+      "origin": {
+        "x": 166.0040116829463,
+        "y": 3.051976009679125,
+        "z": -1.9370506822704245
+      },
+      "distance": 12.998632145307301,
+      "squared": 168.96443764901628,
+      "dx": 4.995988317053701,
+      "dy": 12.000023990320877,
+      "dz": -0.06294931772957546,
+      "face": 4.99638488116555,
+      "reachable": true,
+      "reason": "ready",
+      "hinted": true,
+      "survey": false
+    },
+    {
+      "type": "release",
+      "time": 27.597,
+      "velocity": {
+        "x": 10.521778608647546,
+        "y": 14.306492063450614,
+        "z": -0.09195820001469716
+      }
+    },
+    {
+      "type": "grab",
+      "time": 32.505,
+      "anchor": "J",
+      "reach": 13,
+      "origin": {
+        "x": 204.69014566370578,
+        "y": 6.052001,
+        "z": 2.902656085655438
+      },
+      "distance": 11.535299689565452,
+      "squared": 133.06313892808885,
+      "dx": 8.309854336294222,
+      "dy": 7.999999000000002,
+      "dz": 0.0973439143445618,
+      "face": 8.31042447340013,
+      "reachable": true,
+      "reason": "ready",
+      "hinted": true,
+      "survey": false
+    },
+    {
+      "type": "release",
+      "time": 33.205,
+      "velocity": {
+        "x": 15.286450666989243,
+        "y": 9.502764657817721,
+        "z": 0.14795223497670146
+      }
+    },
+    {
+      "type": "checkpoint",
+      "time": 35.855,
+      "cp": 3
+    },
+    {
+      "type": "grab",
+      "time": 38.255,
+      "anchor": "G",
+      "reach": 13,
+      "origin": {
+        "x": 239.99585249390068,
+        "y": 7.052001,
+        "z": -1.9513419469347022
+      },
+      "distance": 12.986068743850444,
+      "squared": 168.63798142000945,
+      "dx": 3.004147506099315,
+      "dy": 11.999998999999999,
+      "dz": 3.9513419469347024,
+      "face": 4.963668544535228,
+      "reachable": true,
+      "reason": "ready",
+      "hinted": true,
+      "survey": false
+    }
+  ],
+  "performance": {
+    "frames": 104,
+    "meanFrameMs": 66.2067,
+    "p95FrameMs": 33.5,
+    "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
+    "triangles": 92242,
+    "calls": 56
+  }
+}

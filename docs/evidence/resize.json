@@ -1,0 +1,117 @@
+{
+  "game": "Hypotenuse Rush",
+  "coordinateSystem": "metres; +X forward, +Y up, +Z right; player position at capsule feet, harness +1.05m",
+  "mode": "playing",
+  "player": {
+    "position": {
+      "x": 0,
+      "y": 0.002,
+      "z": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 0,
+      "y": 1.052,
+      "z": 0
+    },
+    "grounded": true
+  },
+  "camera": {
+    "position": {
+      "x": -2.3058,
+      "y": 1.3469,
+      "z": 1.7528
+    },
+    "yaw": 0.65,
+    "pitch": 0.05
+  },
+  "selected": "A",
+  "reach": 10,
+  "attached": null,
+  "hold": 0,
+  "cooldown": 0,
+  "time": 0.1,
+  "checkpoints": 0,
+  "nextCheckpoint": {
+    "p": {
+      "x": 20,
+      "y": 1,
+      "z": 0
+    },
+    "label": "רכס ראשון"
+  },
+  "finish": {
+    "x": 350,
+    "y": 9,
+    "z": 4
+  },
+  "survey": false,
+  "assisted": false,
+  "hints": 0,
+  "falls": 0,
+  "overreaches": 0,
+  "obstructions": 0,
+  "grabs": 0,
+  "releases": 0,
+  "reason": null,
+  "respawnIn": 0,
+  "anchors": [
+    {
+      "id": "A",
+      "position": {
+        "x": 8,
+        "y": 7.052,
+        "z": 0
+      },
+      "distance": 9.999999400000032,
+      "squared": 99.999988000001,
+      "dx": 8,
+      "dy": 5.999999,
+      "dz": 0,
+      "face": 8,
+      "reachable": true,
+      "reason": "ready"
+    },
+    {
+      "id": "B",
+      "position": {
+        "x": 6,
+        "y": 10.052000000000001,
+        "z": 0
+      },
+      "distance": 10.81665299434169,
+      "squared": 116.99998200000101,
+      "dx": 6,
+      "dy": 8.999999,
+      "dz": 0,
+      "face": 6,
+      "reachable": false,
+      "reason": "not-aimed"
+    }
+  ],
+  "art": "loaded",
+  "helmetLoaded": true,
+  "archLoaded": true,
+  "records": {
+    "assisted": 51.98833333333103,
+    "unassisted": null
+  },
+  "events": [
+    {
+      "type": "start",
+      "time": 0
+    }
+  ],
+  "performance": {
+    "frames": 104,
+    "meanFrameMs": 66.2067,
+    "p95FrameMs": 33.5,
+    "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
+    "triangles": 135440,
+    "calls": 109
+  }
+}

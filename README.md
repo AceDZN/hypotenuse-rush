@@ -16,7 +16,7 @@ The static Vite build uses relative paths. No backend, account, API key, remote 
 
 ## Implemented slice
 
-One continuous ~350m multi-route course, nine broad-route grapple launches, a narrower shortcut, three ordered checkpoints and a physical finish. The numerical continuous-input witness takes45.05s; human learning, local retries and improvement runs are intended to supply5–10minutes. Automation does not establish enjoyment or learning gains.
+One continuous ~350m multi-route course, nine broad-route grapple launches, a narrower shortcut, three ordered checkpoints and a physical finish. The numerical continuous-input witness takes45.83s (shortcut45.20s); human learning, local retries and improvement runs are intended to supply5–10minutes. Automation does not establish enjoyment or learning gains.
 
 - Initial10m reach: `(8,6,0)` is exactly reachable; `(6,9,0)` is too far despite a shorter horizontal leg.
 - Separate in-range-but-obstructed hook, changed approach values and high shelf; reach explicitly grows to13m at checkpoint2.
@@ -50,7 +50,7 @@ A lock-on must remain inside the camera view to acquire; camera position never e
 
 - [Game identity](GAME_IDENTITY.md), [curriculum mapping](CURRICULUM.md), [asset provenance](ASSETS.md).
 - [Independent playtest](PLAYTEST.md), [visual target vs actual review](docs/VISUAL_REVIEW.md).
-- [Generated target](docs/visual-targets/gameplay-v1.png) is a design reference, **not an actual screenshot**. Actual browser captures live separately in `docs/evidence/`.
-- `window.render_game_to_text()` reports world/harness/anchor quantities and live state; `window.advanceTime(ms)` enters deterministic manual stepping for automated tests. Real play uses the animation loop.
+- [Generated target](docs/visual-targets/gameplay-v1.png) is a design reference, **not an actual screenshot**. Actual browser captures live separately in `docs/evidence/`. A complete normal-control browser run finished in51.99s with9grapples,3checkpoints,0falls and no console errors.
+- `window.render_game_to_text()` reports world/harness/anchor quantities and live state; `window.advanceTime(ms)` enters deterministic manual stepping for automated tests. Its optional second argument `false` skips the GPU draw while still updating physics, camera, poses and HUD; captures use the default draw. Real play uses the animation loop.
 
 The generated meshes are decorative and have no mathematical authority. The athlete's joints are procedural; the generated helmet/arch are static, not rigged characters. Remaining fidelity, feel and device limitations are recorded in the playtest/review rather than treated as proven polish.

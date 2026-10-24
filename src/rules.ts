@@ -41,7 +41,7 @@ export function togglePause(s:S){if(s.mode==='playing'){s.mode='paused';s.survey
 export function setSurvey(s:S,on:boolean){s.survey=on;if(on){s.assisted=true;event(s,'survey');}}
 export function hint(s:S){s.hints++;s.assisted=true;event(s,'hint');}
 export function tryAttach(s:S,id:string|null){if(s.mode!=='playing'||s.attached||s.cooldown>0)return false;const a=COURSE.anchors.find(a=>a.id===id);if(!a){s.reason='not-aimed';s.reasonTime=1;return false;}const witness=inspectReach(harness(s),a.p,s.reach,COURSE.boxes);event(s,'grab',{anchor:id,reach:s.reach,origin:{...harness(s)},...witness,hinted:s.hints>0,survey:s.survey});if(!witness.reachable){s.reason=witness.reason;s.reasonTime=2;if(witness.reason==='overreach')s.overreaches++;if(witness.reason==='obstructed')s.obstructions++;return false;}s.attached=id;s.hold=0;s.grabs++;s.grounded=false;s.reason='attached';s.reasonTime=.8;return true;}
-export function release(s:S){if(s.attached){s.attached=null;s.cooldown=.25;s.releases++;event(s,'release',{velocity:{...s.v}});}}
+export function release(s:S){if(s.attached){s.attached=null;s.cooldown=.25;s.releases++;if(s.reason!=='fall'){s.reason='released';s.reasonTime=.8;}event(s,'release',{velocity:{...s.v}});}}
 export function step(s:S,input:Input,dt=FIXED){if(s.mode!=='playing')return;const scaled=dt*(s.survey?.2:1);s.time+=scaled;s.cooldown=Math.max(0,s.cooldown-scaled);s.reasonTime=Math.max(0,s.reasonTime-scaled);
  if(s.respawnTime>0){s.respawnTime-=scaled;if(s.respawnTime<=0)retry(s);return;}
  if(input.jump&&!s.jumpWas&&s.grounded){s.v.y=8;s.grounded=false;event(s,'jump');}s.jumpWas=input.jump;
@@ -52,6 +52,6 @@ export function step(s:S,input:Input,dt=FIXED){if(s.mode!=='playing')return;cons
  const old={...s.p},move=mul(s.v,scaled),result=sweepCapsule(s.p,move,COURSE.boxes);s.p=result.position;s.grounded=result.grounded;if(result.grounded&&s.v.y<0)s.v.y=0;for(const k of ['x','z'] as const)if(Math.abs(s.p[k]-old[k]-move[k])>.01)s.v[k]=0;
  if(s.p.y< -14){s.falls++;s.respawnTime=.45;s.reason='fall';s.reasonTime=2;release(s);event(s,'fall',{cp:s.cp});}
  const next=COURSE.checkpoints[s.cp];if(next&&s.grounded&&Math.abs(s.p.x-next.p.x)<2.5&&Math.abs(s.p.y-next.p.y)<.2&&Math.abs(s.p.z-next.p.z)<8){s.cp++;s.reach=s.cp>=2?13:10;s.reason=s.cp===2?'upgrade':'checkpoint';s.reasonTime=2.4;event(s,'checkpoint',{cp:s.cp});}
- if(s.cp===3&&s.grounded&&s.p.x>=COURSE.finish.x-2&&s.p.z>=-7&&s.p.z<=11){s.mode='finished';s.finishedTime=s.time;s.best=s.best===null?s.time:Math.min(s.best,s.time);event(s,'finish',{assisted:s.assisted});}
+ if(s.cp===3&&s.grounded&&s.p.x>=COURSE.finish.x&&s.p.z>=-1&&s.p.z<=10){s.mode='finished';s.finishedTime=s.time;s.best=s.best===null?s.time:Math.min(s.best,s.time);event(s,'finish',{assisted:s.assisted});}
 }
 export function advance(s:S,input:Input,ms:number){s.accumulator+=Math.max(0,Math.min(ms,10000))/1000;while(s.accumulator+1e-10>=FIXED){step(s,input,FIXED);s.accumulator=Math.max(0,s.accumulator-FIXED);}}
