@@ -1,0 +1,108 @@
+[
+  {
+    "file": "public/models/runner-helmet.glb",
+    "bytes": 642388,
+    "sha256": "4ce0be697b74347a9dfb1937566c8c223140127984deb293789d9998c16a5a1b",
+    "triangles": 6956,
+    "vertices": 5497,
+    "meshes": 1,
+    "materials": 1,
+    "skins": 0,
+    "animations": 0,
+    "requiredExtensions": [],
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 52452
+      },
+      {
+        "mimeType": "image/jpeg",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 262746
+      },
+      {
+        "mimeType": "image/jpeg",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 107607
+      }
+    ],
+    "positionBounds": [
+      {
+        "min": [
+          -0.3667137026786804,
+          -0.0005869755987077951,
+          -0.4907378852367401
+        ],
+        "max": [
+          0.36561885476112366,
+          0.6069521903991699,
+          0.49059829115867615
+        ]
+      }
+    ],
+    "checks": "self contained; indices/UVs/normals present; sampled normals finite/unit length; JPEG textures <=1024px"
+  },
+  {
+    "file": "public/models/sandstone-arch.glb",
+    "bytes": 1897224,
+    "sha256": "f28269ab05c8b7f6f43d8b0540e1f2c02b3f0945e47ef32b198d424d594799d5",
+    "triangles": 37198,
+    "vertices": 32588,
+    "meshes": 1,
+    "materials": 1,
+    "skins": 0,
+    "animations": 0,
+    "requiredExtensions": [],
+    "images": [
+      {
+        "mimeType": "image/jpeg",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 156729
+      },
+      {
+        "mimeType": "image/jpeg",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 332331
+      },
+      {
+        "mimeType": "image/jpeg",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 140228
+      }
+    ],
+    "positionBounds": [
+      {
+        "min": [
+          -0.4829407334327698,
+          0.000579833984375,
+          -0.1847839504480362
+        ],
+        "max": [
+          0.4854431748390198,
+          0.978271484375,
+          0.1856537014245987
+        ]
+      }
+    ],
+    "checks": "self contained; indices/UVs/normals present; sampled normals finite/unit length; JPEG textures <=1024px"
+  }
+]

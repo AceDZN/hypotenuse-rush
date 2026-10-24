@@ -14,19 +14,18 @@ async function select(id){for(let n=0;n<30;n++){if((await read()).selected===id)
 async function shot(name){await page.screenshot({path:`${out}/${name}.png`});await fs.writeFile(`${out}/${name}.json`,JSON.stringify(await read(),null,2));}
 try{
 await page.goto(url,{waitUntil:'networkidle',timeout:60000});await page.waitForSelector('#start-btn');await page.click('#start-btn');await advance(0);await page.mouse.move(40,780);
-await select('B');await page.mouse.down();await advance(50);await page.mouse.up();assert.equal((await read()).reason,'overreach');await shot('overreach');
+await select('B');await advance(100);await advance(100);await page.mouse.down();await advance(50);await page.mouse.up();assert.equal((await read()).reason,'overreach');await shot('overreach');
 await page.keyboard.press('r');await advance(300);await select('A');await page.keyboard.press('Tab');await advance(100);await shot('survey-opening');await page.keyboard.press('h');await advance(100);assert.equal((await read()).hints,1);await page.keyboard.press('h');await page.keyboard.press('Tab');
 // Pause also freezes cooldown, assists and all fixed-step motion.
 await page.keyboard.press('Escape');const paused=await read();await advance(1000);assert.equal((await read()).time,paused.time);await page.keyboard.press('Escape');
 const route=[{id:'A',x:0,z:0},{id:'C',x:28.4,z:-3},{id:'H',x:91,z:4},{id:'I',x:126,z:-3},{id:'E',x:166,z:-2},{id:'J',x:205,z:3},{id:'G',x:240,z:-2},{id:'K',x:271,z:5},{id:'L',x:310,z:-1},{id:null,x:351,z:4}];
 const trace=[];
 for(let leg=0;leg<route.length;leg++){
- const target=route[leg];let reached=false;
+ const target=route[leg];let reached=false,pathStage=0;
  for(let n=0;n<2400;n++){
   const s=await read();if(s.mode==='finished'){reached=true;break;}
-  const p=s.player.position,v=s.player.velocity,targetZ=target.id==='H'&&p.x<68?-3:target.z;
-  const dx=target.x-p.x,dz=targetZ-p.z;
-  if(target.id&&s.player.grounded&&Math.abs(dx)<.35&&Math.abs(dz)<.3){
+  const p=s.player.position,v=s.player.velocity;let tx=target.x,tz=target.z;if(target.id==='H'){if(pathStage===0&&p.x>47.5)pathStage=1;if(pathStage===1&&p.x>55.5&&p.z< -7.5)pathStage=2;if(pathStage===2&&p.x>72.5)pathStage=3;if(pathStage===0){tx=48;tz=-3;}else if(pathStage===1){tx=56;tz=-8;}else if(pathStage===2){tx=73;tz=-8;}}const dx=tx-p.x,dz=tz-p.z;
+  if(target.id&&tx===target.x&&s.player.grounded&&Math.abs(dx)<.35&&Math.abs(dz)<.3){
    await keys([]);await advance(150);await select(target.id);await advance(160);
    const scan=await read(),w=scan.anchors.find(a=>a.id===target.id);
    if(w&&w.distance<=scan.reach+1e-7&&w.reason!=='obstructed'){

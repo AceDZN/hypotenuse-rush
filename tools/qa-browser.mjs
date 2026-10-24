@@ -80,10 +80,18 @@ try {
   const cable = await center(mobile, '#grapple'), stick = await center(mobile, '#stick');
   const finger = { x: cable.x, y: cable.y, id: 1 };
   const cdp = await touchContext.newCDPSession(mobile);
+  await mobile.evaluate(() => { window.__qaPointerUp = []; addEventListener('pointerup', e => window.__qaPointerUp.push({ type: e.pointerType, target: e.target.id })); });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [finger] }); await tick(mobile, 100);
   const movingFinger = { x: stick.x, y: stick.y - 35, id: 2 };
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [finger, movingFinger] }); await tick(mobile, 100);
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [finger] }); await tick(mobile, 20);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [finger, movingFinger] }); await tick(mobile, 100);
+  // New Chromium uses active points; legacy WebTouchEvent uses explicitly released IDs.
+  // Verify an actual stick pointerup before counting this as a partial-release check.
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [finger] });
+  if (!await mobile.evaluate(() => window.__qaPointerUp.some(e => e.target === 'stick'))) {
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [movingFinger] });
+  }
+  assert.ok(await mobile.evaluate(() => window.__qaPointerUp.some(e => e.target === 'stick')), 'movement finger must actually lift');
+  await tick(mobile, 20);
   s = await state(mobile); assert.equal(s.attached, 'A', 'lifting movement finger must preserve held grapple');
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await tick(mobile, 20);
   s = await capture(mobile, '06-touch'); assert.equal(s.attached, null); assert.equal(s.releases, 1);
