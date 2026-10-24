@@ -1,0 +1,314 @@
+{
+  "game": "Hypotenuse Rush",
+  "version": "campaign-v3",
+  "presentation": "close-view-v1",
+  "coordinateSystem": "metres; +X route, +Y up, +Z lateral; feet position; harness+1.05m",
+  "mode": "ready",
+  "level": 8,
+  "hop": 0,
+  "stage": 24,
+  "totalLevels": 12,
+  "totalFlights": 36,
+  "title": "שני משולשים",
+  "region": "צריחי השקיעה",
+  "ropeLength": 13,
+  "player": {
+    "position": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 0,
+      "y": 1.05,
+      "z": 0
+    },
+    "grounded": true
+  },
+  "selected": "l9-h1-1",
+  "attached": null,
+  "hooks": [
+    {
+      "id": "l9-h1-1",
+      "label": "1",
+      "position": {
+        "x": 3,
+        "y": 13.05,
+        "z": 4
+      },
+      "dx": 3,
+      "dy": 12,
+      "dz": 4,
+      "distance": 13,
+      "squared": 169,
+      "face": 5,
+      "reach": 13,
+      "shortfall": 0,
+      "slack": 0,
+      "reachable": true,
+      "reason": "ready"
+    },
+    {
+      "id": "l9-h1-2",
+      "label": "2",
+      "position": {
+        "x": 3,
+        "y": 13.05,
+        "z": 5
+      },
+      "dx": 3,
+      "dy": 12,
+      "dz": 5,
+      "distance": 13.341664064126334,
+      "squared": 178,
+      "face": 5.8309518948453,
+      "reach": 13,
+      "shortfall": 0.3416640641263342,
+      "slack": 0,
+      "reachable": false,
+      "reason": "overreach"
+    },
+    {
+      "id": "l9-h1-3",
+      "label": "3",
+      "position": {
+        "x": 4,
+        "y": 13.05,
+        "z": 4
+      },
+      "dx": 4,
+      "dy": 12,
+      "dz": 4,
+      "distance": 13.266499161421601,
+      "squared": 176,
+      "face": 5.656854249492381,
+      "reach": 13,
+      "shortfall": 0.266499161421601,
+      "slack": 0,
+      "reachable": false,
+      "reason": "overreach"
+    }
+  ],
+  "destination": {
+    "x": 13,
+    "y": 3,
+    "z": 2
+  },
+  "landed": 0,
+  "launches": 0,
+  "mistakes": 0,
+  "tricks": 0,
+  "firstTry": 0,
+  "stageAttempts": 0,
+  "rejection": null,
+  "elapsed": 0,
+  "timed": false,
+  "phaseTime": 0,
+  "progress": {
+    "version": 3,
+    "currentLevel": 8,
+    "unlocked": 8,
+    "records": [
+      {
+        "completed": true,
+        "stars": 2,
+        "bestTime": 6.550000000000076
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000076
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000072
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000074
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000075
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000072
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000074
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.5500000000000735
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      }
+    ],
+    "resumeStage": 24,
+    "resumeFirstTry": 0,
+    "resumeAttempts": 0,
+    "resumeHinted": false,
+    "resumeMistakes": 0,
+    "resumeElapsed": 0,
+    "resumeTricks": 0,
+    "resumeFlow": 0
+  },
+  "layout": {
+    "destination": {
+      "x": 366.82032740463325,
+      "y": 463.54491481786806
+    },
+    "athleteBounds": {
+      "left": 190.99834463288673,
+      "top": 629.8198652808791,
+      "right": 248.6794447983139,
+      "bottom": 781.3587088521854,
+      "width": 57.68110016542718,
+      "height": 151.5388435713063
+    },
+    "player": {
+      "x": 221.24999999999994,
+      "y": 762.2100000000002
+    },
+    "head": {
+      "x": 223.4505053852442,
+      "y": 636.0852114973067
+    },
+    "hooks": [
+      {
+        "x": 414.83693517650136,
+        "y": 97.76010223084783
+      },
+      {
+        "x": 455.5128465616859,
+        "y": 94.08276602867225
+      },
+      {
+        "x": 413.31225600059713,
+        "y": 114.82400043518821
+      }
+    ]
+  },
+  "camera": {
+    "position": {
+      "x": -11,
+      "y": 6,
+      "z": 3
+    },
+    "type": "automatic perspective",
+    "fov": 78
+  },
+  "art": "loaded",
+  "archLoaded": true,
+  "helmetLoaded": true,
+  "mapOpen": false,
+  "mapLevel": 0,
+  "help": false,
+  "mathOpen": false,
+  "hint": false,
+  "reducedMotion": false,
+  "muted": false,
+  "events": [
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-1"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-1"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-2"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-2"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-3"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-3"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-1"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-1"
+    }
+  ],
+  "performance": {
+    "frames": 34,
+    "meanFrameMs": 21.288235299727496,
+    "calls": 35,
+    "triangles": 49832
+  }
+}

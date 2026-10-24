@@ -1,0 +1,308 @@
+{
+  "game": "Hypotenuse Rush",
+  "version": "campaign-v3",
+  "presentation": "close-view-v1",
+  "coordinateSystem": "metres; +X route, +Y up, +Z lateral; feet position; harness+1.05m",
+  "mode": "paused",
+  "level": 8,
+  "hop": 0,
+  "stage": 24,
+  "totalLevels": 12,
+  "totalFlights": 36,
+  "title": "שני משולשים",
+  "region": "צריחי השקיעה",
+  "ropeLength": 13,
+  "player": {
+    "position": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 0,
+      "y": 1.05,
+      "z": 0
+    },
+    "grounded": true
+  },
+  "selected": "l9-h1-1",
+  "attached": null,
+  "hooks": [
+    {
+      "id": "l9-h1-1",
+      "label": "1",
+      "position": {
+        "x": 3,
+        "y": 13.05,
+        "z": 4
+      },
+      "dx": 3,
+      "dy": 12,
+      "dz": 4,
+      "distance": 13,
+      "squared": 169,
+      "face": 5,
+      "reach": 13,
+      "shortfall": 0,
+      "slack": 0,
+      "reachable": true,
+      "reason": "ready"
+    },
+    {
+      "id": "l9-h1-2",
+      "label": "2",
+      "position": {
+        "x": 3,
+        "y": 13.05,
+        "z": 5
+      },
+      "dx": 3,
+      "dy": 12,
+      "dz": 5,
+      "distance": 13.341664064126334,
+      "squared": 178,
+      "face": 5.8309518948453,
+      "reach": 13,
+      "shortfall": 0.3416640641263342,
+      "slack": 0,
+      "reachable": false,
+      "reason": "overreach"
+    },
+    {
+      "id": "l9-h1-3",
+      "label": "3",
+      "position": {
+        "x": 4,
+        "y": 13.05,
+        "z": 4
+      },
+      "dx": 4,
+      "dy": 12,
+      "dz": 4,
+      "distance": 13.266499161421601,
+      "squared": 176,
+      "face": 5.656854249492381,
+      "reach": 13,
+      "shortfall": 0.266499161421601,
+      "slack": 0,
+      "reachable": false,
+      "reason": "overreach"
+    }
+  ],
+  "destination": {
+    "x": 13,
+    "y": 3,
+    "z": 2
+  },
+  "landed": 0,
+  "launches": 0,
+  "mistakes": 0,
+  "tricks": 0,
+  "firstTry": 0,
+  "stageAttempts": 0,
+  "rejection": null,
+  "elapsed": 0,
+  "timed": false,
+  "phaseTime": 0,
+  "progress": {
+    "version": 3,
+    "currentLevel": 8,
+    "unlocked": 8,
+    "records": [
+      {
+        "completed": true,
+        "stars": 2,
+        "bestTime": 6.550000000000076
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000076
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000072
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000074
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000075
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000072
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.550000000000074
+      },
+      {
+        "completed": true,
+        "stars": 3,
+        "bestTime": 6.5500000000000735
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      }
+    ],
+    "resumeStage": 24,
+    "resumeFirstTry": 0,
+    "resumeAttempts": 0,
+    "resumeHinted": true,
+    "resumeMistakes": 0,
+    "resumeElapsed": 0,
+    "resumeTricks": 0,
+    "resumeFlow": 0
+  },
+  "layout": {
+    "destination": {
+      "x": 220.26467197610043,
+      "y": 415.76185771124415
+    },
+    "athleteBounds": {
+      "left": 62.594961296460326,
+      "top": 564.8968823560701,
+      "right": 114.3019674917928,
+      "bottom": 700.7572262713936,
+      "width": 51.70700619533247,
+      "height": 135.86034391532348
+    },
+    "player": {
+      "x": 89.69999999999999,
+      "y": 683.6400000000002
+    },
+    "head": {
+      "x": 91.67367326795558,
+      "y": 570.516385232441
+    },
+    "hooks": [
+      {
+        "x": 263.3316400520374,
+        "y": 87.68281220280092
+      },
+      {
+        "x": 299.81460414246857,
+        "y": 84.38454253793785
+      },
+      {
+        "x": 261.9641275924591,
+        "y": 102.98773259011577
+      }
+    ]
+  },
+  "camera": {
+    "position": {
+      "x": -11,
+      "y": 6,
+      "z": 3
+    },
+    "type": "automatic perspective",
+    "fov": 78
+  },
+  "art": "loaded",
+  "archLoaded": true,
+  "helmetLoaded": true,
+  "mapOpen": false,
+  "mapLevel": 0,
+  "help": false,
+  "mathOpen": true,
+  "hint": true,
+  "reducedMotion": false,
+  "muted": false,
+  "events": [
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-1"
+    },
+    {
+      "type": "inspect",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0,
+      "hook": "l9-h1-1"
+    },
+    {
+      "type": "pause",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "resume",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "pause",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "resume",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "hint",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "pause",
+      "stage": 24,
+      "level": 8,
+      "hop": 0,
+      "time": 0
+    }
+  ],
+  "performance": {
+    "frames": 36,
+    "meanFrameMs": 18.71666666136848,
+    "calls": 35,
+    "triangles": 49832
+  }
+}

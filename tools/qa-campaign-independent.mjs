@@ -1,3 +1,4 @@
+// Historical initial campaign-v3 panel checks. Current close-view UI: qa-close-view.mjs.
 /** Independent v3 review: actual UI inputs; reads state, never writes progress or player state. */
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';

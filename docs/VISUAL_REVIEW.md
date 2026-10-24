@@ -1,18 +1,19 @@
-# Campaign v3 — target and actual review
+# Close-view target and actual review
 
-Targets: `docs/visual-targets/campaign-v3/choice-and-rope.png` and `campaign-map.png`, generated and committed in `527baac` before presentation changes. Exact prompts are beside them. They are mockups, not game captures.
+Latest user evidence: the athlete became a dot and the calculation occupied too much of the screen. The close-view plan supersedes the initial campaign-v3 permanent diagram requirement.
 
-Actual: production browser images in `docs/evidence/campaign-v3`, 1672×941 plus390×844 phone views, through actual controls and deterministic time. Four regions, flight, failure, level completion and full journey are represented.
+Targets: docs/visual-targets/close-view/desktop.png and phone.png, generated with built-in imagegen and committed in 2ee5c18 before implementation. Exact prompts are beside them. These are composition targets, not runtime captures.
 
-| Requirement | Implementation and review |
+Actual: docs/evidence/close-view, from the running production build. It includes the user-relevant second level, tall/spatial stages, requested math, rejection and airborne views across desktop and phone.
+
+| Requirement | Implementation/review |
 |---|---|
-| Rope length obvious | Large central “אורך הכבל שלך” badge with metre value and harness-to-hook caption. Entire badge is checked inside desktop/phone viewport. |
-| Visible triangle | Outlined cyan horizontal, gold height, purple depth, cream dashed diagonal, translucent fill and right-angle marker, all rooted at actual harness P. |
-| Perspective-independent reading | Flat inspection repeats exact quantities. Spatial choices show floor f then f plus height. All option labels and solved-state text are checked for containment and at least16px rendered size. |
-| Deliberate choice | Hook click selects only; separate Launch commits. First-try rewards and precise failure explanation. No advance answer colouring. |
-| Substantial progression | Twelve numbered map stops and 36 crossings. Next Level, saved checkpoints/unlocks and explicit replay. |
-| Better world | Perspective framing, closer aerial shot, sculpted textured ledges, natural supports, region terrain/plants/sky/water and the original Tripo landmark/helmet. |
-| Menu art | A clean generated four-region map illustration under real numbered interactive nodes. No baked fake UI; active gameplay remains Three.js. |
-| Fidelity limit | Actual athlete/rocks remain simpler than generated targets. High hooks require wider ready views; calculation help occupies substantial phone area. |
+| Readable player | Finite camera search preserves player size, anchors the foreground figure and cannot retreat indefinitely to accommodate decoys. Steady flight following retains scale. |
+| Visible landing | Elevated eye, landing-incidence preference and viewport bounds preserve the destination’s surface/marker. |
+| Quiet default HUD | Slim rope badge, compact perpendicular dimensions and Launch. No permanent flat SVG, calculation or instructions wall. |
+| Optional full math | Explicit Diagram opens paused unsolved construction; separate solution assistance; close/Escape returns to the same state. Phone width/font/containment checked. |
+| No avatar/goal obstruction | World labels avoid actual athlete bounds and projected landing ellipse; nearby hook labels avoid the goal; rejection toast sits beside the athlete. |
+| Honest close-frame limits | Exceptional ring/corner positions may extend outside a narrow viewport; edge cues and the complete requested flat diagram preserve access/measurement. |
+| Fidelity limit | Procedural character/terrain remain simpler than generated mockups. A large illustrated mockup figure is not a runtime size guarantee. |
 
-Initial review caught black sky wedges, supports on the landing, foreground plants hiding P, transient target text contrast, tiny solved labels and stale help/map states. These were corrected using actual captures and independent browser checks. Further visual matching does not establish human fun.
+Independent source/projection review and own-Chrome visual fixtures confirmed the second-level scale improvement and caught low landing incidence, badge/actor overlap and high anchors beneath HUD. Fixtures are distinct from the normal-control completion evidence and precede the final label fixes.

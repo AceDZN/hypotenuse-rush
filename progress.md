@@ -57,8 +57,20 @@ User feedback: barely any levels (three jumps then start over), barely visible p
 - Added12 levels/36 authored crossings across4 regions, three neutral inspectable hooks per choice, balanced valid positions, varied planar/spatial cases, saved checkpoints/unlocks/stars/bests and Next Level progression.
 - Split inspection from launch. Rope specification is central; strong world construction and a flat diagram communicate the measured diagonal. Rejection states required length, available rope and shortfall. First-try help/attempt history survives reload.
 - Integrated perspective camera, closer aerial view, polished/batched athlete, richer region terrain/sky/clouds/plants/water/natural supports and stone material.
--48 tests pass, including21 current campaign tests; all36 physical crossings verified numerically and through normal browser inputs. Independent review catches/fixes stale help/map, map reset, hint eligibility, tiny solved diagrams and transient hook contrast.
+-48 tests pass, including 21 current campaign tests; all 36 physical crossings verified numerically and through normal browser inputs. Independent review catches/fixes stale help/map, map reset, hint eligibility, tiny solved diagrams and transient hook contrast.
 - Actual captures caught sky clipping, decorative support stems on the landing, vegetation in front of P, and overly broad camera footer fitting. Fixed against actual rendered frames, not only mockups.
 - Human fun/comprehension remain determined by the user's next playtest; no test count substitutes for it.
-- Final production and independent normal-control runs pass all36 crossings/11Next actions and restore all12 records. All108 inspected choices retain readable labels and immediate number contrast. Final hook placement also avoids the header; actual final captures and JSON are saved in docs/evidence/campaign-v3.
+- Final production and independent normal-control runs pass all 36 crossings/11Next actions and restore all 12 records. All108 inspected choices retain readable labels and immediate number contrast. Final hook placement also avoids the header; actual final captures and JSON are saved in docs/evidence/campaign-v3.
 - Geometry clearance review samples6,516 body positions and108 reach segments with no decorative contacts/blocks in checked geometry. Final installed skill client reaches an actual airborne state with local art loaded; its canvas and text output were inspected. Preview4183 and dev5183 remain running; no deployment performed.
+
+
+## 25 October — close-view revision after the next human playtest
+
+User screenshots: view too far away to understand; permanent calculation too large, weird and ugly.
+
+- Created new desktop/phone mockups and close-view plan; committed2ee5c18 before implementation.
+- Finite camera search preserves a readable foreground athlete, keeps the landing visible, and leaves choice camera-stable. Flight follows the player. No additional models/spend.
+- Replaced permanent diagram with compact dimensions/Launch strip and a slim rope badge. Explicit paused Diagram is unsolved; separate solution assistance records hint, close/Escape restores exact state.
+- First independent run caught low landing angle and phone math overflow; next caught feedback covering feet, world labels covering heads/landing and stage 25 phone goal offscreen. Corrected with camera elevation/incidence, viewport-bounded dialog, narrow side toast, label exclusions/leaders and landing bounds.
+-48 domain tests and production build pass. Current acceptance script owns all 36 stages across four layouts plus full desktop/touch campaigns. Final current results/captures are saved with evidence after review.
+- Remaining intentional limit: extreme spatial phone corners may leave the close frame; edge cues plus requested complete diagram preserve measurement while keeping the player large. Human feel remains to be judged by actual play.

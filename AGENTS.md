@@ -1,6 +1,6 @@
 # Hypotenuse Rush builder crew
 
-Active game: **campaign v3**. The user's 25 October 2026 feedback requires substantial progression, explicit rope length, readable triangles and improved art. Read `docs/CAMPAIGN_V3.md` and current GAME_IDENTITY.md first; these supersede the v2 three-flight limit and atomic click-to-launch contract. Original handoffs remain historical context. Reuse the two existing Tripo models; no additional Tripo spending occurred.
+Active game: **campaign v3 with close-view presentation**. Read `docs/CLOSE_VIEW.md` and current GAME_IDENTITY.md first. The latest user screenshots reject the far camera and oversized permanent calculation panel: a readable foreground athlete and compact dimension strip take priority; full diagrams/calculation open on demand. This supersedes the always-open diagram in `docs/CAMPAIGN_V3.md`, which still governs the campaign. Original handoffs remain historical context. Reuse the two existing Tripo models; no additional Tripo spending occurred.
 
 This is the standalone Hypotenuse Rush repository, origin https://github.com/AceDZN/hypotenuse-rush, main branch. Read docs/BUILD_HANDOFF.md, docs/CREW_COMMON.md and docs/USER_REQUEST.md before coding.
 

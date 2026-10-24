@@ -1,5 +1,7 @@
 # Campaign v3 — 25 October 2026
 
+Presentation update: `CLOSE_VIEW.md` supersedes the always-open flat panel and distant all-hook camera after the user's next actual playtest. Campaign content and rules below remain active.
+
 The user's screenshots and feedback identify four failures in v2: only three jumps; faint perspective triangles; an obscure rope limit and blind option switching; weak presentation. This plan supersedes the three-flight limit and atomic click-to-launch contract.
 
 Visual thesis: a closer athlete crosses sculpted canyon landscapes with four distinct atmospheres; cyan/amber measurements remain as readable as the cream cable.
@@ -33,4 +35,3 @@ New generated targets: choice-and-rope.png and campaign-map.png in visual-target
 ## Verification
 
 Test all 36 physical crossings, 12 level transitions, persistence/unlocks/replay, neutral three-way choices, spatial calculations and shortfall feedback; resize/camera/diagram readability; click selection without attempt; focused keyboard launch; touch selection+launch; pause/settings/trick; malformed storage; exact thresholds; local assets; production build and errors. Use the installed web-game client plus targeted browser checks. Read real screenshots, including the user's portrait-like in-app viewport. Fun and understanding still require human feedback; no test count substitutes for it.
-

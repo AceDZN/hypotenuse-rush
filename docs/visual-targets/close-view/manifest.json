@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-25",
+  "mockupsBeforeImplementation": "2ee5c18",
+  "generatedTool": "built-in imagegen",
+  "images": [
+    {
+      "path": "docs/visual-targets/close-view/desktop.png",
+      "sha256": "18da68ce4a3119d744c9b370955eac158541a90cea3e1fee085dc92a9f21c20a"
+    },
+    {
+      "path": "docs/visual-targets/close-view/phone.png",
+      "sha256": "0eb7343c4115fc382a6fa58e34bca8ed97de363162515ea83564150dc105755b"
+    }
+  ],
+  "productionAssets": [
+    {
+      "name": "index-O0pm91WO.css",
+      "bytes": 18530
+    },
+    {
+      "name": "index-B_NKTRUT.js",
+      "bytes": 646051
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import { createAthlete, animateAthlete } from './art';
 import { createFlowCanyon, atmosphere } from './canyon';
 import { LEVELS, STAGES, createFlightState, chooseHook, selectHook, launchSelected, advanceFlight, toggleFlightPause, restartFlight, performTrick, inspectFlightHook, nextLevel, loadLevel, recordHint, serializeProgress } from './flight';
 import { numberText, inspectionDiagram, calculation, type Inspection } from './inspection';
+import { frameCrossing } from './framing';
 import './style.css';
 
 const canvas = document.querySelector<HTMLCanvasElement>('#game')!;
@@ -11,7 +12,7 @@ let saved: unknown = undefined;
 try { saved = JSON.parse(localStorage.getItem('rush-campaign-v3') || 'null'); } catch { /* Ignore malformed records. */ }
 const state = createFlightState({ progress: saved });
 let reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, muted = false, manual = false;
-let help = false, hint = false, mapOpen = false, mapLevel = state.level;
+let help = false, hint = false, mathOpen = false, mapOpen = false, mapLevel = state.level;
 let builtStage = -1, frameTime = 0, lastLanded = state.landed, lastLaunches = 0, lastMistakes = 0, lastTricks = 0;
 let lastMode = '', uiKey = '', overlayKey = '', inspectorKey = '', lastSaved = '';
 const $ = (id: string) => document.getElementById(id)!;
@@ -29,7 +30,6 @@ renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadow
 renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.12;
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(48, innerWidth / innerHeight, .1, 350);
-const fitCamera = camera.clone();
 const ambient = new THREE.HemisphereLight('#dcecff', '#9b5737', 2); scene.add(ambient);
 const sun = new THREE.DirectionalLight('#ffe8bd', 3); sun.castShadow = true;
 sun.shadow.mapSize.set(1536, 1536); Object.assign(sun.shadow.camera, { left: -28, right: 28, top: 30, bottom: -25, near: 1, far: 100 }); sun.shadow.bias = -.0005;
@@ -52,12 +52,11 @@ ui.innerHTML = `
 <header class="hud"><div class="brand"><span>◭</span><div>HYPOTENUSE <em>RUSH</em><small>מסע מעל הקניון</small></div></div>
   <div class="journey"><button id="journey" aria-label="מפת השלבים">המסע</button><div><strong id="level-count"></strong><small id="hop-count"></small></div><button id="pause" aria-label="השהיה">Ⅱ</button></div>
 </header>
-<section class="rope-spec" aria-label="אורך הכבל שלך"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M12 9h22v28H12zM9 12h28M9 20h28M9 28h28M9 36h28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><div><small>אורך הכבל שלך</small><strong id="rope-length"></strong><span>מהרתמה <bdi>P</bdi> אל הטבעת</span></div></section>
+<section class="rope-spec" aria-label="אורך הכבל שלך, מהרתמה P אל הטבעת"><svg viewBox="0 0 46 46" aria-hidden="true"><path d="M12 9h22v28H12zM9 12h28M9 20h28M9 28h28M9 36h28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><small>אורך הכבל</small><strong id="rope-length"></strong></section>
 <div id="region-title" class="region-title"></div>
 <svg id="world-measure" aria-hidden="true"></svg><svg id="hook-leaders" aria-hidden="true"></svg><div id="hook-buttons"></div>
 <div id="pop" class="pop" aria-live="polite"></div>
-<aside id="inspection" class="inspection"><div class="inspection-heading"><strong id="inspection-title"></strong><span id="first-try"></span></div><div id="diagram"></div><div id="calculation"></div><div class="inspection-note" id="inspection-note"></div><button id="calc">חשבו איתי <bdi>√</bdi></button></aside>
-<div class="action-dock"><div id="feedback" class="feedback" role="status"></div><div id="action-content"></div></div>
+<div class="action-dock"><div id="feedback" class="feedback" role="status"></div><div class="control-bar"><aside id="inspection" class="inspection"><div class="inspection-heading"><strong id="inspection-title"></strong><span id="first-try"></span></div><div id="dimensions" class="dimensions"></div><button id="calc" aria-haspopup="dialog">שרטוט <span aria-hidden="true">⌁</span></button></aside><div id="action-content"></div></div></div>
 <button id="help" class="help" aria-label="עזרה והגדרות">?</button><div id="timer" class="timer ltr"></div>
 <div id="overlay"></div>`;
 
@@ -95,33 +94,10 @@ function buildStage() {
   camera.position.copy(readyPosition); camera.lookAt(readyFocus); camera.updateMatrixWorld(); cameraReady = true;
 }
 function computeReadyCamera() {
-  const s = stage(), portrait = innerWidth < 850;
-  const maxY = Math.max(...s.hooks.map(h => h.position.y));
-  readyFocus.copy(V(s.origin));
-  readyFocus.x += Math.min(9, Math.max(...s.hooks.map(h => h.position.x - s.origin.x)) * .7);
-  readyFocus.y += Math.max(4.8, (maxY - s.origin.y) * .48);
-  readyFocus.z += s.hooks.reduce((sum, h) => sum + h.position.z - s.origin.z, 0) / s.hooks.length * .2;
-  const direction = (portrait ? new THREE.Vector3(-14, 3.6, 15) : new THREE.Vector3(-14, 1.2, 13)).normalize();
-  const points = [
-    { p: V(s.origin), top: 150, bottom: portrait ? 345 : 30 },
-    { p: V(s.origin).add(new THREE.Vector3(0, 1.85, 0)), top: 150, bottom: portrait ? 280 : 45 },
-    ...s.hooks.map(h => ({ p: V(h.position), top: portrait ? 170 : 150, bottom: portrait ? 290 : 200 })),
-    ...[[-2.4, 0, -2.6], [2.4, 0, 2.6], [2.4, 0, -2.6]].map(d => ({ p: V(s.landing).add(new THREE.Vector3(...d as [number, number, number])), top: 130, bottom: portrait ? 265 : 130 })),
-  ];
-  fitCamera.aspect = camera.aspect; fitCamera.fov = portrait ? 53 : 48; fitCamera.updateProjectionMatrix();
-  let distance = portrait ? 16 : 19.2;
-  for (let i = 0; i < 90; i++) {
-    fitCamera.position.copy(readyFocus).addScaledVector(direction, distance); fitCamera.lookAt(readyFocus); fitCamera.updateMatrixWorld();
-    const fits = points.every(({ p, top, bottom }) => {
-      const q = p.clone().project(fitCamera), x = (q.x + 1) * innerWidth / 2, y = (1 - q.y) * innerHeight / 2;
-      const behindInspector = !portrait && x < 355 && y > innerHeight - 290;
-      const behindAction = !portrait && Math.abs(x - innerWidth * .59) < 245 && y > innerHeight - 160;
-      return q.z < 1 && x > 45 && x < innerWidth - 45 && y > top && y < Math.max(top + 120, innerHeight - bottom) && !behindInspector && !behindAction;
-    });
-    if (fits) break;
-    distance *= 1.035;
-  }
-  readyPosition.copy(fitCamera.position); camera.fov = fitCamera.fov; camera.updateProjectionMatrix();
+  const frame = frameCrossing(stage(), innerWidth, innerHeight);
+  readyPosition.copy(frame.position); readyFocus.copy(frame.focus);
+  camera.fov = frame.fov;
+  camera.setViewOffset(innerWidth, innerHeight, frame.offset.x, frame.offset.y, innerWidth, innerHeight);
 }
 const screen = (v: THREE.Vector3) => { const p = v.clone().project(camera); return { x: (p.x + 1) * innerWidth / 2, y: (1 - p.y) * innerHeight / 2 }; };
 const pointText = (v: THREE.Vector3) => { const p = screen(v); return `${p.x.toFixed(1)},${p.y.toFixed(1)}`; };
@@ -132,8 +108,28 @@ function drawMeasurements() {
   const h = stage().hooks.find(h => h.id === state.selected)!;
   const p = harness(), q = V(h.position), c = new THREE.Vector3(q.x, p.y, p.z), f = new THREE.Vector3(q.x, p.y, q.z);
   const spatial = Math.abs(q.z - p.z) > .001;
+  type Rect = { left: number; right: number; top: number; bottom: number };
+  const avoid: Rect[] = [athleteBounds(), landingBounds()];
+  for (const selector of ['.rope-spec', '.action-dock', '#feedback', '.hook-target']) {
+    for (const el of Array.from(document.querySelectorAll<HTMLElement>(selector))) {
+      const r = el.getBoundingClientRect(); if (r.width && r.height) avoid.push(r);
+    }
+  }
   const leg = (a: THREE.Vector3, b: THREE.Vector3, color: string, dash = false) => `<polyline points="${pointText(a)} ${pointText(b)}" class="measure-outline"/><polyline points="${pointText(a)} ${pointText(b)}" stroke="${color}" class="measure-line" ${dash ? 'stroke-dasharray="10 7"' : ''}/>`;
-  const label = (at: THREE.Vector3, text: string, color: string, ox = 0, oy = 0) => { const s = screen(at); const w = Math.max(42, text.length * 10 + 16); return `<g transform="translate(${s.x + ox},${s.y + oy})"><rect x="${-w / 2}" y="-15" width="${w}" height="30" rx="7" fill="#132a3e" fill-opacity=".96" stroke="${color}" stroke-width="1.2"/><text y="6" text-anchor="middle" fill="${color}">${text}</text></g>`; };
+  const label = (at: THREE.Vector3, text: string, color: string, ox = 0, oy = 0) => {
+    const s = screen(at), w = Math.max(42, text.length * 10 + 16), narrow = innerWidth < 650;
+    let best = Infinity, chosen = { x: s.x + ox, y: s.y + oy };
+    for (const [dx, dy] of [[0, 0], [50, 0], [-50, 0], [0, -40], [0, 40], [85, -30], [-85, -30], [85, 35], [-85, 35], [120, 0], [-120, 0], [0, -85], [0, 85], [140, -70], [-140, -70]]) {
+      const a = { x: THREE.MathUtils.clamp(s.x + ox + dx, w / 2 + 8, innerWidth - w / 2 - 8), y: THREE.MathUtils.clamp(s.y + oy + dy, narrow ? 120 : 95, innerHeight - (narrow ? 145 : 112)) };
+      const rect = { left: a.x - w / 2, right: a.x + w / 2, top: a.y - 15, bottom: a.y + 15 };
+      const overlaps = avoid.reduce((sum, r) => sum + Math.max(0, Math.min(rect.right, r.right + 16) - Math.max(rect.left, r.left - 16)) * Math.max(0, Math.min(rect.bottom, r.bottom + 16) - Math.max(rect.top, r.top - 16)), 0);
+      const score = overlaps * 100 + Math.hypot(a.x - s.x - ox, a.y - s.y - oy);
+      if (score < best) { best = score; chosen = a; }
+    }
+    avoid.push({ left: chosen.x - w / 2, right: chosen.x + w / 2, top: chosen.y - 15, bottom: chosen.y + 15 });
+    const leader = Math.hypot(chosen.x - s.x, chosen.y - s.y) > 45 ? `<line x1="${s.x}" y1="${s.y}" x2="${chosen.x}" y2="${chosen.y}" stroke="${color}" stroke-width="1" opacity=".65"/>` : '';
+    return `${leader}<g transform="translate(${chosen.x},${chosen.y})"><rect x="${-w / 2}" y="-15" width="${w}" height="30" rx="7" fill="#132a3e" fill-opacity=".96" stroke="${color}" stroke-width="1.2"/><text y="6" text-anchor="middle" fill="${color}">${text}</text></g>`;
+  };
   let svg = `<polygon points="${pointText(p)} ${pointText(f)} ${pointText(q)}" fill="#4fcddb" fill-opacity=".12"/>`;
   if (spatial) svg += `<polygon points="${pointText(p)} ${pointText(c)} ${pointText(f)}" fill="#bc8dff" fill-opacity=".12"/>`;
   svg += leg(p, c, '#57e4f0') + (spatial ? leg(c, f, '#bb9aff') + leg(p, f, '#9bc9fb', true) : '') + leg(f, q, '#ffcd66') + leg(p, q, '#fff1d3', true);
@@ -144,45 +140,53 @@ function drawMeasurements() {
   svg += label(f.clone().lerp(q, .5), `${numberText(q.y - p.y)} m`, '#ffcd66', 32, 0);
   if (spatial) svg += label(c.clone().lerp(f, .5), `${numberText(q.z - p.z)} m`, '#bb9aff', 24, 12);
   svg += label(p.clone().lerp(q, .5), hint ? `${numberText(inspectInfo().distance)} m` : '? m', '#fff1d3', -24, -13);
-  const ps = screen(p); svg += `<circle cx="${ps.x}" cy="${ps.y}" r="5" fill="#fff2cf" stroke="#142c3d" stroke-width="2"/><text x="${ps.x - 19}" y="${ps.y + 5}" fill="#fff3d5" class="origin-text">P</text>`;
+  const ps = screen(p); svg += `<circle cx="${ps.x}" cy="${ps.y}" r="5" fill="#fff2cf" stroke="#142c3d" stroke-width="2"/><path d="M${ps.x - 8},${ps.y - 2} l-24,-10" stroke="#fff2cf" stroke-width="1.5"/><text x="${ps.x - 45}" y="${ps.y - 9}" fill="#fff3d5" class="origin-text">P</text>`;
   $('world-measure').innerHTML = svg;
 }
 function positionHooks() {
-  const raw = stage().hooks.map(h => screen(V(h.position)));
-  const compact = innerWidth < 850 || raw.some(p => p.y < 225 || p.x < 70 || p.x > innerWidth - 70) || raw.some((p, i) => raw.some((q, j) => i !== j && Math.hypot(p.x - q.x, p.y - q.y) < 95));
+  const raw = stage().hooks.map(h => screen(V(h.position))), placed: { x: number; y: number }[] = [];
+  const narrow = innerWidth < 650, top = narrow ? 140 : 112, bottom = innerHeight - (narrow ? 166 : 140);
   let leaders = '';
   stage().hooks.forEach((h, i) => {
     const el = document.querySelector<HTMLButtonElement>(`[data-hook="${h.id}"]`)!;
-    const p = { ...raw[i] };
-    if (compact) {
-      p.x = innerWidth * (.22 + i * .28);
-      p.y = Math.max(innerWidth < 850 ? 195 : 175, Math.min(...raw.map(p => p.y)) - 48);
-      p.y = Math.min(p.y, innerHeight * .48);
-      leaders += `<line x1="${p.x}" y1="${p.y}" x2="${raw[i].x}" y2="${raw[i].y}"/>`;
+    let p = { x: 0, y: 0 }, best = Infinity;
+    for (const [dx, dy] of [[0, -44], [-52, -25], [52, -25], [0, 49], [-72, 35], [72, 35], [-112, -35], [112, -35], [0, 110]]) {
+      const q = { x: THREE.MathUtils.clamp(raw[i].x + dx, 30, innerWidth - 30), y: THREE.MathUtils.clamp(raw[i].y + dy, top, bottom) };
+      const collision = placed.some(a => Math.hypot(a.x - q.x, a.y - q.y) < 58);
+      const body = screen(harness());
+      const overPlayer = Math.abs(q.x - body.x) < 55 && Math.abs(q.y - body.y) < 95;
+      const goal = screen(V(stage().landing)), overGoal = Math.abs(q.x - goal.x) < 62 && Math.abs(q.y - goal.y) < 45;
+      const score = Math.hypot(q.x - raw[i].x, q.y - raw[i].y) + (collision ? 10000 : 0) + (overPlayer ? 5000 : 0) + (overGoal ? 5000 : 0);
+      if (score < best) { best = score; p = q; }
     }
-    el.hidden = state.mode !== 'ready' || mapOpen || help;
+    placed.push(p);
+    const ropeRect = document.querySelector('.rope-spec')!.getBoundingClientRect();
+    const underRope = raw[i].x > ropeRect.left - 10 && raw[i].x < ropeRect.right + 10 && raw[i].y > ropeRect.top - 12 && raw[i].y < ropeRect.bottom + 12;
+    const edge = raw[i].x < 15 || raw[i].x > innerWidth - 15 || raw[i].y < top || raw[i].y > bottom || underRope;
+    const end = { x: THREE.MathUtils.clamp(raw[i].x, 3, innerWidth - 3), y: THREE.MathUtils.clamp(raw[i].y, 3, innerHeight - 3) };
+    leaders += `<line x1="${p.x}" y1="${p.y}" x2="${end.x}" y2="${end.y}"/>`;
+    el.hidden = state.mode !== 'ready' || mapOpen || help || mathOpen;
     el.style.left = `${p.x}px`; el.style.top = `${p.y}px`;
-    el.classList.toggle('selected', state.selected === h.id); el.classList.toggle('detached', compact);
+    el.classList.toggle('selected', state.selected === h.id); el.classList.toggle('edge', edge);
+    el.innerHTML = `<span>${h.label}</span>${edge ? `<small aria-hidden="true">${raw[i].y < top ? '↑' : raw[i].x > innerWidth / 2 ? '↗' : '↖'}</small>` : ''}`;
+    el.setAttribute('aria-label', `מדידת טבעת ${h.label}${edge ? ' · בכיוון החץ' : ''}`);
     el.setAttribute('aria-pressed', String(state.selected === h.id));
     hooks.get(h.id)!.children[0].scale.setScalar(state.selected === h.id && state.mode === 'ready' ? 1.1 : 1);
   });
-  $('hook-leaders').innerHTML = state.mode === 'ready' && !mapOpen && !help ? leaders : '';
+  $('hook-leaders').innerHTML = state.mode === 'ready' && !mapOpen && !help && !mathOpen ? leaders : '';
 }
 function inspectInfo(): Inspection { const m = inspectFlightHook(state, state.selected); return { ...m, reach: stage().reach, face: Math.hypot(m.dx, m.dz) }; }
 function updateInspector() {
-  const visible = state.mode === 'ready' && !mapOpen;
+  const visible = state.mode === 'ready' && !mapOpen && !help && !mathOpen;
   $('inspection').hidden = !visible;
   if (!visible) return;
   const key = `${state.stage}:${state.selected}:${hint}:${state.stageAttempts}`;
   if (key === inspectorKey) return; inspectorKey = key;
   const h = stage().hooks.find(h => h.id === state.selected)!;
-  $('inspection-title').innerHTML = `מדידת טבעת <bdi>${h.label}</bdi>`;
-  $('first-try').textContent = state.stageHinted ? 'חישוב מסייע · ללא כוכב דיוק' : state.stageAttempts === 0 ? '✦ כוכב בניסיון ראשון' : 'ניסיון נוסף';
+  $('inspection-title').innerHTML = `טבעת <bdi>${h.label}</bdi>`;
+  $('first-try').textContent = state.stageHinted ? 'עם סיוע' : state.stageAttempts === 0 ? '✦ ניסיון ראשון' : 'ניסיון נוסף';
   const info = inspectInfo();
-  $('diagram').innerHTML = inspectionDiagram(info, hint);
-  $('calculation').innerHTML = hint ? calculation(info) : '';
-  $('inspection-note').textContent = Math.abs(info.dz) > .001 ? 'המרחק לטבעת כולל גם תזוזה לצד.' : 'היתר הוא המרחק לטבעת. האם הכבל יספיק?';
-  $('calc').textContent = hint ? 'להסתיר חישוב' : 'חשבו איתי · ללא כוכב √';
+  $('dimensions').innerHTML = `<bdi class="across" aria-label="לרוחב ${numberText(Math.abs(info.dx))} מטר">${numberText(Math.abs(info.dx))} m ↔</bdi><bdi class="rise" aria-label="גובה ${numberText(Math.abs(info.dy))} מטר">${numberText(Math.abs(info.dy))} m ↑</bdi>${Math.abs(info.dz) > .001 ? `<bdi class="depth" aria-label="לצד ${numberText(Math.abs(info.dz))} מטר">${numberText(Math.abs(info.dz))} m ↗</bdi>` : ''}`;
 }
 function updateHUD() {
   $('level-count').innerHTML = `שלב <bdi>${state.level + 1} / ${LEVELS.length}</bdi>`;
@@ -195,7 +199,7 @@ function updateHUD() {
     uiKey = key;
     if (state.mode === 'ready') {
       const h = stage().hooks.find(h => h.id === state.selected)!;
-      $('action-content').innerHTML = `<div class="step-hint"><span>1</span> בוחרים טבעת למדידה <i>←</i> <span>2</span> משגרים</div><button id="launch" class="launch">שיגור לטבעת <bdi>${h.label}</bdi> <kbd>Space</kbd><b>↗</b></button><p>הכבל צריך להגיע לטבעת; התנופה תיקח אתכם לנחיתה.</p>`;
+      $('action-content').innerHTML = `<button id="launch" class="launch" aria-label="שיגור לטבעת ${h.label}">שיגור <bdi>${h.label}</bdi> <kbd>Space</kbd><b>↗</b></button>`;
       $('launch').onclick = fire;
     } else if (state.mode === 'flying') { $('action-content').innerHTML = '<button id="trick" class="air-action">פעלול באוויר <kbd>Space</kbd><small>רק אם בא לכם · הנחיתה אוטומטית</small></button>'; $('trick').onclick = fire; }
     else if (state.mode === 'landing') $('action-content').innerHTML = '<div class="landed-note">נחיתה חלקה. <span>ממשיכים אל הטבעת הבאה</span></div>';
@@ -216,10 +220,18 @@ function fire() {
   if (mapOpen || help || state.mode === 'paused' || state.mode === 'finished') return;
   beginAudio(); if (state.mode === 'ready') { launchSelected(state); hint = false; save(); } else if (state.mode === 'flying') performTrick(state); render(0);
 }
-function pause() { if (mapOpen) { closeMap(); return; } help = false; toggleFlightPause(state); render(0); }
+function openMath() {
+  if (state.mode !== 'ready' || mapOpen || help) return;
+  mathOpen = true; toggleFlightPause(state); overlayKey = ''; render(0); $('close-math').focus();
+}
+function closeMath() {
+  mathOpen = false; if (state.mode === 'paused') toggleFlightPause(state);
+  overlayKey = ''; render(0); $('calc').focus();
+}
+function pause() { if (mathOpen) { closeMath(); return; } if (mapOpen) { closeMap(); return; } help = false; toggleFlightPause(state); render(0); }
 $('pause').onclick = pause;
 $('help').onclick = () => { help = true; if (state.mode !== 'paused' && state.mode !== 'finished') toggleFlightPause(state); overlayKey = ''; render(0); };
-$('calc').onclick = () => { hint = !hint; if (hint) { recordHint(state); save(); } inspectorKey = ''; render(0); };
+$('calc').onclick = openMath;
 $('journey').onclick = openMap;
 canvas.addEventListener('click', () => { if (state.mode === 'flying') fire(); });
 addEventListener('keydown', e => {
@@ -240,13 +252,28 @@ addEventListener('blur', () => { if (!mapOpen && ['ready', 'flying', 'landing'].
 document.addEventListener('visibilitychange', () => { if (document.hidden && !mapOpen && ['ready', 'flying', 'landing'].includes(state.mode)) { toggleFlightPause(state); render(0); } });
 
 const mapPoints = [[6, 44], [13, 49], [20, 55], [31, 59], [40, 47], [47, 40], [56, 51], [64, 44], [72, 54], [80, 42], [87, 35], [94, 25]];
-function openMap() { help = false; mapOpen = true; mapLevel = state.level; if (state.mode !== 'paused' && state.mode !== 'finished') toggleFlightPause(state); overlayKey = ''; render(0); }
+function openMap() { help = false; mathOpen = false; mapOpen = true; mapLevel = state.level; if (state.mode !== 'paused' && state.mode !== 'finished') toggleFlightPause(state); overlayKey = ''; render(0); }
 function closeMap() { help = false; mapOpen = false; if (state.mode === 'paused') toggleFlightPause(state); overlayKey = ''; render(0); }
 function startLevel(index: number) { if (index === state.level && state.mode !== 'finished') { closeMap(); return; } if (!loadLevel(state, index)) return; mapOpen = false; help = false; hint = false; resetPresentation(); save(); render(0); }
-function resetPresentation() { builtStage = -1; uiKey = inspectorKey = overlayKey = ''; lastLanded = state.landed; lastLaunches = state.launches; lastMistakes = state.mistakes; lastTricks = state.tricks; lastMode = ''; cameraReady = false; }
+function resetPresentation() { mathOpen = false; builtStage = -1; uiKey = inspectorKey = overlayKey = ''; lastLanded = state.landed; lastLaunches = state.launches; lastMistakes = state.mistakes; lastTricks = state.tricks; lastMode = ''; cameraReady = false; }
 function overlays() {
-  const key = `${mapOpen}:${mapLevel}:${help}:${state.mode}:${state.level}:${reduced}:${muted}`;
+  const key = `${mapOpen}:${mapLevel}:${help}:${mathOpen}:${hint}:${state.selected}:${state.mode}:${state.level}:${reduced}:${muted}`;
   if (key === overlayKey) return; overlayKey = key;
+  if (mathOpen) {
+    const h = stage().hooks.find(h => h.id === state.selected)!, info = inspectInfo();
+    $('overlay').innerHTML = `<section class="modal math-modal"><div class="math-panel" role="dialog" aria-modal="true" aria-labelledby="math-title"><header><div><small>מהרתמה <bdi>P</bdi> אל הטבעת</small><h2 id="math-title">שרטוט טבעת <bdi>${h.label}</bdi></h2></div><button id="close-math" aria-label="סגירת השרטוט">×</button></header><div id="diagram">${inspectionDiagram(info, hint)}</div><div id="calculation">${hint ? calculation(info) : ''}</div><footer><span>הכבל שלך: <bdi>${stage().reach} m</bdi></span><button id="solve">${hint ? 'להסתיר פתרון' : 'חישוב מסייע · ללא כוכב √'}</button></footer></div></section>`;
+    $('close-math').onclick = closeMath;
+    $('solve').onclick = () => {
+      hint = !hint;
+      if (hint) {
+        // Assistance is recorded at the unchanged ready state; the dialog
+        // remains paused and no simulation step occurs between these toggles.
+        toggleFlightPause(state); recordHint(state); toggleFlightPause(state); save();
+      }
+      inspectorKey = ''; render(0); $('solve').focus();
+    };
+    return;
+  }
   if (mapOpen) {
     const selected = LEVELS[mapLevel], record = state.progress.records[mapLevel], unlocked = mapLevel <= state.progress.unlocked;
     $('overlay').innerHTML = `<section class="campaign"><header><div class="brand">HYPOTENUSE <em>RUSH</em></div><div><h1>המסע שלכם</h1><p>12 שלבים · 36 קפיצות · ההתקדמות נשמרת</p></div><button id="close-map" aria-label="חזרה למשחק">×</button></header><nav class="region-tabs">${[0, 1, 2, 3].map(r => `<button data-region="${r}" class="${Math.floor(mapLevel / 3) === r ? 'active' : ''}">${LEVELS[r * 3].regionTitle}</button>`).join('')}</nav><div id="map-scroll" class="map-scroll"><div class="map-landscape">${LEVELS.map((l, i) => { const rec = state.progress.records[i]; return `<button data-level="${i}" style="left:${mapPoints[i][0]}%;top:${mapPoints[i][1]}%" class="map-node ${i === mapLevel ? 'selected' : ''} ${rec.completed ? 'complete' : ''} ${i > state.progress.unlocked ? 'locked' : ''}" aria-label="שלב ${i + 1}: ${l.title}${i > state.progress.unlocked ? ', נעול' : ''}"><b>${i + 1}</b><small>${rec.completed ? '★'.repeat(rec.stars) || '✓' : i > state.progress.unlocked ? 'נעול' : 'זמין'}</small></button>`; }).join('')}</div></div><footer><div><span class="eyebrow">${selected.regionTitle}</span><h2>${mapLevel + 1}. ${selected.title}</h2><p>3 קפיצות · כבל <bdi>${selected.stages[0].reach} m</bdi>${record.completed ? ` · ${record.stars} כוכבים` : ''}</p></div><button id="open-level" class="launch" ${unlocked ? '' : 'disabled'}>${unlocked ? mapLevel === state.level && state.mode !== 'finished' ? `ממשיכים בשלב ${mapLevel + 1} ←` : record.completed ? `שוב לשלב ${mapLevel + 1} ←` : `לשלב ${mapLevel + 1} ←` : 'סיימו את השלב הקודם'}</button></footer></section>`;
@@ -285,10 +312,9 @@ function render(dt: number, draw = true) {
   const trickAge = frameTime - trickAt; if (visualMode === 'flying' && !reduced && trickAge < .55) athlete.rotation.z -= Math.PI * 2 * Math.min(1, trickAge / .55);
   athlete.scale.y = visualMode === 'landing' && !reduced ? 1 - .1 * Math.sin(Math.min(1, state.phaseTime / .35) * Math.PI) : 1;
   desiredPosition.copy(readyPosition); desiredFocus.copy(readyFocus);
-  if (visualMode === 'flying' && !reduced) {
-    const blend = Math.sin(Math.min(1, state.phaseTime / 1.5) * Math.PI) * .6;
-    const follow = V(state.p).add(new THREE.Vector3(-5, 4.8, 9));
-    desiredPosition.lerp(follow, blend); desiredFocus.lerp(V(state.p).add(new THREE.Vector3(3.5, 1.5, 0)), blend);
+  if (visualMode === 'flying' || visualMode === 'landing') {
+    const travel = V(state.p).sub(V(stage().origin));
+    desiredPosition.add(travel); desiredFocus.add(travel);
   }
   const smooth = reduced || !cameraReady ? 1 : 1 - Math.exp(-Math.min(dt, .2) * 8);
   camera.position.lerp(desiredPosition, smooth); camera.lookAt(desiredFocus); camera.updateMatrixWorld();
@@ -299,7 +325,8 @@ function render(dt: number, draw = true) {
   for (let i = 0; i < 32; i++) { const age = (frameTime * 1.6 + i / 32) % 1; if (visualMode === 'landing') particle.position.set(state.p.x + Math.cos(i * 4.2) * age * 2, state.p.y + .05 + age * .45, state.p.z + Math.sin(i * 4.2) * age * 2); else particle.position.set(state.p.x - state.v.x * age * .1, state.p.y + .6 + Math.sin(i * 3) * .12, state.p.z + Math.cos(i * 7) * .2); particle.scale.setScalar((1 - age) * .9); particle.updateMatrix(); dust.setMatrixAt(i, particle.matrix); } dust.instanceMatrix.needsUpdate = true;
   $('pop').textContent = visualMode === 'flying' && trickAge < .7 ? 'סיבוב מושלם! ✦' : visualMode === 'landing' ? state.stageAttempts === 1 && !state.stageHinted ? 'נחיתה מדויקת! ✦' : 'נחיתה חלקה!' : '';
   updateHUD(); positionHooks(); drawMeasurements();
-  $('action-content').parentElement!.classList.toggle('inactive', mapOpen || state.mode === 'paused' || state.mode === 'finished');
+  $('action-content').closest('.action-dock')!.classList.toggle('inactive', mapOpen || state.mode === 'paused' || state.mode === 'finished');
+  $('action-content').closest('.control-bar')!.classList.toggle('in-flight', state.mode !== 'ready');
   if (draw) renderer.render(scene, camera);
 }
 function resize() { renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); computeReadyCamera(); camera.position.copy(readyPosition); render(0); }
@@ -311,4 +338,18 @@ let last = performance.now(), lastRender = 0; const frames: number[] = [];
 function frame(now: number) { if (!manual && now - lastRender >= 1000 / 60 - 1) { const raw = now - last; lastRender = now; const dt = Math.min(raw / 1000, .1); advanceFlight(state, dt * 1000); render(dt); frames.push(raw); if (frames.length > 180) frames.shift(); } last = manual ? now : lastRender; requestAnimationFrame(frame); }
 buildStage(); resize(); save(); requestAnimationFrame(frame);
 (window as any).advanceTime = (ms: number, draw = true) => { manual = true; advanceFlight(state, ms); render(ms / 1000, draw); };
-(window as any).render_game_to_text = () => JSON.stringify({ game: 'Hypotenuse Rush', version: 'campaign-v3', coordinateSystem: 'metres; +X route, +Y up, +Z lateral; feet position; harness+1.05m', mode: state.mode, level: state.level, hop: state.hop, stage: state.stage, totalLevels: LEVELS.length, totalFlights: STAGES.length, title: level().title, region: level().regionTitle, ropeLength: stage().reach, player: { position: state.p, velocity: state.v, harness: harness(), grounded: state.mode !== 'flying' }, selected: state.selected, attached: state.attached, hooks: stage().hooks.map(h => ({ ...h, ...inspectFlightHook(state, h.id) })), destination: stage().landing, landed: state.landed, launches: state.launches, mistakes: state.mistakes, tricks: state.tricks, firstTry: state.firstTry, stageAttempts: state.stageAttempts, rejection: state.rejection, elapsed: state.elapsed, timed: state.timed, phaseTime: state.phaseTime, progress: state.progress, layout: { player: screen(V(state.p)), head: screen(V(state.p).add(new THREE.Vector3(0, 1.8, 0))), hooks: stage().hooks.map(h => screen(V(h.position))) }, camera: { position: camera.position, type: 'automatic perspective', fov: camera.fov }, art: archLoaded && athlete.userData.tripoHelmetLoaded ? 'loaded' : 'loading', archLoaded, helmetLoaded: athlete.userData.tripoHelmetLoaded, mapOpen, mapLevel, help, hint, reducedMotion: reduced, muted, events: state.events.slice(-8), performance: { frames: frames.length, meanFrameMs: frames.reduce((a, b) => a + b, 0) / (frames.length || 1), calls: renderer.info.render.calls, triangles: renderer.info.render.triangles } });
+function athleteBounds() {
+  athlete.updateWorldMatrix(true, true);
+  const box = new THREE.Box3().setFromObject(athlete), points = [];
+  for (const x of [box.min.x, box.max.x]) for (const y of [box.min.y, box.max.y]) for (const z of [box.min.z, box.max.z]) points.push(screen(new THREE.Vector3(x, y, z)));
+  const left = Math.min(...points.map(p => p.x)), right = Math.max(...points.map(p => p.x)), top = Math.min(...points.map(p => p.y)), bottom = Math.max(...points.map(p => p.y));
+  return { left, top, right, bottom, width: right - left, height: bottom - top };
+}
+function landingBounds() {
+  const points = Array.from({ length: 12 }, (_, i) => {
+    const angle = i * Math.PI / 6;
+    return screen(V(stage().landing).add(new THREE.Vector3(Math.cos(angle) * 1.4, .03, Math.sin(angle) * 1.4)));
+  });
+  return { left: Math.min(...points.map(p => p.x)), right: Math.max(...points.map(p => p.x)), top: Math.min(...points.map(p => p.y)), bottom: Math.max(...points.map(p => p.y)) };
+}
+(window as any).render_game_to_text = () => JSON.stringify({ game: 'Hypotenuse Rush', version: 'campaign-v3', presentation: 'close-view-v1', coordinateSystem: 'metres; +X route, +Y up, +Z lateral; feet position; harness+1.05m', mode: state.mode, level: state.level, hop: state.hop, stage: state.stage, totalLevels: LEVELS.length, totalFlights: STAGES.length, title: level().title, region: level().regionTitle, ropeLength: stage().reach, player: { position: state.p, velocity: state.v, harness: harness(), grounded: state.mode !== 'flying' }, selected: state.selected, attached: state.attached, hooks: stage().hooks.map(h => ({ ...h, ...inspectFlightHook(state, h.id) })), destination: stage().landing, landed: state.landed, launches: state.launches, mistakes: state.mistakes, tricks: state.tricks, firstTry: state.firstTry, stageAttempts: state.stageAttempts, rejection: state.rejection, elapsed: state.elapsed, timed: state.timed, phaseTime: state.phaseTime, progress: state.progress, layout: { destination: screen(V(stage().landing)), athleteBounds: athleteBounds(), player: screen(V(state.p)), head: screen(V(state.p).add(new THREE.Vector3(0, 1.8, 0))), hooks: stage().hooks.map(h => screen(V(h.position))) }, camera: { position: camera.position, type: 'automatic perspective', fov: camera.fov }, art: archLoaded && athlete.userData.tripoHelmetLoaded ? 'loaded' : 'loading', archLoaded, helmetLoaded: athlete.userData.tripoHelmetLoaded, mapOpen, mapLevel, help, mathOpen, hint, reducedMotion: reduced, muted, events: state.events.slice(-8), performance: { frames: frames.length, meanFrameMs: frames.reduce((a, b) => a + b, 0) / (frames.length || 1), calls: renderer.info.render.calls, triangles: renderer.info.render.triangles } });

@@ -1,0 +1,351 @@
+{
+  "game": "Hypotenuse Rush",
+  "version": "campaign-v3",
+  "presentation": "close-view-v1",
+  "coordinateSystem": "metres; +X route, +Y up, +Z lateral; feet position; harness+1.05m",
+  "mode": "flying",
+  "level": 0,
+  "hop": 0,
+  "stage": 0,
+  "totalLevels": 12,
+  "totalFlights": 36,
+  "title": "קצה הקניון",
+  "region": "הקניון האדום",
+  "ropeLength": 10,
+  "player": {
+    "position": {
+      "x": 4.239199999999995,
+      "y": 4.782899999999993,
+      "z": 0
+    },
+    "velocity": {
+      "x": 10.845333333333329,
+      "y": 7.918999999999993,
+      "z": 0
+    },
+    "harness": {
+      "x": 4.239199999999995,
+      "y": 5.832899999999992,
+      "z": 0
+    },
+    "grounded": false
+  },
+  "selected": "l1-h1-2",
+  "attached": null,
+  "hooks": [
+    {
+      "id": "l1-h1-1",
+      "label": "1",
+      "position": {
+        "x": 6,
+        "y": 10.05,
+        "z": 0
+      },
+      "dx": 1.760800000000005,
+      "dy": 4.217100000000008,
+      "dz": 0,
+      "distance": 4.569939720609024,
+      "squared": 20.884349050000086,
+      "face": 1.760800000000005,
+      "reach": 10,
+      "shortfall": 0,
+      "slack": 5.430060279390976,
+      "reachable": true,
+      "reason": "ready"
+    },
+    {
+      "id": "l1-h1-2",
+      "label": "2",
+      "position": {
+        "x": 8,
+        "y": 7.05,
+        "z": 0
+      },
+      "dx": 3.760800000000005,
+      "dy": 1.2171000000000074,
+      "dz": 0,
+      "distance": 3.9528406304833554,
+      "squared": 15.624949050000057,
+      "face": 3.760800000000005,
+      "reach": 10,
+      "shortfall": 0,
+      "slack": 6.047159369516645,
+      "reachable": true,
+      "reason": "ready"
+    },
+    {
+      "id": "l1-h1-3",
+      "label": "3",
+      "position": {
+        "x": 9,
+        "y": 7.05,
+        "z": 0
+      },
+      "dx": 4.760800000000005,
+      "dy": 1.2171000000000074,
+      "dz": 0,
+      "distance": 4.913913821995667,
+      "squared": 24.146549050000065,
+      "face": 4.760800000000005,
+      "reach": 10,
+      "shortfall": 0,
+      "slack": 5.086086178004333,
+      "reachable": true,
+      "reason": "ready"
+    }
+  ],
+  "destination": {
+    "x": 14,
+    "y": 3,
+    "z": 0
+  },
+  "landed": 0,
+  "launches": 1,
+  "mistakes": 1,
+  "tricks": 0,
+  "firstTry": 0,
+  "stageAttempts": 2,
+  "rejection": null,
+  "elapsed": 0.5999999999999998,
+  "timed": false,
+  "phaseTime": 0.5999999999999998,
+  "progress": {
+    "version": 3,
+    "currentLevel": 0,
+    "unlocked": 0,
+    "records": [
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      },
+      {
+        "completed": false,
+        "stars": 0,
+        "bestTime": null
+      }
+    ],
+    "resumeStage": 0,
+    "resumeFirstTry": 0,
+    "resumeAttempts": 1,
+    "resumeHinted": true,
+    "resumeMistakes": 1,
+    "resumeElapsed": 0,
+    "resumeTricks": 0,
+    "resumeFlow": 0
+  },
+  "layout": {
+    "destination": {
+      "x": 690.760645958498,
+      "y": 658.9644652467287
+    },
+    "athleteBounds": {
+      "left": 289.98706462988173,
+      "top": 568.2884413188001,
+      "right": 374.03844499503174,
+      "bottom": 715.1847292227609,
+      "width": 84.05138036515001,
+      "height": 146.8962879039608
+    },
+    "player": {
+      "x": 335.3412797979199,
+      "y": 698.4098694352085
+    },
+    "head": {
+      "x": 341.20766839612725,
+      "y": 576.5477781956419
+    },
+    "hooks": [
+      {
+        "x": 433.982665047223,
+        "y": 364.1579261831171
+      },
+      {
+        "x": 511.2290166879943,
+        "y": 516.8839853431183
+      },
+      {
+        "x": 546.3609880667872,
+        "y": 510.77796857319044
+      }
+    ]
+  },
+  "camera": {
+    "position": {
+      "x": -1.9313651471535291,
+      "y": 9.708177464119505,
+      "z": 11
+    },
+    "type": "automatic perspective",
+    "fov": 66
+  },
+  "art": "loaded",
+  "archLoaded": true,
+  "helmetLoaded": true,
+  "mapOpen": false,
+  "mapLevel": 0,
+  "help": false,
+  "mathOpen": false,
+  "hint": false,
+  "reducedMotion": false,
+  "muted": false,
+  "events": [
+    {
+      "type": "pause",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "resume",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "hint",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "pause",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "resume",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0
+    },
+    {
+      "type": "attempt",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0,
+      "hook": "l1-h1-2",
+      "origin": {
+        "x": 0,
+        "y": 1.05,
+        "z": 0
+      },
+      "dx": 8,
+      "dy": 6,
+      "dz": 0,
+      "distance": 10,
+      "squared": 100,
+      "face": 8,
+      "reach": 10,
+      "shortfall": 0,
+      "slack": 0,
+      "reachable": true,
+      "reason": "ready",
+      "accepted": true
+    },
+    {
+      "type": "launch",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0,
+      "hook": "l1-h1-2",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "velocity": {
+        "x": 0.7653333333333343,
+        "y": 3.6590000000000025,
+        "z": 0
+      },
+      "acceleration": {
+        "x": 22.4,
+        "y": 16.799999999999997,
+        "z": 0
+      },
+      "assisted": true
+    },
+    {
+      "type": "release",
+      "stage": 0,
+      "level": 0,
+      "hop": 0,
+      "time": 0.45,
+      "position": {
+        "x": 2.612399999999994,
+        "y": 3.3475499999999934,
+        "z": 0
+      },
+      "velocity": {
+        "x": 10.845333333333329,
+        "y": 11.218999999999998,
+        "z": 0
+      }
+    }
+  ],
+  "performance": {
+    "frames": 34,
+    "meanFrameMs": 21.288235299727496,
+    "calls": 36,
+    "triangles": 85578
+  }
+}

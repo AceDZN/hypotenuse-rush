@@ -8,9 +8,9 @@ Content plan: small top HUD, selected hook dimensions and Launch together at the
 
 Interaction thesis: select a hook without spending an attempt; open Diagram only when needed, pausing action; optional calculation assistance remains explicit; close returns to the same selected hook and viewpoint. Launch and automatic landing retain their current controls.
 
-- Replace unbounded all-hook/corner fitting. Keep the player visibly large across all36 crossings, fit the active hook and landing centre where feasible, and avoid retreat caused by HUD padding.
+- Replace unbounded all-hook/corner fitting. Keep the player visibly large across all 36 crossings, fit the active hook and landing centre where feasible, and avoid retreat caused by HUD padding.
 - Keep alternate ring selection accessible even when close framing places a ring near an edge. A leader/edge indicator must remain honest about its world position.
-- Default inspection has no flat SVG or calculation. Aim for at most80px desktop/100px phone and8% viewport area.
+- Default inspection has no flat SVG or calculation. Aim for at most 80px desktop/100px phone and 8% viewport area.
 - Keep rope length in a slim badge, with its harness-to-hook meaning available in help/accessible labeling.
 - Requested diagrams must remain readable, use the exact perpendicular quantities and have an explicit close control. Revealing the answer records assistance; merely opening an unsolved diagram does not.
 - Verify actual player screen height and unobstructed feet/head across all stages at desktop, short landscape, portrait and phone sizes. Inspect actual screenshots, not only bounds.

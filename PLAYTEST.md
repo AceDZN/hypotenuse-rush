@@ -1,37 +1,32 @@
-# Campaign v3 playtest · 25 October 2026
+# Close-view revision playtest · 25 October 2026
 
-The user rejected v2's three-jump scope, faint world triangles, obscure rope length, blind retry loop and weak presentation. New mockups and the campaign plan were committed before presentation work. This report describes the 12-level campaign; v1/v2 evidence remains historical.
+The user’s actual desktop and phone screenshots showed a distant, barely readable athlete and an oversized permanent calculation panel. This revision supersedes the initial v3 presentation. The 12-level/36-crossing campaign and exact distance/flight model remain active.
 
-## Current verification
+## Image-first plan and implementation
 
-- `npm test`: 48 passing tests, including 21 active campaign tests and 27 historical v1 checks. Current tests traverse all 36 physical downward contacts and all level transitions; check three neutral choices/one in range/balanced positions, varied planar and spatial witnesses, precise near-boundary rejection, selection without attempts, first-try/help rules, midlevel and completed-level restore, malformed saves/unlocks, replay records, pause, release continuity and irregular frame partitions.
-- `npm run build`: TypeScript and static production build pass.
-- `tools/qa-campaign.mjs`: production browser run completes all 36 crossings and 11 Next Level actions through normal selection/launch controls. It checks rope/target bounds, no target overlaps, selection without an attempt, required-length/rope/shortfall feedback, complete and checkpoint persistence, final reload, and captures all four environments. No state/position/win injection.
-- `tools/qa-campaign-independent.mjs`: independent normal-control campaign run and 108 option inspections, with strict checks for help/map pause, current checkpoint resume, hint star eligibility, immediate target contrast, SVG text containment, planar/spatial solved and unsolved label size, touch selection/launch and precise 17.03m versus17m rejection. Console/page errors: none.
-- Installed `web_game_playwright_client.js`: normal hook selection followed by Space and deterministic frames reaches an actual airborne state; canvas/text evidence is inspected. Its canvas capture excludes DOM HUD, so full-page production images are the interface evidence.
-- `node --import tsx tools/verify-canyon-clearance.mjs`: geometry review samples 6,516 body positions across all 36 real domain flights and all 108 initial reach segments. No decorative body contacts or blocked reach segments were found. This geometry-only review excludes the flat landing floor, instanced details and GLB/textures; the production browser separately verifies loaded artwork and actual traversal.
+- New desktop and phone mockups plus docs/CLOSE_VIEW.md were committed in 2ee5c18 before presentation changes. They are design targets, not game captures.
+- Replaced the unbounded all-hook/corner camera retreat with a finite composition search. Projected player size is a hard constraint; landing visibility, elevation and screen placement guide the composition. Choice does not rotate/zoom the world. Flight steadily follows the athlete.
+- Removed the permanently visible flat triangle/calculation panel. Selected perpendicular dimensions and Launch share a compact bottom strip; the rope limit is a slim header badge.
+- Diagram opens a dismissible paused view. Merely opening the unsolved diagram preserves the first-try star. A separate explicit solution action records assistance; close/Escape returns to the unchanged ready state.
+- Ring targets use nearby labels and honest edge arrows. Dimension badges avoid the actual athlete bounds, landing ellipse, hook buttons and HUD; displaced badges retain thin leaders to their measured segment.
+- Rejected-shot feedback sits beside the lower-left athlete rather than growing a full-width dock over their feet.
 
-## Issues caught and fixed
+## Verification
 
-- The rope limit was a tiny edge badge: moved to a substantial centred specification with explicit metres and harness-to-hook meaning.
-- Perspective hairlines were faint: replaced with outlined cyan/amber/purple world segments, filled construction, right-angle marks and a large flat diagram.
-- Atomic hook clicks encouraged accidental/barely considered attempts: selection now inspects, Launch commits. First-try stars reward deliberation; a rejection explains measured length and shortfall.
-- Three flights ended the whole game: 12 levels/36 flights, explicit Next Level and saved checkpoint/unlock/record progression.
-- Map entry reset an unfinished current level: its primary action now resumes the current checkpoint. Replay is explicit for completed levels.
-- Help→map closure could resume motion behind help: cleared the stale overlay state.
-- Hint text still offered a star after forfeiture: the eligibility label and landing feedback now respect hint use.
-- SVG labels shrank below16px, especially solved/spatial phone diagrams: compact diagram viewboxes and preserved solved heights keep labels readable; containment is checked.
-- Animated target background briefly hid its number after selection: removed the background colour transition.
-- Far phone camera clipped the stage-centred sky, exposing black wedges: sky follows the camera.
-- Natural support columns occupied the landing area: moved stems behind/outside the route, with roofs above hooks. Tall plants moved away from P and the camera corridor.
-- Wide global footer margins forced the athlete too small: camera fitting now checks actual inspector/action placement rather than reserving the whole bottom strip.
+- npm test:48 passing tests, including 21 current campaign tests and 27 historical v1 checks.
+- npm run build: TypeScript and static production build pass. Current JS 646.05KB (173.75KB gzip), CSS 18.53KB (4.96KB gzip); all runtime artwork remains local.
+- tools/qa-close-view.mjs is the current independent UI acceptance tool. It uses normal mouse/keyboard and touch actions plus deterministic time, with real screenshots and read-only projection measurements. Final production results: all 36 stages at 1280×900,1280×720,885×941 and 390×844, 72 normal-input physical flights and 216 airborne probes; zero layout violations and browser errors. Minimum projected actual-mesh bounding heights are 144.5/115.6/150.1/133.0px respectively. The compact inspection is at most 48px desktop/34px phone; the entire phone dock is 114.89px. Final results are stored with current evidence.
+- The installed web-game action client supplies a separate ordinary select→Space flight burst. Its canvas-only screenshot omits DOM HUD; full-page acceptance captures are the interface evidence.
+- Earlier domain/geometry verification still applies: all 36 actual downward contacts,12-level save/restore/unlock progression, exact rope thresholds and 6,516 decorative body-path samples with no contacts in checked geometry. See docs/evidence/campaign-v3 and its stated geometry exclusions.
+
+## Issues caught in actual captures and corrected
+
+The initial close camera was below the landing, making the destination a wall. Elevation and landing-incidence preferences now show its top. Phone diagram width overflowed despite max-width:100%; it now has a viewport-bounded width. Rejected feedback hid the feet, short measurement labels covered the head, and one phone landing marker was off the right edge. Those placements now have explicit exclusions/bounds rather than relying on a broad camera retreat.
 
 ## Evidence and limits
 
-Current actual browser captures and JSON live in `docs/evidence/campaign-v3`, with separate independent results. Generated targets live in `docs/visual-targets/campaign-v3`; the clean journey illustration is menu artwork, and the sandstone image is a surface texture. Neither substitutes for the rendered playable scene.
+Current actual captures and machine-readable results: docs/evidence/close-view. Earlier campaign captures are preserved separately. Generated targets: docs/visual-targets/close-view, with exact built-in-imagegen prompts beside them.
 
-`01-opening.png` shows the current rope and inspection interface; `02-rejection.png` shows the actual distance comparison; `01-map.png` and `05-complete-map.png` show the 12-level journey. Regional ready/flight/phone views and independent solved spatial diagrams accompany the machine-readable results. Mockup and runtime-art hashes are recorded in `docs/visual-targets/campaign-v3/manifest.json`.
+Close framing deliberately prioritizes a readable person. Extreme spatial phone constructions may extend past an edge even with their selected hook and landing visible. Edge cues preserve target access, and the requested flat diagram shows the complete construction. The generated mockups have richer art and a larger illustrated person than the procedural runtime; they are composition references, not a fidelity claim.
 
-The art is still a stylized procedural indie scene. Generated mockups have substantially richer surface/character detail. High/spatial ready views remain wider than low crossings to preserve the full measurement; phone calculation help devotes more screen space to the diagram. These limitations are visible in captures.
-
-The user’s next actual playtest determines whether the longer campaign, explicit rope and inspect/launch flow solve their frustration. No automated pass is claimed as proof of enjoyment or learning.
+Projection bounds and automated completion do not establish human enjoyment or comprehension. Actual source-of-truth screenshots are reviewed alongside checks; the user’s next playtest determines whether the presentation resolves the complaint.
