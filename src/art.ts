@@ -10,6 +10,8 @@ const cream = material('#fff1d6');
 const charcoal = material('#223746');
 const skin = material('#b77b56');
 const sole = material('#d5d1bb');
+const shirt = material('#263d51');
+const trousers = material('#8e8069');
 
 function mesh(geometry: THREE.BufferGeometry, mat: THREE.Material, parent: THREE.Object3D, name?: string): THREE.Mesh {
   const object = new THREE.Mesh(geometry, mat);
@@ -36,9 +38,9 @@ function limb(parent: THREE.Object3D, side: number, arm: boolean) {
   const upper = joint(arm ? `arm${side}` : `leg${side}`, side * (arm ? .25 : .115), arm ? .39 : 0, 0, parent);
   const a = arm ? .27 : .39;
   const b = arm ? .26 : .38;
-  rounded(upper, arm ? [.13, a, .13] : [.17, a, .17], [0, -a / 2, 0], arm ? coral : charcoal);
+  rounded(upper, arm ? [.13, a, .13] : [.17, a, .17], [0, -a / 2, 0], arm ? shirt : trousers);
   const lower = joint(arm ? `elbow${side}` : `knee${side}`, 0, -a, 0, upper);
-  rounded(lower, arm ? [.105, b, .105] : [.135, b, .135], [0, -b / 2, 0], arm ? skin : charcoal);
+  rounded(lower, arm ? [.105, b, .105] : [.135, b, .135], [0, -b / 2, 0], arm ? skin : trousers);
   if (arm) {
     rounded(lower, [.11, .12, .105], [0, -b, 0], charcoal);
     // Light wrist reel is visibly equipment, never the measurement origin.
@@ -73,19 +75,34 @@ function normalized(object: THREE.Object3D, width: number): THREE.Group {
 export function createAthlete(): THREE.Group {
   const root = new THREE.Group();
   root.name = 'athlete';
+  // The measurement marker is fixed to the authoritative root P=(0,1.05,0),
+  // independently of torso lean and running hip bob. The ring surrounds P.
+  const harnessMarker = mesh(new THREE.TorusGeometry(.185, .018, 5, 12), cream, root, 'authoritativeHarnessMarker');
+  harnessMarker.rotation.x = Math.PI / 2;
+  harnessMarker.position.set(0, 1.05, 0);
+  const clip = mesh(new THREE.SphereGeometry(.042, 8, 6), new THREE.MeshBasicMaterial({ color: '#fff1d6', depthTest: false, depthWrite: false }), root, 'authoritativeHarnessClip');
+  clip.position.set(0, 1.05, 0);
+  clip.renderOrder = 5;
   const hips = joint('hips', 0, .86, 0, root);
   const torso = joint('torso', 0, 0, 0, hips);
-  rounded(torso, [.43, .5, .26], [0, .27, 0], coral);
+  rounded(torso, [.43, .5, .26], [0, .27, 0], shirt);
   rounded(torso, [.35, .17, .26], [0, .01, 0], charcoal);
   const harness = mesh(new THREE.BoxGeometry(.42, .065, .285), cream, torso);
   harness.position.set(0, .085, 0);
   for (const side of [-1, 1]) {
     const strap = mesh(new THREE.BoxGeometry(.045, .40, .281), charcoal, torso);
     strap.position.set(side * .12, .27, 0);
+    const shoulderTab = mesh(new THREE.BoxGeometry(.09, .055, .27), coral, torso);
+    shoulderTab.position.set(side * .17, .47, 0);
     strap.rotation.z = side * -.14;
   }
   const buckle = mesh(new THREE.BoxGeometry(.10, .095, .035), cream, torso);
   buckle.position.set(0, .10, .155);
+  const hipClip = mesh(new THREE.TorusGeometry(.08, .018, 5, 10), coral, torso);
+  hipClip.position.set(.22, .015, .09);
+  const reelHousing = mesh(new THREE.CylinderGeometry(.065, .065, .055, 10), charcoal, torso);
+  reelHousing.rotation.x = Math.PI / 2;
+  reelHousing.position.set(-.21, .10, .1);
   const head = joint('head', 0, .66, .008, torso);
   const face = mesh(new THREE.SphereGeometry(.16, 12, 8), skin, head);
   face.scale.set(.87, 1.05, .93);
@@ -149,8 +166,11 @@ export function animateAthlete(group: THREE.Group, info: AthleteMotion): void {
 export async function addTripoArt(scene: THREE.Scene): Promise<void> {
   const gltf = await loader.loadAsync(assetUrl('sandstone-arch.glb'));
   const template = normalized(gltf.scene, 28);
+  // Distant decorative arches never need a dynamic shadow-map pass.
+  template.traverse(o => { if (o instanceof THREE.Mesh) { o.castShadow = false; o.receiveShadow = false; } });
   const placements: [number, number, number, number, number][] = [
-    [22, -10, -34, -.22, 1], [79, -14, -39, .18, 1.35], [15, -14, 23, 2.9, .82],
+    [22, 7, -34, -.22, 1], [79, 9, -39, .18, 1.35], [15, 5, 23, 2.9, .82],
+    [160, 9, -29, .05, 1.18], [240, 9, 31, 3.08, 1.1], [310, 11, -34, -.2, 1.25],
   ];
   const group = new THREE.Group();
   group.name = 'tripo-canyon-art';
@@ -163,4 +183,40 @@ export async function addTripoArt(scene: THREE.Scene): Promise<void> {
   }
   scene.add(group);
   scene.userData.tripoArtLoaded = true;
+}
+
+/** Local, seeded rock grain; texture is decoration and never changes the authored surface. */
+export function createSandstoneMaterial(color: THREE.ColorRepresentation = '#b96740'): THREE.MeshStandardMaterial {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = 512;
+  const context = canvas.getContext('2d')!;
+  const pixels = context.createImageData(512, 512);
+  let seed = 61243;
+  const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 4294967296; };
+  for (let y = 0; y < 512; y++) {
+    const strata = Math.sin(y * .19) * 8 + Math.sin(y * .049) * 12;
+    for (let x = 0; x < 512; x++) {
+      const p = (y * 512 + x) * 4;
+      const grain = random();
+      const v = 218 + strata + (grain - .5) * 34 - (grain < .015 ? 70 : 0);
+      pixels.data[p] = v;
+      pixels.data[p + 1] = v * .95;
+      pixels.data[p + 2] = v * .88;
+      pixels.data[p + 3] = 255;
+    }
+  }
+  context.putImageData(pixels, 0, 0);
+  context.strokeStyle = 'rgba(83,49,32,.25)';
+  context.lineWidth = 1;
+  for (let i = 0; i < 24; i++) {
+    const x = random() * 512, y = random() * 512;
+    context.beginPath(); context.moveTo(x, y);
+    context.lineTo(x + 18 + random() * 100, y + random() * 4 - 2); context.stroke();
+  }
+  const map = new THREE.CanvasTexture(canvas);
+  map.colorSpace = THREE.SRGBColorSpace;
+  map.wrapS = map.wrapT = THREE.RepeatWrapping;
+  map.repeat.set(3, 2);
+  map.anisotropy = 4;
+  return new THREE.MeshStandardMaterial({ color, map, roughness: .96, metalness: 0, bumpMap: map, bumpScale: .045 });
 }

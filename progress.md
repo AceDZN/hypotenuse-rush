@@ -13,3 +13,8 @@ btw,create it as a new public repo on my github (AceDZN). I think that I'll depl
 - Independent QA exposed FP accumulator partition loss and shallow sliding floor contact; both corrected. Anchors include the separate 2mm collider skin in their marked-world witness positions.
 - New image-first steering received. Root owns primary generated mockup; visual crew preserves two already submitted Tripo generations and awaits target before further submissions. Target is reference only, not gameplay capture.
 - First action-client attempt crossed HMR and exited without a capture; fresh run underway after stable build. Initial production build passes. Tripo GLB export still pending Chrome UI recovery.
+
+- Image target inspected, asset breakdown recorded, visual crew informed. Camera brought down/closer with lateral framing; large athlete, navy/tan/coral silhouette, centered minimal timer and isolated reach, functional action strip, harness-origin dashed survey diagonal and perpendicular leg labels.
+- Expanded continuous course to~350m/nine broad-route grapples. Independent numerical witness45.050s, three ordered physical checkpoints,0falls.25domain tests pass.
+- Static authored geometry batched into one vertex-coloured draw; distant shadow work reduced; RAF renders at capped30 while physics remains120Hz. Deterministic manual mode suppresses idle RAF rendering and records raw wall-frame intervals separately.
+- Both paid Tripo originals exported through recovered own Chrome tab; offline browser optimization pending. Original outputs have no rigs; athlete animation is articulated procedural joints with visible authoritative harness marker.

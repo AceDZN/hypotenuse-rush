@@ -1,15 +1,56 @@
-# Hypotenuse Rush
+# Hypotenuse Rush · ריצת היתר
 
-Third-person grapple parkour about right-triangle reach and spatial distance.
+A real third-person 3D grapple-parkour browser game in Hebrew. Read perpendicular distances from the athlete's current harness, choose a hook, launch, steer and release momentum across an open sandstone course.
 
-A newly started educational browser game for Hebrew-speaking grade-8 students. This first commit contains the approved direction and crew requirements; the playable implementation is in development.
+## Play locally
 
-## Development target
+```sh
+npm install
+npm run dev      # http://localhost:5183, strict port
+npm test
+npm run build
+npm run preview  # http://localhost:4183, strict port
+```
 
-- A real Three.js/WebGL game with its own game loop, controls and art direction.
-- Models produced through the owner's Chrome Tripo session and packaged locally.
-- Mathematics grounded in [Workbook grade 8](https://math.workbook.co.il/grade-8), with clearly labeled prerequisites where relevant.
-- Standalone static build ready for a later Vercel deployment.
-- Work and regular commits on main.
+The static Vite build uses relative paths. No backend, account, API key, remote font/model fetch, microphone or analytics is required at runtime. WebGL hardware acceleration is recommended. Keep both ports available; scripts never kill another process.
 
-The game-specific build brief and setup commands are added as development proceeds. Assigned local dev port: 5183. No hosted build or completed gameplay is claimed at kickoff.
+## Implemented slice
+
+One continuous ~350m multi-route course, nine broad-route grapple launches, a narrower shortcut, three ordered checkpoints and a physical finish. The numerical continuous-input witness takes45.05s; human learning, local retries and improvement runs are intended to supply5–10minutes. Automation does not establish enjoyment or learning gains.
+
+- Initial10m reach: `(8,6,0)` is exactly reachable; `(6,9,0)` is too far despite a shorter horizontal leg.
+- Separate in-range-but-obstructed hook, changed approach values and high shelf; reach explicitly grows to13m at checkpoint2.
+- Spatial `(3,12,4)` uses a5m horizontal face diagonal, then a13m body diagonal. Optional survey constructs both right triangles.
+- Fixed120Hz integration; swept vertical capsule versus exact authored boxes; reel-assisted arcade grapple. Release preserves velocity; hold1.25s maximum, cooldown.25s. There is no teleport/spline movement.
+- Failure reasons, fast local recovery, pause/focus loss, restart, camera wall avoidance, fullscreen, resize, reduced motion, mute and touch controls.
+- Separately labeled assisted/unassisted local records, scoped to this course version. No student identifiers or external event transmission.
+- Original Chrome/Tripo art, locally bundled Hebrew font, an explicitly articulated human athlete and generated-target/actual-capture review.
+
+## Controls
+
+| Action | Keyboard / mouse | Touch |
+|---|---|---|
+| Move / sprint | WASD or arrows / Shift | Left movement pad; full deflection sprints |
+| Jump | Space | Jump button |
+| Select / aim hook | Point at a hook, or Q/E for visible lock-on | Tap hook badge |
+| Grapple / release | Hold / release left mouse; bottom action also works | Hold / release cable button |
+| Camera | Right mouse drag | Drag world view |
+| Survey | Tab; slows movement and timer together to20% | Survey button |
+| Optional calculation | H | Calculation button |
+| Retry checkpoint / new run | R / Shift+R | Retry / finish replay |
+| Pause / fullscreen | Escape or P / F | Pause; browser fullscreen support varies |
+
+A lock-on must remain inside the camera view to acquire; camera position never enters reach mathematics. Survey/hints mark the run assisted, including after they are switched off. Retry keeps the run clock. New run resets it.
+
+## Deployment preparation
+
+`npm run build` produces `dist/`. Import this existing public repository in the user's chosen Vercel project, use Vite, build command `npm run build`, output `dist`, no environment variables. `vercel.json` is included. No public deployment has been requested or performed.
+
+## Evidence and provenance
+
+- [Game identity](GAME_IDENTITY.md), [curriculum mapping](CURRICULUM.md), [asset provenance](ASSETS.md).
+- [Independent playtest](PLAYTEST.md), [visual target vs actual review](docs/VISUAL_REVIEW.md).
+- [Generated target](docs/visual-targets/gameplay-v1.png) is a design reference, **not an actual screenshot**. Actual browser captures live separately in `docs/evidence/`.
+- `window.render_game_to_text()` reports world/harness/anchor quantities and live state; `window.advanceTime(ms)` enters deterministic manual stepping for automated tests. Real play uses the animation loop.
+
+The generated meshes are decorative and have no mathematical authority. The athlete's joints are procedural; the generated helmet/arch are static, not rigged characters. Remaining fidelity, feel and device limitations are recorded in the playtest/review rather than treated as proven polish.

@@ -10,10 +10,10 @@ export const length=(a:V)=>Math.hypot(a.x,a.y,a.z);
 export const unit=(a:V)=>mul(a,1/(length(a)||1));
 const platform=(id:string,x1:number,x2:number,y:number,z1:number,z2:number):Box=>({id,min:vec(x1,-28,z1),max:vec(x2,y,z2)});
 export const COURSE={
- boxes:[platform('start',-19,3,0,-7,7),platform('ridge',8,29,1,-8,8),platform('safe',36,58,2,-9,1),platform('shortcut',34,49,3,4.8,8.5),platform('merge',51,64,2,-9,9),platform('high',69,87,5,-7,7),platform('finish',88,113,8,-2,11),{id:'obstruction',min:vec(31,-8,1.5),max:vec(33.2,9,4.5)}],
- anchors:[{id:'A',label:'A',p:vec(8,7.05,0),section:0},{id:'B',label:'B',p:vec(6,10.05,0),section:0},{id:'C',label:'C',p:vec(36,8.05,-3),section:1},{id:'D',label:'D',p:vec(34,6.05,3),section:1},{id:'S',label:'S',p:vec(35,8.05,6.5),section:1},{id:'E',label:'E',p:vec(69,15.05,-2),section:2},{id:'F',label:'F',p:vec(67,16.05,-2),section:2},{id:'G',label:'G',p:vec(88,18.05,2),section:3}] as Anchor[],
- checkpoints:[{p:vec(20,1,0),label:'רכס ראשון'},{p:vec(57,2,-2),label:'המדף הגבוה'},{p:vec(83,5,-2),label:'קפיצה למרחב'}],finish:vec(106,8,4),
- stances:[vec(0,0,0),vec(28,1,-3),vec(64,2,-2),vec(85,5,-2)]
+ boxes:[platform('start',-19,3,0,-7,7),platform('ridge',8,29,1,-8,8),platform('safe',36,70,2,-9,1),platform('shortcut',34,60,3,4.8,8.5),platform('merge',66,91,2,-9,9),platform('bend',99,126,3,-4,10),platform('approach',134,166,2,-9,3),platform('high',171,205,5,-7,7),platform('upper',213,244,6,-5,10),platform('spatial',243,271,9,-2,11),platform('flow',279,310,9,-5,11),platform('finish',318,355,9,-7,11),{id:'obstruction',min:vec(31,-8,1.5),max:vec(33.2,9,4.5)}],
+ anchors:[{id:'A',label:'A',p:vec(8,7.05,0),section:0},{id:'B',label:'B',p:vec(6,10.05,0),section:0},{id:'C',label:'C',p:vec(36,8.05,-3),section:1},{id:'D',label:'D',p:vec(34,6.05,3),section:1},{id:'S',label:'S',p:vec(35,8.05,6.5),section:1},{id:'H',label:'H',p:vec(99,9.05,4),section:1},{id:'I',label:'I',p:vec(134,10.05,-3),section:1},{id:'E',label:'E',p:vec(171,15.05,-2),section:2},{id:'F',label:'F',p:vec(169,16.05,-2),section:2},{id:'J',label:'J',p:vec(213,14.05,3),section:2},{id:'G',label:'G',p:vec(243,19.05,2),section:3},{id:'K',label:'K',p:vec(279,18.05,5),section:3},{id:'L',label:'L',p:vec(318,16.05,-1),section:3}] as Anchor[],
+ checkpoints:[{p:vec(20,1,0),label:'רכס ראשון'},{p:vec(153,2,-2),label:'המדף הגבוה'},{p:vec(238,6,-2),label:'קפיצה למרחב'}],finish:vec(350,9,4),
+ stances:[vec(0,0,0),vec(28,1,-3),vec(166,2,-2),vec(240,6,-2),vec(91,2,4),vec(126,3,-3),vec(205,5,3),vec(271,9,5),vec(310,9,-1)]
 };
 // Authored stance feet sit at collision skin above each exact top plane.
 COURSE.anchors.forEach(a=>a.p.y+=SKIN);
@@ -40,7 +40,7 @@ export function restart(s:S){const best=s.best;Object.assign(s,createState());s.
 export function togglePause(s:S){if(s.mode==='playing'){s.mode='paused';s.survey=false;}else if(s.mode==='paused')s.mode='playing';}
 export function setSurvey(s:S,on:boolean){s.survey=on;if(on){s.assisted=true;event(s,'survey');}}
 export function hint(s:S){s.hints++;s.assisted=true;event(s,'hint');}
-export function tryAttach(s:S,id:string|null){if(s.mode!=='playing'||s.attached||s.cooldown>0)return false;const a=COURSE.anchors.find(a=>a.id===id);if(!a){s.reason='not-aimed';s.reasonTime=1;return false;}const witness=inspectReach(harness(s),a.p,s.reach,COURSE.boxes);event(s,'grab',{anchor:id,origin:{...harness(s)},...witness,hinted:s.hints>0,survey:s.survey});if(!witness.reachable){s.reason=witness.reason;s.reasonTime=2;if(witness.reason==='overreach')s.overreaches++;if(witness.reason==='obstructed')s.obstructions++;return false;}s.attached=id;s.hold=0;s.grabs++;s.grounded=false;s.reason='attached';s.reasonTime=.8;return true;}
+export function tryAttach(s:S,id:string|null){if(s.mode!=='playing'||s.attached||s.cooldown>0)return false;const a=COURSE.anchors.find(a=>a.id===id);if(!a){s.reason='not-aimed';s.reasonTime=1;return false;}const witness=inspectReach(harness(s),a.p,s.reach,COURSE.boxes);event(s,'grab',{anchor:id,reach:s.reach,origin:{...harness(s)},...witness,hinted:s.hints>0,survey:s.survey});if(!witness.reachable){s.reason=witness.reason;s.reasonTime=2;if(witness.reason==='overreach')s.overreaches++;if(witness.reason==='obstructed')s.obstructions++;return false;}s.attached=id;s.hold=0;s.grabs++;s.grounded=false;s.reason='attached';s.reasonTime=.8;return true;}
 export function release(s:S){if(s.attached){s.attached=null;s.cooldown=.25;s.releases++;event(s,'release',{velocity:{...s.v}});}}
 export function step(s:S,input:Input,dt=FIXED){if(s.mode!=='playing')return;const scaled=dt*(s.survey?.2:1);s.time+=scaled;s.cooldown=Math.max(0,s.cooldown-scaled);s.reasonTime=Math.max(0,s.reasonTime-scaled);
  if(s.respawnTime>0){s.respawnTime-=scaled;if(s.respawnTime<=0)retry(s);return;}
@@ -52,6 +52,6 @@ export function step(s:S,input:Input,dt=FIXED){if(s.mode!=='playing')return;cons
  const old={...s.p},move=mul(s.v,scaled),result=sweepCapsule(s.p,move,COURSE.boxes);s.p=result.position;s.grounded=result.grounded;if(result.grounded&&s.v.y<0)s.v.y=0;for(const k of ['x','z'] as const)if(Math.abs(s.p[k]-old[k]-move[k])>.01)s.v[k]=0;
  if(s.p.y< -14){s.falls++;s.respawnTime=.45;s.reason='fall';s.reasonTime=2;release(s);event(s,'fall',{cp:s.cp});}
  const next=COURSE.checkpoints[s.cp];if(next&&s.grounded&&Math.abs(s.p.x-next.p.x)<2.5&&Math.abs(s.p.y-next.p.y)<.2&&Math.abs(s.p.z-next.p.z)<8){s.cp++;s.reach=s.cp>=2?13:10;s.reason=s.cp===2?'upgrade':'checkpoint';s.reasonTime=2.4;event(s,'checkpoint',{cp:s.cp});}
- if(s.cp===3&&s.grounded&&s.p.x>=104&&s.p.z>=-2&&s.p.z<=11){s.mode='finished';s.finishedTime=s.time;s.best=s.best===null?s.time:Math.min(s.best,s.time);event(s,'finish',{assisted:s.assisted});}
+ if(s.cp===3&&s.grounded&&s.p.x>=COURSE.finish.x-2&&s.p.z>=-7&&s.p.z<=11){s.mode='finished';s.finishedTime=s.time;s.best=s.best===null?s.time:Math.min(s.best,s.time);event(s,'finish',{assisted:s.assisted});}
 }
 export function advance(s:S,input:Input,ms:number){s.accumulator+=Math.max(0,Math.min(ms,10000))/1000;while(s.accumulator+1e-10>=FIXED){step(s,input,FIXED);s.accumulator=Math.max(0,s.accumulator-FIXED);}}

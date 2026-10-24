@@ -192,3 +192,21 @@ test('grounded lateral motion keeps a stable harness height at exact reach stanc
     assert.ok(Math.abs(s.p.y - SKIN) <= 1e-5, `grounded feet drifted to ${s.p.y}; expected ${SKIN}`);
   }
 });
+
+test('authored alternative hooks counter height-only and distance-only judgments at their marked stances', () => {
+  const s = play();
+  const stance = (i: number) => { s.p = { ...COURSE.stances[i], y: COURSE.stances[i].y + SKIN }; };
+  const witness = (id: string, reach: number) => inspectReach(harness(s), COURSE.anchors.find(a => a.id === id)!.p, reach, COURSE.boxes);
+  stance(1);
+  const blocked = witness('D', 10);
+  assert.ok(blocked.distance < 10);
+  assert.equal(blocked.reason, 'obstructed');
+  assert.equal(witness('C', 10).reason, 'ready');
+  stance(2);
+  const good = witness('E', 13), tooHigh = witness('F', 13);
+  near(good.distance, 13, REACH_EPS);
+  assert.equal(good.reason, 'ready');
+  assert.ok(Math.abs(tooHigh.dx) < Math.abs(good.dx));
+  assert.ok(tooHigh.distance > good.distance);
+  assert.equal(tooHigh.reason, 'overreach');
+});
