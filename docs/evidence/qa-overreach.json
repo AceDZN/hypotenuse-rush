@@ -1,0 +1,143 @@
+{
+  "game": "Hypotenuse Rush",
+  "coordinateSystem": "metres; +X forward, +Y up, +Z right; player position at capsule feet, harness +1.05m",
+  "mode": "playing",
+  "player": {
+    "position": {
+      "x": 0,
+      "y": 0.002,
+      "z": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 0,
+      "y": 1.052,
+      "z": 0
+    },
+    "grounded": true
+  },
+  "camera": {
+    "position": {
+      "x": -2.9225,
+      "y": 1.0357,
+      "z": 2.2217
+    },
+    "yaw": 0.65,
+    "pitch": 0.05
+  },
+  "selected": "B",
+  "reach": 10,
+  "attached": null,
+  "hold": 0,
+  "cooldown": 0,
+  "time": 0.0167,
+  "checkpoints": 0,
+  "nextCheckpoint": {
+    "p": {
+      "x": 20,
+      "y": 1,
+      "z": 0
+    },
+    "label": "רכס ראשון"
+  },
+  "finish": {
+    "x": 350,
+    "y": 9,
+    "z": 4
+  },
+  "survey": false,
+  "assisted": false,
+  "hints": 0,
+  "falls": 0,
+  "overreaches": 1,
+  "obstructions": 0,
+  "grabs": 0,
+  "releases": 0,
+  "reason": "overreach",
+  "respawnIn": 0,
+  "anchors": [
+    {
+      "id": "A",
+      "position": {
+        "x": 8,
+        "y": 7.052,
+        "z": 0
+      },
+      "distance": 9.999999400000032,
+      "squared": 99.999988000001,
+      "dx": 8,
+      "dy": 5.999999,
+      "dz": 0,
+      "face": 8,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "B",
+      "position": {
+        "x": 6,
+        "y": 10.052000000000001,
+        "z": 0
+      },
+      "distance": 10.81665299434169,
+      "squared": 116.99998200000101,
+      "dx": 6,
+      "dy": 8.999999,
+      "dz": 0,
+      "face": 6,
+      "reachable": false,
+      "reason": "overreach"
+    }
+  ],
+  "art": "loaded",
+  "helmetLoaded": true,
+  "archLoaded": true,
+  "records": {
+    "assisted": null,
+    "unassisted": null
+  },
+  "events": [
+    {
+      "type": "start",
+      "time": 0
+    },
+    {
+      "type": "grab",
+      "time": 0.008,
+      "anchor": "B",
+      "reach": 10,
+      "origin": {
+        "x": 0,
+        "y": 1.052,
+        "z": 0
+      },
+      "distance": 10.816653826391969,
+      "squared": 117.00000000000003,
+      "dx": 6,
+      "dy": 9.000000000000002,
+      "dz": 0,
+      "face": 6,
+      "reachable": false,
+      "reason": "overreach",
+      "hinted": false,
+      "survey": false
+    }
+  ],
+  "performance": {
+    "frames": 6,
+    "meanFrameMs": 59.95,
+    "p95FrameMs": 249.938,
+    "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
+    "triangles": 135062,
+    "calls": 104
+  },
+  "qaViewport": {
+    "width": 1280,
+    "scrollWidth": 1280,
+    "bodyWidth": 1280
+  }
+}

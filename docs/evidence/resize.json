@@ -23,7 +23,7 @@
   "camera": {
     "position": {
       "x": -2.3058,
-      "y": 1.3469,
+      "y": 0.9969,
       "z": 1.7528
     },
     "yaw": 0.65,
@@ -97,7 +97,7 @@
   "helmetLoaded": true,
   "archLoaded": true,
   "records": {
-    "assisted": 51.98833333333103,
+    "assisted": 51.688333333331045,
     "unassisted": null
   },
   "events": [
@@ -107,11 +107,11 @@
     }
   ],
   "performance": {
-    "frames": 104,
-    "meanFrameMs": 66.2067,
-    "p95FrameMs": 33.5,
+    "frames": 20,
+    "meanFrameMs": 59.325,
+    "p95FrameMs": 416.7,
     "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
-    "triangles": 135440,
-    "calls": 109
+    "triangles": 135446,
+    "calls": 112
   }
 }

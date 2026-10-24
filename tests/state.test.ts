@@ -210,3 +210,25 @@ test('authored alternative hooks counter height-only and distance-only judgments
   assert.ok(tooHigh.distance > good.distance);
   assert.equal(tooHigh.reason, 'overreach');
 });
+
+test('opening approach plus 0.75-second hold saves the broad late landing rather than requiring a backtrack', () => {
+  const s = play();
+  // Reproduce the real Chrome observation with inputs only, including the short initial approach.
+  advance(s, { ...idle, x: 1 }, 133.3333333);
+  assert.ok(s.p.x > 0.25 && s.p.x < 0.4);
+  advance(s, { ...idle, grapple: true, anchor: 'A' }, 750);
+  let landed = false;
+  for (let frame = 0; frame < 600; frame++) {
+    advance(s, idle, 1000 / 120);
+    if (s.grounded && s.p.x > 8) { landed = true; break; }
+  }
+  assert.equal(landed, true);
+  assert.ok(s.p.x > 22.5 && s.p.x < 28, `expected the formerly missed late landing, got ${s.p.x}`);
+  assert.equal(s.cp, 1);
+  assert.equal(s.falls, 0);
+  assert.equal(s.grabs, 1);
+  const time = s.time;
+  retry(s);
+  near(s.p.x, COURSE.checkpoints[0].p.x);
+  near(s.time, time);
+});

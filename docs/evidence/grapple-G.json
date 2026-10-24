@@ -23,7 +23,7 @@
   "camera": {
     "position": {
       "x": 233.2588,
-      "y": 8.3398,
+      "y": 7.9898,
       "z": 3.7814
     },
     "yaw": 0.65,
@@ -34,7 +34,7 @@
   "attached": "G",
   "hold": 0.35,
   "cooldown": 0,
-  "time": 38.5967,
+  "time": 38.2967,
   "checkpoints": 3,
   "nextCheckpoint": null,
   "finish": {
@@ -96,7 +96,7 @@
   "events": [
     {
       "type": "grab",
-      "time": 26.897,
+      "time": 26.597,
       "anchor": "E",
       "reach": 13,
       "origin": {
@@ -117,7 +117,7 @@
     },
     {
       "type": "release",
-      "time": 27.597,
+      "time": 27.297,
       "velocity": {
         "x": 10.521778608647546,
         "y": 14.306492063450614,
@@ -126,7 +126,7 @@
     },
     {
       "type": "grab",
-      "time": 32.505,
+      "time": 32.205,
       "anchor": "J",
       "reach": 13,
       "origin": {
@@ -147,7 +147,7 @@
     },
     {
       "type": "release",
-      "time": 33.205,
+      "time": 32.905,
       "velocity": {
         "x": 15.286450666989243,
         "y": 9.502764657817721,
@@ -156,12 +156,12 @@
     },
     {
       "type": "checkpoint",
-      "time": 35.855,
+      "time": 35.555,
       "cp": 3
     },
     {
       "type": "grab",
-      "time": 38.255,
+      "time": 37.955,
       "anchor": "G",
       "reach": 13,
       "origin": {
@@ -182,11 +182,11 @@
     }
   ],
   "performance": {
-    "frames": 104,
-    "meanFrameMs": 66.2067,
-    "p95FrameMs": 33.5,
+    "frames": 20,
+    "meanFrameMs": 59.325,
+    "p95FrameMs": 416.7,
     "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
-    "triangles": 92242,
-    "calls": 56
+    "triangles": 92244,
+    "calls": 57
   }
 }

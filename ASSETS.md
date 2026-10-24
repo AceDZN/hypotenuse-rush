@@ -32,7 +32,7 @@ The browser art contributor owns a new Chrome tab named `🏜️ Hypotenuse Rush
 
 ## Licensing and export notes
 
-These prompts are newly authored for this project; no third-party character or artist reference was requested. Tripo account rights and current service terms apply to generated output; no separate open-source asset license is invented. Task output is intended to be bundled for the owner's requested game. Verify account entitlement before redistribution beyond that use. Both normal UI GLB exports were downloaded at 1k texture resolution. The original export files remain outside the public repository; only optimized local derivatives are bundled. No signed download URL or browser state is stored.
+These prompts are newly authored for this project; no third-party character or artist reference was requested. The [official Tripo Terms, section 5.2](https://www.tripo3d.ai/terms), reviewed 24 October 2026, distinguish free and paid users’ output rights. The displayed credit balance alone does not establish the account tier; no tier or commercial entitlement is inferred here. Attribution: original models generated with Tripo AI for Hypotenuse Rush, then locally optimized by this project. Tripo account rights and current service terms apply to generated output; no separate open-source asset license is invented. Task output is intended to be bundled for the owner's requested game. Verify account entitlement before redistribution beyond that use. Both normal UI GLB exports were downloaded at 1k texture resolution. The original export files remain outside the public repository; only optimized local derivatives are bundled. No signed download URL or browser state is stored.
 
 ## Normal exports and processing
 

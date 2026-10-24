@@ -1,0 +1,18 @@
+{
+  "url": "http://localhost:4183",
+  "results": [
+    "Both local Tripo GLBs loaded; Hebrew/RTL document and malformed local records",
+    "Opening survey exposes exact legs without calculation; full restart clears assistance/time",
+    "B overreach and local retry through normal controls",
+    "A launch, retained momentum release, landing and physical checkpoint 1",
+    "In-range D rejects the grab for obstruction rather than overreach",
+    "Pause freezes state; checkpoint retry keeps run time",
+    "Survey slows clock/physics to 20%; optional calculation records assistance",
+    "Camera orbit preserves geometry; resize preserves checkpoint and orbit",
+    "Fullscreen request entered",
+    "390 × 844 phone layout stays in viewport and B badge clears the HUD",
+    "Touch badge selection, move/grapple multi-pointer hold and independent release"
+  ],
+  "errors": [],
+  "status": "passed"
+}

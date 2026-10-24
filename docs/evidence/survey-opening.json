@@ -23,7 +23,7 @@
   "camera": {
     "position": {
       "x": -2.3128,
-      "y": 1.3474,
+      "y": 0.9974,
       "z": 1.7582
     },
     "yaw": 0.65,
@@ -34,7 +34,7 @@
   "attached": null,
   "hold": 0,
   "cooldown": 0,
-  "time": 1.26,
+  "time": 0.96,
   "checkpoints": 0,
   "nextCheckpoint": {
     "p": {
@@ -107,7 +107,7 @@
     },
     {
       "type": "grab",
-      "time": 0.758,
+      "time": 0.458,
       "anchor": "B",
       "reach": 10,
       "origin": {
@@ -128,20 +128,20 @@
     },
     {
       "type": "retry",
-      "time": 0.8,
+      "time": 0.5,
       "cp": 0
     },
     {
       "type": "survey",
-      "time": 1.1
+      "time": 0.8
     }
   ],
   "performance": {
-    "frames": 104,
-    "meanFrameMs": 66.2067,
-    "p95FrameMs": 33.5,
+    "frames": 20,
+    "meanFrameMs": 59.325,
+    "p95FrameMs": 416.7,
     "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
-    "triangles": 135440,
-    "calls": 112
+    "triangles": 135446,
+    "calls": 115
   }
 }

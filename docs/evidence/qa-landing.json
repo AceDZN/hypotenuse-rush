@@ -1,0 +1,231 @@
+{
+  "game": "Hypotenuse Rush",
+  "coordinateSystem": "metres; +X forward, +Y up, +Z right; player position at capsule feet, harness +1.05m",
+  "mode": "playing",
+  "player": {
+    "position": {
+      "x": 24.1811,
+      "y": 1.002,
+      "z": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 24.1811,
+      "y": 2.052,
+      "z": 0
+    },
+    "grounded": true
+  },
+  "camera": {
+    "position": {
+      "x": 21.618,
+      "y": 1.9976,
+      "z": 1.7528
+    },
+    "yaw": 0.65,
+    "pitch": 0.05
+  },
+  "selected": "A",
+  "reach": 10,
+  "attached": null,
+  "hold": 0.7,
+  "cooldown": 0,
+  "time": 2.8167,
+  "checkpoints": 1,
+  "nextCheckpoint": {
+    "p": {
+      "x": 153,
+      "y": 2,
+      "z": -2
+    },
+    "label": "המדף הגבוה"
+  },
+  "finish": {
+    "x": 350,
+    "y": 9,
+    "z": 4
+  },
+  "survey": false,
+  "assisted": false,
+  "hints": 0,
+  "falls": 0,
+  "overreaches": 1,
+  "obstructions": 0,
+  "grabs": 1,
+  "releases": 1,
+  "reason": "checkpoint",
+  "respawnIn": 0,
+  "anchors": [
+    {
+      "id": "A",
+      "position": {
+        "x": 8,
+        "y": 7.052,
+        "z": 0
+      },
+      "distance": 16.93603533504247,
+      "squared": 286.82929286980703,
+      "dx": -16.18114034516128,
+      "dy": 4.999999,
+      "dz": 0,
+      "face": 16.18114034516128,
+      "reachable": false,
+      "reason": "overreach"
+    },
+    {
+      "id": "B",
+      "position": {
+        "x": 6,
+        "y": 10.052000000000001,
+        "z": 0
+      },
+      "distance": 19.863379577767027,
+      "squared": 394.5538482504522,
+      "dx": -18.18114034516128,
+      "dy": 7.999999000000002,
+      "dz": 0,
+      "face": 18.18114034516128,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "C",
+      "position": {
+        "x": 36,
+        "y": 8.052000000000001,
+        "z": -3
+      },
+      "distance": 13.589901822337625,
+      "squared": 184.68543154077548,
+      "dx": 11.818859654838722,
+      "dy": 5.999999000000002,
+      "dz": -3,
+      "face": 12.19366407363982,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "D",
+      "position": {
+        "x": 34,
+        "y": 6.052,
+        "z": 3
+      },
+      "distance": 11.018620463625226,
+      "squared": 121.40999692142059,
+      "dx": 9.818859654838722,
+      "dy": 3.999999,
+      "dz": 3,
+      "face": 10.26693746554539,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "S",
+      "position": {
+        "x": 35,
+        "y": 8.052000000000001,
+        "z": 6.5
+      },
+      "distance": 13.974895786055008,
+      "squared": 195.29771223109805,
+      "dx": 10.818859654838722,
+      "dy": 5.999999000000002,
+      "dz": 6.5,
+      "face": 12.62132022536062,
+      "reachable": false,
+      "reason": "not-aimed"
+    }
+  ],
+  "art": "loaded",
+  "helmetLoaded": true,
+  "archLoaded": true,
+  "records": {
+    "assisted": null,
+    "unassisted": null
+  },
+  "events": [
+    {
+      "type": "start",
+      "time": 0
+    },
+    {
+      "type": "grab",
+      "time": 0.008,
+      "anchor": "B",
+      "reach": 10,
+      "origin": {
+        "x": 0,
+        "y": 1.052,
+        "z": 0
+      },
+      "distance": 10.816653826391969,
+      "squared": 117.00000000000003,
+      "dx": 6,
+      "dy": 9.000000000000002,
+      "dz": 0,
+      "face": 6,
+      "reachable": false,
+      "reason": "overreach",
+      "hinted": false,
+      "survey": false
+    },
+    {
+      "type": "retry",
+      "time": 0.017,
+      "cp": 0
+    },
+    {
+      "type": "grab",
+      "time": 0.325,
+      "anchor": "A",
+      "reach": 10,
+      "origin": {
+        "x": 0,
+        "y": 1.052001,
+        "z": 0
+      },
+      "distance": 9.999999400000032,
+      "squared": 99.999988000001,
+      "dx": 8,
+      "dy": 5.999999,
+      "dz": 0,
+      "face": 8,
+      "reachable": true,
+      "reason": "ready",
+      "hinted": false,
+      "survey": false
+    },
+    {
+      "type": "release",
+      "time": 1.025,
+      "velocity": {
+        "x": 16.072383500173743,
+        "y": 8.10422659007896,
+        "z": 0
+      }
+    },
+    {
+      "type": "checkpoint",
+      "time": 1.933,
+      "cp": 1
+    }
+  ],
+  "performance": {
+    "frames": 6,
+    "meanFrameMs": 59.95,
+    "p95FrameMs": 249.938,
+    "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
+    "triangles": 97012,
+    "calls": 99
+  },
+  "qaViewport": {
+    "width": 1280,
+    "scrollWidth": 1280,
+    "bodyWidth": 1280
+  }
+}

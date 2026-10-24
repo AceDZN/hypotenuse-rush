@@ -51,7 +51,7 @@ export function step(s:S,input:Input,dt=FIXED){if(s.mode!=='playing')return;cons
  else{const speed=input.sprint?9:6,accel=s.grounded?32:9;const approach=(v:number,t:number)=>v+Math.max(-accel*scaled,Math.min(accel*scaled,t-v));if(s.grounded||length(direction)>0){s.v.x=approach(s.v.x,direction.x*speed);s.v.z=approach(s.v.z,direction.z*speed);}s.v.y-=22*scaled;}
  const old={...s.p},move=mul(s.v,scaled),result=sweepCapsule(s.p,move,COURSE.boxes);s.p=result.position;s.grounded=result.grounded;if(result.grounded&&s.v.y<0)s.v.y=0;for(const k of ['x','z'] as const)if(Math.abs(s.p[k]-old[k]-move[k])>.01)s.v[k]=0;
  if(s.p.y< -14){s.falls++;s.respawnTime=.45;s.reason='fall';s.reasonTime=2;release(s);event(s,'fall',{cp:s.cp});}
- const next=COURSE.checkpoints[s.cp];if(next&&s.grounded&&Math.abs(s.p.x-next.p.x)<2.5&&Math.abs(s.p.y-next.p.y)<.2&&Math.abs(s.p.z-next.p.z)<8){s.cp++;s.reach=s.cp>=2?13:10;s.reason=s.cp===2?'upgrade':'checkpoint';s.reasonTime=2.4;event(s,'checkpoint',{cp:s.cp});}
+ const next=COURSE.checkpoints[s.cp];if(next&&s.grounded&&s.p.x>=next.p.x-2.5&&s.p.x<=next.p.x+8&&Math.abs(s.p.y-next.p.y)<.2&&Math.abs(s.p.z-next.p.z)<8){s.cp++;s.reach=s.cp>=2?13:10;s.reason=s.cp===2?'upgrade':'checkpoint';s.reasonTime=2.4;event(s,'checkpoint',{cp:s.cp});}
  if(s.cp===3&&s.grounded&&s.p.x>=COURSE.finish.x&&s.p.z>=-1&&s.p.z<=10){s.mode='finished';s.finishedTime=s.time;s.best=s.best===null?s.time:Math.min(s.best,s.time);event(s,'finish',{assisted:s.assisted});}
 }
 export function advance(s:S,input:Input,ms:number){s.accumulator+=Math.max(0,Math.min(ms,10000))/1000;while(s.accumulator+1e-10>=FIXED){step(s,input,FIXED);s.accumulator=Math.max(0,s.accumulator-FIXED);}}

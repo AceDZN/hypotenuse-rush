@@ -1,0 +1,22 @@
+{
+  "canvasRatio": 1,
+  "date": "2026-10-24T11:45:43.615Z",
+  "environment": "Headless installed Chrome, 1728x780 display DPR2, canvas DPR capped at1; shared loaded macOS host. Real-time animation loop, no manual hook. Final rolling up-to-240 frame intervals; not a device-wide FPS guarantee.",
+  "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Unspecified Version)",
+  "mode": "playing",
+  "simulationTime": 14.2167,
+  "performance": {
+    "frames": 240,
+    "meanFrameMs": 33.3321,
+    "p95FrameMs": 33.4,
+    "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
+    "triangles": 97046,
+    "calls": 101
+  },
+  "approxRenderLoopHz": 30.001110041071524,
+  "assets": {
+    "arch": true,
+    "helmet": true
+  },
+  "errors": []
+}

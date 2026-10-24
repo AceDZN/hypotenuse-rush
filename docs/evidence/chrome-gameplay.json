@@ -1,0 +1,222 @@
+{
+  "state": {
+    "game": "Hypotenuse Rush",
+    "coordinateSystem": "metres; +X forward, +Y up, +Z right; player position at capsule feet, harness +1.05m",
+    "mode": "playing",
+    "player": {
+      "position": {
+        "x": 0,
+        "y": 0.002,
+        "z": 0
+      },
+      "velocity": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "harness": {
+        "x": 0,
+        "y": 1.052,
+        "z": 0
+      },
+      "grounded": true
+    },
+    "camera": {
+      "position": {
+        "x": -2.3058,
+        "y": 0.9969,
+        "z": 1.7528
+      },
+      "yaw": 0.65,
+      "pitch": 0.05
+    },
+    "selected": "A",
+    "reach": 10,
+    "attached": null,
+    "hold": 0.75,
+    "cooldown": 0,
+    "time": 377.5333,
+    "checkpoints": 0,
+    "nextCheckpoint": {
+      "p": {
+        "x": 20,
+        "y": 1,
+        "z": 0
+      },
+      "label": "\u05e8\u05db\u05e1 \u05e8\u05d0\u05e9\u05d5\u05df"
+    },
+    "finish": {
+      "x": 350,
+      "y": 9,
+      "z": 4
+    },
+    "survey": true,
+    "assisted": true,
+    "hints": 0,
+    "falls": 0,
+    "overreaches": 1,
+    "obstructions": 0,
+    "grabs": 2,
+    "releases": 2,
+    "reason": null,
+    "respawnIn": 0,
+    "anchors": [
+      {
+        "id": "A",
+        "position": {
+          "x": 8,
+          "y": 7.052,
+          "z": 0
+        },
+        "distance": 9.999999400000032,
+        "squared": 99.999988000001,
+        "dx": 8,
+        "dy": 5.999999,
+        "dz": 0,
+        "face": 8,
+        "reachable": true,
+        "reason": "ready"
+      },
+      {
+        "id": "B",
+        "position": {
+          "x": 6,
+          "y": 10.052000000000001,
+          "z": 0
+        },
+        "distance": 10.81665299434169,
+        "squared": 116.99998200000101,
+        "dx": 6,
+        "dy": 8.999999,
+        "dz": 0,
+        "face": 6,
+        "reachable": false,
+        "reason": "not-aimed"
+      }
+    ],
+    "art": "loaded",
+    "helmetLoaded": true,
+    "archLoaded": true,
+    "records": {
+      "assisted": null,
+      "unassisted": null
+    },
+    "events": [
+      {
+        "type": "grab",
+        "time": 247.95,
+        "anchor": "A",
+        "reach": 10,
+        "origin": {
+          "x": 0,
+          "y": 1.052001,
+          "z": 0
+        },
+        "distance": 9.999999400000032,
+        "squared": 99.999988000001,
+        "dx": 8,
+        "dy": 5.999999,
+        "dz": 0,
+        "face": 8,
+        "reachable": true,
+        "reason": "ready",
+        "hinted": false,
+        "survey": false
+      },
+      {
+        "type": "release",
+        "time": 248.025,
+        "velocity": {
+          "x": 1.6794379227245573,
+          "y": 0.8107488067180745,
+          "z": 0
+        }
+      },
+      {
+        "type": "grab",
+        "time": 314.758,
+        "anchor": "A",
+        "reach": 10,
+        "origin": {
+          "x": 0.3107917112202665,
+          "y": 1.052001,
+          "z": 0
+        },
+        "distance": 9.753148830415743,
+        "squared": 95.12391210823995,
+        "dx": 7.689208288779733,
+        "dy": 5.999999,
+        "dz": 0,
+        "face": 7.689208288779733,
+        "reachable": true,
+        "reason": "ready",
+        "hinted": false,
+        "survey": false
+      },
+      {
+        "type": "release",
+        "time": 315.508,
+        "velocity": {
+          "x": 15.30299968389036,
+          "y": 9.477246471146117,
+          "z": 0
+        }
+      },
+      {
+        "type": "retry",
+        "time": 370.283,
+        "cp": 0
+      },
+      {
+        "type": "survey",
+        "time": 370.917
+      }
+    ],
+    "performance": {
+      "frames": 240,
+      "meanFrameMs": 178.3783,
+      "p95FrameMs": 457.8,
+      "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
+      "triangles": 135440,
+      "calls": 112
+    }
+  },
+  "viewport": {
+    "width": 1728,
+    "height": 780,
+    "dpr": 2
+  },
+  "script": [
+    "http://localhost:4183/assets/index-JKeBorHy.js"
+  ],
+  "verification": {
+    "method": "Real user Chrome through CUA; normal UI/pointer/keyboard input; no advanceTime",
+    "actions": [
+      "Start",
+      "Choose B and attempt grapple: overreach at10.816652994m with10m reach",
+      "Retry",
+      "W moves harness origin fromx0 tox0.3108",
+      "A hold approximately0.75seconds and release",
+      "Safe landing atx26.2144,y1.002",
+      "Pause/resume",
+      "Retry and Tab survey"
+    ],
+    "observations": [
+      "Both local GLBs visibly rendered and art/helmet/arch state flags true",
+      "Animated airborne reach/tuck and retained release velocity observed",
+      "First checkpoint gate was overshot in air in this partial route; no checkpoint completion claimed",
+      "Run clock includes long inspection idle periods and is not a course-time benchmark"
+    ],
+    "observedReleaseVelocity": {
+      "x": 15.30299968389036,
+      "y": 9.477246471146117,
+      "z": 0
+    },
+    "loadedBuild": "JKeBorHy; newer B-label leader build arrived after page load"
+  },
+  "consoleErrorSummary": {
+    "gameOriginErrors": [],
+    "unrelatedExtensionErrorCount": 1,
+    "extensionMessage": "Browser extension component inspector attempted to read children of null; extension URLs and stack omitted from public proof."
+  }
+}

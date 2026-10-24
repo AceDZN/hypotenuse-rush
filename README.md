@@ -50,7 +50,7 @@ A lock-on must remain inside the camera view to acquire; camera position never e
 
 - [Game identity](GAME_IDENTITY.md), [curriculum mapping](CURRICULUM.md), [asset provenance](ASSETS.md).
 - [Independent playtest](PLAYTEST.md), [visual target vs actual review](docs/VISUAL_REVIEW.md).
-- [Generated target](docs/visual-targets/gameplay-v1.png) is a design reference, **not an actual screenshot**. Actual browser captures live separately in `docs/evidence/`. A complete normal-control browser run finished in51.99s with9grapples,3checkpoints,0falls and no console errors.
+- [Generated target](docs/visual-targets/gameplay-v1.png) is a design reference, **not an actual screenshot**. Actual browser captures live separately in `docs/evidence/`. A complete normal-control browser run finished in51.69s with9grapples,3checkpoints,0falls and no console errors.
 - `window.render_game_to_text()` reports world/harness/anchor quantities and live state; `window.advanceTime(ms)` enters deterministic manual stepping for automated tests. Its optional second argument `false` skips the GPU draw while still updating physics, camera, poses and HUD; captures use the default draw. Real play uses the animation loop.
 
 The generated meshes are decorative and have no mathematical authority. The athlete's joints are procedural; the generated helmet/arch are static, not rigged characters. Remaining fidelity, feel and device limitations are recorded in the playtest/review rather than treated as proven polish.

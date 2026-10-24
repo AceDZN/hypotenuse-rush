@@ -1,0 +1,232 @@
+{
+  "game": "Hypotenuse Rush",
+  "coordinateSystem": "metres; +X forward, +Y up, +Z right; player position at capsule feet, harness +1.05m",
+  "mode": "playing",
+  "player": {
+    "position": {
+      "x": 27.7577,
+      "y": 1.002,
+      "z": -2.9052
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 27.7577,
+      "y": 2.052,
+      "z": -2.9052
+    },
+    "grounded": true
+  },
+  "camera": {
+    "position": {
+      "x": 25.3831,
+      "y": 1.9969,
+      "z": -1.1521
+    },
+    "yaw": 0.65,
+    "pitch": 0.05
+  },
+  "selected": "D",
+  "reach": 10,
+  "attached": null,
+  "hold": 0.7,
+  "cooldown": 0,
+  "time": 4.9833,
+  "checkpoints": 1,
+  "nextCheckpoint": {
+    "p": {
+      "x": 153,
+      "y": 2,
+      "z": -2
+    },
+    "label": "המדף הגבוה"
+  },
+  "finish": {
+    "x": 350,
+    "y": 9,
+    "z": 4
+  },
+  "survey": false,
+  "assisted": false,
+  "hints": 0,
+  "falls": 0,
+  "overreaches": 1,
+  "obstructions": 1,
+  "grabs": 1,
+  "releases": 1,
+  "reason": "obstructed",
+  "respawnIn": 0,
+  "anchors": [
+    {
+      "id": "A",
+      "position": {
+        "x": 8,
+        "y": 7.052,
+        "z": 0
+      },
+      "distance": 20.586570615055646,
+      "squared": 423.80688968867247,
+      "dx": -19.757696605863785,
+      "dy": 4.999999,
+      "dz": 2.9052236608065387,
+      "face": 19.970150216978126,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "B",
+      "position": {
+        "x": 6,
+        "y": 10.052000000000001,
+        "z": 0
+      },
+      "distance": 23.36316909394202,
+      "squared": 545.8376701121276,
+      "dx": -21.757696605863785,
+      "dy": 7.999999000000002,
+      "dz": 2.9052236608065387,
+      "face": 21.950801491338,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "C",
+      "position": {
+        "x": 36,
+        "y": 8.052000000000001,
+        "z": -3
+      },
+      "distance": 10.195319308165944,
+      "squared": 103.94453579546129,
+      "dx": 8.242303394136215,
+      "dy": 5.999999000000002,
+      "dz": -0.09477633919346129,
+      "face": 8.24284828172036,
+      "reachable": false,
+      "reason": "not-aimed"
+    },
+    {
+      "id": "D",
+      "position": {
+        "x": 34,
+        "y": 6.052,
+        "z": 3
+      },
+      "distance": 9.478291520553421,
+      "squared": 89.83801014859489,
+      "dx": 6.242303394136215,
+      "dy": 3.999999,
+      "dz": 5.905223660806539,
+      "face": 8.592905105294362,
+      "reachable": false,
+      "reason": "obstructed"
+    },
+    {
+      "id": "S",
+      "position": {
+        "x": 35,
+        "y": 8.052000000000001,
+        "z": 6.5
+      },
+      "distance": 13.300720979048958,
+      "squared": 176.9091785625131,
+      "dx": 7.242303394136215,
+      "dy": 5.999999000000002,
+      "dz": 9.405223660806538,
+      "face": 11.87051770406464,
+      "reachable": false,
+      "reason": "not-aimed"
+    }
+  ],
+  "art": "loaded",
+  "helmetLoaded": true,
+  "archLoaded": true,
+  "records": {
+    "assisted": null,
+    "unassisted": null
+  },
+  "events": [
+    {
+      "type": "retry",
+      "time": 0.017,
+      "cp": 0
+    },
+    {
+      "type": "grab",
+      "time": 0.325,
+      "anchor": "A",
+      "reach": 10,
+      "origin": {
+        "x": 0,
+        "y": 1.052001,
+        "z": 0
+      },
+      "distance": 9.999999400000032,
+      "squared": 99.999988000001,
+      "dx": 8,
+      "dy": 5.999999,
+      "dz": 0,
+      "face": 8,
+      "reachable": true,
+      "reason": "ready",
+      "hinted": false,
+      "survey": false
+    },
+    {
+      "type": "release",
+      "time": 1.025,
+      "velocity": {
+        "x": 16.072383500173743,
+        "y": 8.10422659007896,
+        "z": 0
+      }
+    },
+    {
+      "type": "checkpoint",
+      "time": 1.933,
+      "cp": 1
+    },
+    {
+      "type": "retry",
+      "time": 2.817,
+      "cp": 1
+    },
+    {
+      "type": "grab",
+      "time": 4.975,
+      "anchor": "D",
+      "reach": 10,
+      "origin": {
+        "x": 27.757696605863785,
+        "y": 2.0520009999999997,
+        "z": -2.9052236608065387
+      },
+      "distance": 9.478291520553421,
+      "squared": 89.83801014859489,
+      "dx": 6.242303394136215,
+      "dy": 3.999999,
+      "dz": 5.905223660806539,
+      "face": 8.592905105294362,
+      "reachable": false,
+      "reason": "obstructed",
+      "hinted": false,
+      "survey": false
+    }
+  ],
+  "performance": {
+    "frames": 6,
+    "meanFrameMs": 59.95,
+    "p95FrameMs": 249.938,
+    "sample": "raw wall-frame intervals, rendering capped at30; headless/loaded host is not a human performance benchmark",
+    "triangles": 97000,
+    "calls": 98
+  },
+  "qaViewport": {
+    "width": 1280,
+    "scrollWidth": 1280,
+    "bodyWidth": 1280
+  }
+}
