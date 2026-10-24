@@ -20,7 +20,7 @@ One world unit is one metre. Let `P` be the player's current harness point and `
 - The world axes are mutually perpendicular. Survey constructions must show a right-angle mark for the two triangles; screen projection and decorative rock contours do not establish a right angle.
 - Range, acquired aim, cooldown and a clear harness-to-hook segment are separate attachment requirements. A nearby hook behind rock can be in range and still obstructed.
 
-Mathematical hook positions and collision primitives are authored state. Generated meshes decorate them. The camera and model bounds never determine length. Numerical reach tolerance and collision skin are separate implementation parameters and must be reported with test evidence.
+Mathematical hook positions and collision primitives are authored state. Generated meshes decorate them. The camera and model bounds never determine length. The numerical reach tolerance is `1 × 10⁻⁷ m`; collision skin is independently `0.002 m`. The capsule radius is `0.32 m` and height is `1.8 m`. Tests distinguish the numerical threshold from contact geometry and check exact marked-stance offsets after the collision skin is applied.
 
 ## Action-to-concept mapping
 

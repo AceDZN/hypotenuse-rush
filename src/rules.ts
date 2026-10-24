@@ -15,6 +15,8 @@ export const COURSE={
  checkpoints:[{p:vec(20,1,0),label:'רכס ראשון'},{p:vec(57,2,-2),label:'המדף הגבוה'},{p:vec(83,5,-2),label:'קפיצה למרחב'}],finish:vec(106,8,4),
  stances:[vec(0,0,0),vec(28,1,-3),vec(64,2,-2),vec(85,5,-2)]
 };
+// Authored stance feet sit at collision skin above each exact top plane.
+COURSE.anchors.forEach(a=>a.p.y+=SKIN);
 export function segmentBox(p:V,q:V,b:Box):boolean{
  let lo=0,hi=1;const d=sub(q,p);
  for(const k of ['x','y','z'] as const){if(Math.abs(d[k])<1e-10){if(p[k]<b.min[k]||p[k]>b.max[k])return false;}else{let a=(b.min[k]-p[k])/d[k],c=(b.max[k]-p[k])/d[k];if(a>c)[a,c]=[c,a];lo=Math.max(lo,a);hi=Math.min(hi,c);if(lo>hi)return false;}}
@@ -25,7 +27,7 @@ function capsuleGap(p:V,b:Box){const cx=Math.max(b.min.x,Math.min(p.x,b.max.x)),
 // Conservative advancement of a vertical capsule against exact authored AABBs.
 // Capsule-to-box separation is Lipschitz bounded by displacement length, so steps
 // cannot cross a surface; final impact is within the independent 2mm collision skin.
-export function sweepCapsule(start:V,delta:V,boxes:Box[]){let p={...start},remaining={...delta},grounded=false,hit=false;for(let slide=0;slide<5&&length(remaining)>1e-8;slide++){let earliest=1,normal=vec();for(const b of boxes){let t=0;const speed=length(remaining);for(let n=0;n<40&&t<=earliest;n++){const at=add(p,mul(remaining,t)),g=capsuleGap(at,b);if(g.gap<=SKIN+1e-7){if(g.normal.x*remaining.x+g.normal.y*remaining.y+g.normal.z*remaining.z< -1e-8){earliest=t;normal=g.normal;}break;}t+=(g.gap-SKIN)/speed;}}
+export function sweepCapsule(start:V,delta:V,boxes:Box[]){let p={...start},remaining={...delta},grounded=false,hit=false;for(let slide=0;slide<5&&length(remaining)>1e-8;slide++){let earliest=1,normal=vec();for(const b of boxes){const floor=b.max.y+SKIN;if(remaining.y<0&&p.y>=floor-1e-7&&p.y+remaining.y<=floor){const t=Math.max(0,(floor-p.y)/remaining.y),at=add(p,mul(remaining,t));if(t<=earliest&&at.x>=b.min.x&&at.x<=b.max.x&&at.z>=b.min.z&&at.z<=b.max.z){earliest=t;normal=vec(0,1,0);}}let t=0;const speed=length(remaining);for(let n=0;n<40&&t<=earliest;n++){const at=add(p,mul(remaining,t)),g=capsuleGap(at,b);if(g.gap<=SKIN+1e-7){if(g.normal.x*remaining.x+g.normal.y*remaining.y+g.normal.z*remaining.z< -1e-8){earliest=t;normal=g.normal;}break;}t+=(g.gap-SKIN)/speed;}}
  p=add(p,mul(remaining,earliest));if(earliest>=1)break;hit=true;if(normal.y>.6)grounded=true;remaining=mul(remaining,1-earliest);const into=remaining.x*normal.x+remaining.y*normal.y+remaining.z*normal.z;remaining=sub(remaining,mul(normal,Math.min(0,into)));p=add(p,mul(normal,1e-6));}return{position:p,grounded,hit};}
 export type Input={x:number;z:number;jump:boolean;sprint:boolean;grapple:boolean;anchor:string|null};
 export type S={p:V;v:V;mode:'title'|'playing'|'paused'|'finished';cp:number;time:number;reach:number;attached:string|null;hold:number;cooldown:number;survey:boolean;hints:number;falls:number;overreaches:number;obstructions:number;reason:string;reasonTime:number;grounded:boolean;events:Record<string,unknown>[];assisted:boolean;grabs:number;releases:number;best:number|null;accumulator:number;jumpWas:boolean;grappleWas:boolean;respawnTime:number;finishedTime:number};
@@ -52,4 +54,4 @@ export function step(s:S,input:Input,dt=FIXED){if(s.mode!=='playing')return;cons
  const next=COURSE.checkpoints[s.cp];if(next&&s.grounded&&Math.abs(s.p.x-next.p.x)<2.5&&Math.abs(s.p.y-next.p.y)<.2&&Math.abs(s.p.z-next.p.z)<8){s.cp++;s.reach=s.cp>=2?13:10;s.reason=s.cp===2?'upgrade':'checkpoint';s.reasonTime=2.4;event(s,'checkpoint',{cp:s.cp});}
  if(s.cp===3&&s.grounded&&s.p.x>=104&&s.p.z>=-2&&s.p.z<=11){s.mode='finished';s.finishedTime=s.time;s.best=s.best===null?s.time:Math.min(s.best,s.time);event(s,'finish',{assisted:s.assisted});}
 }
-export function advance(s:S,input:Input,ms:number){s.accumulator+=Math.max(0,Math.min(ms,10000))/1000;while(s.accumulator>=FIXED){step(s,input,FIXED);s.accumulator-=FIXED;}}
+export function advance(s:S,input:Input,ms:number){s.accumulator+=Math.max(0,Math.min(ms,10000))/1000;while(s.accumulator+1e-10>=FIXED){step(s,input,FIXED);s.accumulator=Math.max(0,s.accumulator-FIXED);}}
