@@ -9,6 +9,7 @@ The user rejected v2's three-jump scope, faint world triangles, obscure rope len
 - `tools/qa-campaign.mjs`: production browser run completes all 36 crossings and 11 Next Level actions through normal selection/launch controls. It checks rope/target bounds, no target overlaps, selection without an attempt, required-length/rope/shortfall feedback, complete and checkpoint persistence, final reload, and captures all four environments. No state/position/win injection.
 - `tools/qa-campaign-independent.mjs`: independent normal-control campaign run and 108 option inspections, with strict checks for help/map pause, current checkpoint resume, hint star eligibility, immediate target contrast, SVG text containment, planar/spatial solved and unsolved label size, touch selection/launch and precise 17.03m versus17m rejection. Console/page errors: none.
 - Installed `web_game_playwright_client.js`: normal hook selection followed by Space and deterministic frames reaches an actual airborne state; canvas/text evidence is inspected. Its canvas capture excludes DOM HUD, so full-page production images are the interface evidence.
+- `node --import tsx tools/verify-canyon-clearance.mjs`: geometry review samples 6,516 body positions across all 36 real domain flights and all 108 initial reach segments. No decorative body contacts or blocked reach segments were found. This geometry-only review excludes the flat landing floor, instanced details and GLB/textures; the production browser separately verifies loaded artwork and actual traversal.
 
 ## Issues caught and fixed
 
@@ -28,6 +29,8 @@ The user rejected v2's three-jump scope, faint world triangles, obscure rope len
 ## Evidence and limits
 
 Current actual browser captures and JSON live in `docs/evidence/campaign-v3`, with separate independent results. Generated targets live in `docs/visual-targets/campaign-v3`; the clean journey illustration is menu artwork, and the sandstone image is a surface texture. Neither substitutes for the rendered playable scene.
+
+`01-opening.png` shows the current rope and inspection interface; `02-rejection.png` shows the actual distance comparison; `01-map.png` and `05-complete-map.png` show the 12-level journey. Regional ready/flight/phone views and independent solved spatial diagrams accompany the machine-readable results. Mockup and runtime-art hashes are recorded in `docs/visual-targets/campaign-v3/manifest.json`.
 
 The art is still a stylized procedural indie scene. Generated mockups have substantially richer surface/character detail. High/spatial ready views remain wider than low crossings to preserve the full measurement; phone calculation help devotes more screen space to the diagram. These limitations are visible in captures.
 

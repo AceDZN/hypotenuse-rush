@@ -1,0 +1,13 @@
+{
+  "stages": 36,
+  "flightSamples": 6516,
+  "bodyRadius": 0.3,
+  "bodyAxisAboveFeet": [
+    0.3,
+    1.52
+  ],
+  "floorContactExcluded": true,
+  "decorativeBodyCollisions": [],
+  "reachSegments": 108,
+  "blockedReachSegments": []
+}

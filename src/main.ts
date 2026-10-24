@@ -149,7 +149,7 @@ function drawMeasurements() {
 }
 function positionHooks() {
   const raw = stage().hooks.map(h => screen(V(h.position)));
-  const compact = innerWidth < 850 || raw.some((p, i) => raw.some((q, j) => i !== j && Math.hypot(p.x - q.x, p.y - q.y) < 95));
+  const compact = innerWidth < 850 || raw.some(p => p.y < 225 || p.x < 70 || p.x > innerWidth - 70) || raw.some((p, i) => raw.some((q, j) => i !== j && Math.hypot(p.x - q.x, p.y - q.y) < 95));
   let leaders = '';
   stage().hooks.forEach((h, i) => {
     const el = document.querySelector<HTMLButtonElement>(`[data-hook="${h.id}"]`)!;

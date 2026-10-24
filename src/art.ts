@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 /** All generated assets are decoration. The game owns measured primitives and colliders. */
 const loader = new GLTFLoader();
@@ -12,6 +13,8 @@ const skin = material('#b77b56');
 const sole = material('#d5d1bb');
 const shirt = material('#263d51');
 const trousers = material('#8e8069');
+const lens = material('#9fcbd0', .35);
+const athleteMaterial = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .82 });
 
 function mesh(geometry: THREE.BufferGeometry, mat: THREE.Material, parent: THREE.Object3D, name?: string): THREE.Mesh {
   const object = new THREE.Mesh(geometry, mat);
@@ -35,8 +38,8 @@ function joint(name: string, x: number, y: number, z: number, parent: THREE.Obje
   return group;
 }
 function limb(parent: THREE.Object3D, side: number, arm: boolean) {
-  const upper = joint(arm ? `arm${side}` : `leg${side}`, side * (arm ? .25 : .115), arm ? .39 : 0, 0, parent);
-  const a = arm ? .27 : .39;
+  const upper = joint(arm ? `arm${side}` : `leg${side}`, side * (arm ? .28 : .13), arm ? .46 : 0, 0, parent);
+  const a = arm ? .29 : .39;
   const b = arm ? .26 : .38;
   rounded(upper, arm ? [.13, a, .13] : [.17, a, .17], [0, -a / 2, 0], arm ? shirt : trousers);
   const lower = joint(arm ? `elbow${side}` : `knee${side}`, 0, -a, 0, upper);
@@ -58,6 +61,35 @@ function limb(parent: THREE.Object3D, side: number, arm: boolean) {
 }
 
 let helmetTemplate: Promise<THREE.Object3D> | undefined;
+
+/** Merge rigid parts within a joint while retaining every animated transform. */
+function batchAthleteJoints(root: THREE.Group): void {
+  const joints: THREE.Group[] = [];
+  root.traverse(object => { if (object instanceof THREE.Group) joints.push(object); });
+  for (const parent of joints) {
+    const pieces = parent.children.filter((object): object is THREE.Mesh =>
+      object instanceof THREE.Mesh && object.name !== 'temporaryHelmet' && !object.name.startsWith('authoritative'));
+    if (pieces.length < 2) continue;
+    const geometries = pieces.map(piece => {
+      piece.updateMatrix();
+      const source = piece.geometry.index ? piece.geometry.toNonIndexed() : piece.geometry.clone();
+      source.applyMatrix4(piece.matrix);
+      const count = source.getAttribute('position').count;
+      const color = (piece.material as THREE.MeshStandardMaterial).color;
+      const colors = new Float32Array(count * 3);
+      for (let i = 0; i < count; i++) { colors[i * 3] = color.r; colors[i * 3 + 1] = color.g; colors[i * 3 + 2] = color.b; }
+      source.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      if (!source.getAttribute('uv')) source.setAttribute('uv', new THREE.BufferAttribute(new Float32Array(count * 2), 2));
+      return source;
+    });
+    const merged = mergeGeometries(geometries, false);
+    if (merged) {
+      for (const piece of pieces) { parent.remove(piece); piece.geometry.dispose(); }
+      mesh(merged, athleteMaterial, parent, `${parent.name || 'root'}-rigid-parts`);
+    }
+    for (const source of geometries) source.dispose();
+  }
+}
 function normalized(object: THREE.Object3D, width: number): THREE.Group {
   object.updateMatrixWorld(true);
   const bounds = new THREE.Box3().setFromObject(object);
@@ -85,7 +117,7 @@ export function createAthlete(): THREE.Group {
   clip.renderOrder = 5;
   const hips = joint('hips', 0, .86, 0, root);
   const torso = joint('torso', 0, 0, 0, hips);
-  rounded(torso, [.43, .5, .26], [0, .27, 0], shirt);
+  rounded(torso, [.5, .55, .30], [0, .29, 0], shirt);
   rounded(torso, [.35, .17, .26], [0, .01, 0], charcoal);
   const harness = mesh(new THREE.BoxGeometry(.42, .065, .285), cream, torso);
   harness.position.set(0, .085, 0);
@@ -104,10 +136,30 @@ export function createAthlete(): THREE.Group {
   reelHousing.rotation.x = Math.PI / 2;
   reelHousing.position.set(-.21, .10, .1);
   const head = joint('head', 0, .66, .008, torso);
+  rounded(head, [.17, .19, .17], [0, -.14, 0], skin);
   const face = mesh(new THREE.SphereGeometry(.16, 12, 8), skin, head);
   face.scale.set(.87, 1.05, .93);
   const hair = mesh(new THREE.SphereGeometry(.165, 10, 6, 0, Math.PI * 2, 0, Math.PI * .52), charcoal, head);
   hair.position.y = .025;
+  const goggles = mesh(new THREE.BoxGeometry(.29, .082, .045), charcoal, head);
+  goggles.position.set(0, .014, .145);
+  for (const side of [-1, 1]) {
+    const glass = mesh(new THREE.BoxGeometry(.105, .047, .012), lens, head);
+    glass.position.set(side * .069, .016, .173);
+    const ear = mesh(new THREE.SphereGeometry(.044, 7, 5), skin, head);
+    ear.position.set(side * .147, -.012, 0);
+  }
+  const scarf = mesh(new THREE.TorusGeometry(.16, .043, 5, 12), coral, head);
+  scarf.rotation.x = Math.PI / 2; scarf.position.y = -.14;
+  const scarfTail = joint('scarfTail', 0, .49, -.14, torso);
+  const cloth = new THREE.BufferGeometry();
+  cloth.setAttribute('position', new THREE.Float32BufferAttribute([
+    -.1, 0, 0, .1, 0, 0, .065, -.2, -.28,
+    -.1, 0, 0, .065, -.2, -.28, -.045, -.17, -.33,
+    .065, -.2, -.28, .1, 0, -.018, -.1, 0, -.018,
+    -.045, -.17, -.33, .065, -.2, -.28, -.1, 0, -.018,
+  ], 3));
+  cloth.computeVertexNormals(); mesh(cloth, coral, scarfTail);
   const temporaryHelmet = mesh(new THREE.SphereGeometry(.18, 12, 7, 0, Math.PI * 2, 0, Math.PI * .51), coral, head, 'temporaryHelmet');
   temporaryHelmet.position.y = .035;
   const helmetMount = joint('helmetMount', 0, .10, 0, head);
@@ -119,6 +171,7 @@ export function createAthlete(): THREE.Group {
   }).catch(() => { root.userData.tripoHelmetLoaded = false; });
   limb(torso, -1, true); limb(torso, 1, true);
   limb(hips, -1, false); limb(hips, 1, false);
+  batchAthleteJoints(root);
   root.userData.tripoHelmetLoaded = false;
   return root;
 }
@@ -160,6 +213,7 @@ export function animateAthlete(group: THREE.Group, info: AthleteMotion): void {
     }
   }
   get('head').rotation.x = info.grappling ? -.18 : 0;
+  get('scarfTail').rotation.x = info.reducedMotion ? 0 : .1 + Math.sin(info.time * (info.grounded ? 6 : 11)) * (info.grounded ? .05 : .14);
 }
 
 /** Place the original Tripo arch on the distant, noncolliding canyon rim. */

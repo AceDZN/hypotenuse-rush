@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-25",
+  "tool": "built-in imagegen",
+  "mockupsCommittedBeforePresentation": "527baac",
+  "assets": [
+    {
+      "path": "docs/visual-targets/campaign-v3/choice-and-rope.png",
+      "sha256": "aec80279cfce2e49f97f9f7d0a24da5865a3bbd0b1ffcd0b2011e48bc8281486",
+      "bytes": 2547904,
+      "kind": "design mockup"
+    },
+    {
+      "path": "docs/visual-targets/campaign-v3/campaign-map.png",
+      "sha256": "2109cf07a2673b1cd7eedfec55cf268f70a71bf732451ed6ebe8bdb4853e279a",
+      "bytes": 2440323,
+      "kind": "design mockup"
+    },
+    {
+      "path": "public/art/campaign-map.webp",
+      "sha256": "f5557ac8a3265c66f53b0b933ddd1c35c1a31582aa5432dbe4d69295edf50414",
+      "bytes": 287452,
+      "kind": "runtime art"
+    },
+    {
+      "path": "public/art/sandstone.webp",
+      "sha256": "b63b7fc9d58a34b0b194c57f6e3d8cd1695b1a241ea234f0956025a474f01f36",
+      "bytes": 445208,
+      "kind": "runtime art"
+    }
+  ]
+}

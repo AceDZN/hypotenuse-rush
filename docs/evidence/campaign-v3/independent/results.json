@@ -1,0 +1,205 @@
+{
+  "url": "http://localhost:5183",
+  "date": "2026-10-24T21:55:14.048Z",
+  "checks": [
+    "Prominent10m rope limit; all3 hook clicks inspect without attempting or moving",
+    "Space commits; failure gives measured diagonal/rope/shortfall and remains tied to attempted ring",
+    "Help to map and back leaves no covering help overlay while flight resumes",
+    "Physical first landing persists; reload resumes second hop with mistake/hint history",
+    "Near-boundary17.03m rejection exposes0.03m shortfall",
+    "All108 hook options keep immediate number contrast and labels inside their SVG columns",
+    "Normal select+Space inputs complete all36 flights;11Next transitions; final reload preserves all12 levels",
+    "Touch hook tap only inspects; separate Launch tap reaches a saved landing",
+    "Current unfinished level map entry resumes its saved checkpoint",
+    "Desktop and phone planar/spatial labels stay at least16px, before and after calculation help"
+  ],
+  "issues": [],
+  "metrics": [
+    {
+      "label": "desktop-planar",
+      "result": [
+        {
+          "text": "9 m",
+          "fontPixels": 16.75
+        },
+        {
+          "text": "6 m",
+          "fontPixels": 16.75
+        },
+        {
+          "text": "? m",
+          "fontPixels": 16.75
+        }
+      ]
+    },
+    {
+      "label": "desktop-planar-solved",
+      "result": [
+        {
+          "text": "9 m",
+          "fontPixels": 16.75
+        },
+        {
+          "text": "6 m",
+          "fontPixels": 16.75
+        },
+        {
+          "text": "10.82 m",
+          "fontPixels": 16.75
+        }
+      ]
+    },
+    {
+      "label": "desktop-spatial",
+      "result": [
+        {
+          "text": "3 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "4 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "f = ?",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "f",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "12 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "? m",
+          "fontPixels": 18.315
+        }
+      ]
+    },
+    {
+      "label": "phone-spatial",
+      "result": [
+        {
+          "text": "3 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "4 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "f = ?",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "f",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "12 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "? m",
+          "fontPixels": 18.5725
+        }
+      ]
+    },
+    {
+      "label": "phone-spatial-solved",
+      "result": [
+        {
+          "text": "3 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "4 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "5 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "5 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "12 m",
+          "fontPixels": 18.5725
+        },
+        {
+          "text": "13 m",
+          "fontPixels": 18.5725
+        }
+      ]
+    },
+    {
+      "label": "desktop-spatial-solved",
+      "result": [
+        {
+          "text": "3 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "4 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "5 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "5 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "12 m",
+          "fontPixels": 18.315
+        },
+        {
+          "text": "13 m",
+          "fontPixels": 18.315
+        }
+      ]
+    },
+    {
+      "label": "phone-planar",
+      "result": [
+        {
+          "text": "6 m",
+          "fontPixels": 16.727272727272727
+        },
+        {
+          "text": "9 m",
+          "fontPixels": 16.727272727272727
+        },
+        {
+          "text": "? m",
+          "fontPixels": 16.727272727272727
+        }
+      ]
+    },
+    {
+      "label": "phone-planar-solved",
+      "result": [
+        {
+          "text": "6 m",
+          "fontPixels": 17.703030303030303
+        },
+        {
+          "text": "9 m",
+          "fontPixels": 17.703030303030303
+        },
+        {
+          "text": "10.82 m",
+          "fontPixels": 17.703030303030303
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "humanFeelVerified": false
+}
