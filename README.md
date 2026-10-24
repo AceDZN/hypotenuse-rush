@@ -1,51 +1,50 @@
 # Hypotenuse Rush · ריצת היתר
 
-A short 3D canyon grapple game in Hebrew. **Choose a ring, click once, fly and land.** The game handles the camera, release and landing; the player chooses hooks using their actual distance from the harness.
+A Hebrew 3D grapple game with **12 levels, 36 crossings and four regions**. Inspect a hook's perpendicular measurements, compare its diagonal with your rope length, then launch. The game handles release and safe landing.
 
-The current **flow v2** rebuild follows direct feedback that the original controls and gameflow were confusing. Three imagegen gameplay mockups and the [rebuild plan](docs/REBUILD_V2.md) were created and committed before changing gameplay.
-
-## Play
+## Play locally
 
 ```sh
 npm install
-npm run dev      # http://localhost:5183
+npm run dev       # http://localhost:5183
 npm run build
-npm run preview  # http://localhost:4183
+npm run preview   # http://localhost:4183
 npm test
-node tools/qa-flow.mjs http://localhost:4183
+node tools/qa-campaign.mjs http://localhost:4183
+node tools/qa-campaign-independent.mjs http://localhost:4183
 ```
 
-Both server ports are strict. Static Vite build, no backend/account/key/runtime API, remote font/model fetch or analytics. WebGL is required. `vercel.json` is ready for the later requested deployment; no deployment was performed.
+Both ports are strict. The static Vite build needs no backend, account, key, remote runtime font/model service or analytics. WebGL is required. `vercel.json` is included for a later deployment; no deployment was performed.
 
-## Current course
+## Campaign v3
 
-- Start directly on a launch pad with one obvious ring and marked destination.
-- One click/tap supplies a complete assisted physical flight. No movement, aiming, holding, release timing or manual camera.
-- The first landing introduces `(8,6)` versus `(6,9)` at cable reach10m; the final height choice uses `(5,12)` versus `(3,13)` at reach13m.
-- Wrong choices remain safe and allow immediate retry. Physical landings advance progress.
-- First run is untimed. Finish offers replay or an optional timed challenge with a local best.
-- Pause, help, optional calculation, mute, reduced motion, fullscreen and responsive touch targets.
-- Original local Chrome/Tripo arch/helmet reused; no additional model credits spent.
+- Twelve named levels across red canyon, water terraces, sunset spires and a moonlit summit. Each contains three authored physical flights.
+- Next Level is the primary completion action. Completed levels can be replayed from the journey map. Reload restores the current safe checkpoint and retains unlocks, earned stars and records.
+- A large rope-length badge remains visible. Thick coloured world measurements and a flat inspection diagram distinguish perpendicular legs from the diagonal.
+- Clicking a hook selects/inspects it. Launch is a separate commitment, giving touch users time to read. Three neutral choices per crossing; correct slots are balanced and geometry varies.
+- Wrong shots stay safe and show required cable length, current rope and shortfall. Correct first attempts earn stars; calculation help is available without blocking progression.
+- Spatial stages construct a horizontal face diagonal before adding height. Length decisions use exact world quantities, never perspective or rounded labels.
+- Original Chrome/Tripo models, a polished articulated athlete, generated local stone material, four environment families and a generated journey-map illustration. Gameplay remains an actual 3D scene.
 
 ## Controls
 
 | Action | Mouse / touch | Keyboard |
 |---|---|---|
-| Choose and launch | Click/tap a numbered ring | Left/right selects; Space launches; 1/2 directly attempts that ring |
-| Optional air flip | Click world or air-action button | Space once in flight |
+| Inspect hook | Click/tap its numbered target | Left/right or 1–3 |
+| Commit / launch | Launch button | Space / Enter |
+| Optional air flip | Air action button or world click | Space in flight |
 | Pause | Pause button | Escape / P |
-| Help / calculation | ? / √ | Tab focuses ordinary UI controls |
+| Journey / help / calculation | Journey / ? / Calculate buttons | Tab and Enter |
 | Fullscreen | Browser controls | F |
-| Replay / timed replay | Finish buttons | Tab/Enter |
 
-The flip is cosmetic and never changes the trajectory. The game discloses its arcade landing assistance in help. Reach uses true Euclidean distance with a separate numerical epsilon; camera/projection/model dimensions do not enter the rule. Flight integrates a solved initial impulse, hook-directed constant acceleration, continuous release velocity and gravity until actual floor contact. It does not carry the player on a spline or teleport between pads.
+The cable reaches from the harness to the hook, not to the landing platform. Flight is an assisted arcade mechanic: solved initial impulse, hook-directed pull, continuous-velocity release and gravity until physical floor contact. A flip only changes pose/score. There is no spline traversal or teleport during a crossing.
 
-## Verification and design
+## Design, assets and verification
 
-- [Rebuild plan and human acceptance gate](docs/REBUILD_V2.md), [identity](GAME_IDENTITY.md), [curriculum](CURRICULUM.md), [assets](ASSETS.md).
-- [Current playtest](PLAYTEST.md), [target/actual comparison](docs/VISUAL_REVIEW.md), [actual captures](docs/evidence/rebuild-v2).
-- Three generated targets: [first click](docs/visual-targets/rebuild-v2/01-first-click.png), [flight](docs/visual-targets/rebuild-v2/02-flight.png), [choice](docs/visual-targets/rebuild-v2/03-choice.png). These are mockups, not screenshots of the game.
-- `src/flight.ts` and 16 flight tests govern the active v2 game. The 27 older `src/rules.ts` tests and old evidence/tools remain historical v1 material; they do not describe current controls or prove current enjoyment.
-- `window.render_game_to_text()` exposes current stage, authoritative quantities, input outcomes, event trace, asset status and records. `window.advanceTime(ms, draw=true)` enters deterministic manual stepping; false skips GPU draw while updating simulation/UI. Normal play uses real elapsed animation frames.
+- [Campaign plan](docs/CAMPAIGN_V3.md), [identity](GAME_IDENTITY.md), [curriculum](CURRICULUM.md), [asset provenance](ASSETS.md).
+- [Playtest](PLAYTEST.md), [visual comparison](docs/VISUAL_REVIEW.md), actual captures in `docs/evidence/campaign-v3`.
+- New [choice mockup](docs/visual-targets/campaign-v3/choice-and-rope.png) and [map mockup](docs/visual-targets/campaign-v3/campaign-map.png) were committed before presentation work. They are generated targets, not actual screenshots.
+- Active domain: `src/campaign.ts`, `src/flight.ts`. 21 current campaign tests plus 27 historical v1 tests pass. Old v1/v2 evidence and tools are historical; current UI tools are the campaign scripts above.
+- `window.render_game_to_text()` reports level/hop, rope, exact hook quantities, rejection snapshots, input results, progress, assets and camera. `window.advanceTime(ms, draw=true)` enters deterministic manual stepping. Normal play uses real elapsed animation frames.
 
-A three-choice automated route takes6.45 simulation seconds plus decision time. This pilot intentionally establishes the core loop before adding a longer course. Human comprehension, interest and learning remain to be tested by people.
+All twelve levels and 36 physical contacts are verified through the domain and normal browser controls. Automated completion does not establish fun, human comprehension or learning gains.

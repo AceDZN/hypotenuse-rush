@@ -1,20 +1,18 @@
-# Rebuild v2: generated targets versus actual game
+# Campaign v3 — target and actual review
 
-The current targets are `docs/visual-targets/rebuild-v2/01-first-click.png`, `02-flight.png`, `03-choice.png`. Generated with built-in imagegen and committed in5033878 before gameplay implementation. Prompts/provenance are beside them. All are mockups, not gameplay evidence. Old gameplay-v1.png guided the rejected v1 course and is superseded.
+Targets: `docs/visual-targets/campaign-v3/choice-and-rope.png` and `campaign-map.png`, generated and committed in `527baac` before presentation changes. Exact prompts are beside them. They are mockups, not game captures.
 
-Actual production captures are in `docs/evidence/rebuild-v2` at1672×941, with390×844 phone views, through real controls plus deterministic frame advancement. CUA additionally played the in-app preview in real time.
+Actual: production browser images in `docs/evidence/campaign-v3`, 1672×941 plus390×844 phone views, through actual controls and deterministic time. Four regions, flight, failure, level completion and full journey are represented.
 
-| Aspect | Target | Actual / deliberate constraint |
-|---|---|---|
-| Core action | One click to complete a leap | One click/tap or Space launches, automatic release and physical landing. Wrong choice stays safe. |
-| World composition | Launch left, hook above gap, wide marked landing right | Elevated authored orthographic camera fits these points above the prompt footer. Portrait camera looks along the route. |
-| Character | Large detailed human athlete | Smaller procedural articulated human, Tripo helmet; no generated character rig. This remains a fidelity gap. |
-| Cliffs | Rich carved polygon sandstone | Chamfered layered authored ledges and distant hazy mesas. Simpler geometry, no photo detail. |
-| Fixtures | Ring attached under rock | Ivory rings on coral cantilever gantries anchored on the destination shelf; true distance remains independent. |
-| HUD | Sparse contextual instruction and progress | Brand, three dots, cable reach/pause, one prompt, small help/calculation. Timer only in opt-in replay. |
-| Choice | Two neutral hooks, perpendicular legs | Neutral hooks; selected harness-origin triangle with right-angle mark, measurement summaries on both options. No solved diagonal until optional calculation. |
-| Scientific accuracy | Generated guide lines float beside rock | Runtime guide starts at actual P and connects exact perpendicular world-space legs. Numeric display rounding does not decide reach. |
-| Motion | Cable/athlete/trail, celebratory landing | Real integrated assisted flight; automatic release; optional cosmetic flip; articulated pose/dust/chime/landing compression. |
-| Phone | Not specified in generated images | Fitted view and separated numbered targets with leader lines when projection overlaps. |
+| Requirement | Implementation and review |
+|---|---|
+| Rope length obvious | Large central “אורך הכבל שלך” badge with metre value and harness-to-hook caption. Entire badge is checked inside desktop/phone viewport. |
+| Visible triangle | Outlined cyan horizontal, gold height, purple depth, cream dashed diagonal, translucent fill and right-angle marker, all rooted at actual harness P. |
+| Perspective-independent reading | Flat inspection repeats exact quantities. Spatial choices show floor f then f plus height. All option labels and solved-state text are checked for containment and at least16px rendered size. |
+| Deliberate choice | Hook click selects only; separate Launch commits. First-try rewards and precise failure explanation. No advance answer colouring. |
+| Substantial progression | Twelve numbered map stops and 36 crossings. Next Level, saved checkpoints/unlocks and explicit replay. |
+| Better world | Perspective framing, closer aerial shot, sculpted textured ledges, natural supports, region terrain/plants/sky/water and the original Tripo landmark/helmet. |
+| Menu art | A clean generated four-region map illustration under real numbered interactive nodes. No baked fake UI; active gameplay remains Three.js. |
+| Fidelity limit | Actual athlete/rocks remain simpler than generated targets. High hooks require wider ready views; calculation help occupies substantial phone area. |
 
-The targets inspired composition and affordances, not a promise of identical rendering detail. Initial integration had enormous background walls and hidden/overlapping targets; those were fixed from actual captures. Visual matching and successful automation still do not establish human fun.
+Initial review caught black sky wedges, supports on the landing, foreground plants hiding P, transient target text contrast, tiny solved labels and stale help/map states. These were corrected using actual captures and independent browser checks. Further visual matching does not establish human fun.

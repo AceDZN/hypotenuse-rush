@@ -1,25 +1,23 @@
-# Hypotenuse Rush · ריצת היתר — flow v2
+# Hypotenuse Rush · ריצת היתר — campaign v3
 
-**Choose → fly → land → choose again.** A short 3D canyon grapple game with automatic flight assistance. The current course has three complete flights, a finish, replay and an optional timed replay. It replaces the rejected v1 navigation/hold/release course after direct human feedback on 24 October 2026.
+A 3D canyon journey built around **inspect a hook → compare its diagonal to your rope → launch → land → continue**. The campaign has 12 named levels, three physical crossings each, in four regions. Level completion leads to the next level; progress, checkpoints, stars and records are saved locally.
 
-Visual thesis: a coral-helmet athlete and ivory cable sweep between warm polygon sandstone shelves; launch, hook and landing read together in one authored elevated view.
+This replaces v2 after the user's 25 October feedback: three jumps were insufficient, world triangles were faint, rope length was obscure, blind option switching bypassed the decision, and presentation was weak. The campaign plan and two new mockups were committed as `527baac` before presentation changes.
 
-Content plan: immediately playable launch with one hook → satisfying first landing → calm two-hook distance choice → changed height/reach → finish/replay. One contextual instruction, three progress dots, cable reach and pause. No initial instruction wall or countdown.
+Visual thesis: a coral-helmet athlete crosses layered sandstone, water terraces, sunset spires and a moonlit summit; cyan/amber measurements and the cream cable remain readable against the scene.
 
-Interaction thesis: a subtle target pulse invites the first click; constant-acceleration launch and automatic release communicate cable tension; landing compression/dust/chime signals success. Reduced motion removes pulse, trail and body rotation. The automatic camera fits player, hooks and destination above the instruction footer. Narrow/portrait views separate overlapping numbered touch targets with leader lines.
+Content plan: playable route with a prominent rope specification and a flat inspection panel; level completion with Next Level as primary action; a twelve-stop journey map. The region illustration is menu artwork. Actual gameplay is rendered Three.js geometry, not a generated screenshot.
 
-One click or tap chooses a hook and launches. Keyboard: left/right selects, Space launches. Another Space/click in flight performs one optional cosmetic flip; it cannot affect landing. The player does not move, aim, hold, release or steer manually. A wrong reach choice stays safely on the launch pad with a reason and immediate retry. Each physical landing saves progression.
+Interaction thesis: clicking a neutral hook selects it without attempting; a separate Launch button or Space commits; assisted flight releases automatically and resolves actual floor contact; dust, body pose, a short chime and an optional flip give action feedback. Reduced motion removes the extra body rotation, particles and moving camera shot.
 
-The pilot stages are guided `(8,6,0)` at R=10; choice `(6,9,0)` versus `(8,6,0)` at R=10; height choice `(5,12,0)` versus `(3,13,0)` at R=13. Both options have neutral fixtures before commitment. Selected world-space construction begins at the actual harness and shows perpendicular legs/right-angle mark; optional calculation reveals the diagonal. Numeric display rounding never decides reach.
+The rope badge explicitly says “אורך הכבל שלך”, value in metres and “מהרתמה P אל הטבעת”. The cable must reach the hook; assisted momentum carries the athlete to the marked landing. Rope length is distinct from landing-platform distance. The equipment limit changes explicitly by level, so it remains visible throughout the crossing.
 
-One unit = one metre. Flight is an explicitly assisted arcade mechanic: solve an initial impulse, apply constant acceleration along the initial harness-to-hook direction for .45s, retain velocity at release, integrate gravity for ~1.05s, then resolve actual downward floor contact. No animation spline or checkpoint teleport carries the athlete. A .65s landing celebration precedes the next ready state.
+The selected world triangle starts at the actual harness. Cyan is the X leg, gold the vertical leg, purple the lateral leg; outlined screen strokes and large labels resist perspective/background contrast. A separate flat diagram shows the same exact quantities and a right-angle marker. Spatial stages show two triangles: the floor diagonal f, then f with height. The final diagonal remains unknown until calculation help or a rejected commitment reveals it.
 
-Art: original local Chrome/Tripo helmet and a small hazy natural arch; procedural articulated athlete and exact authored polygon ledges/gantries. These static generated models have no rig and no mathematical authority. No additional model generation or credits were used for the rebuild.
+All 36 choices offer three neutral hooks, exactly one within reach; correct slots are balanced 12/12/12. Measurements vary, including non-triples and lateral displacements. A rejected commitment stays safe and reports that attempted hook's required length, rope limit and precise shortfall. It never redirects feedback when another hook is selected. A first-try star rewards a correct unaided commitment; mistakes/help do not block progress. This discourages blind retries without claiming they are impossible.
 
-## Image-first workflow
+Physics remains explicit arcade assistance: an initial impulse is solved, constant hook-directed acceleration acts for .45s, automatic release retains velocity, gravity acts until a downward floor intersection. A .65s landing celebration precedes the next choice. Rendering, camera, textures and decorative model bounds never decide distance. No typed quiz or manual aiming/release timing gates traversal.
 
-The three generated mockups in `docs/visual-targets/rebuild-v2` and `docs/REBUILD_V2.md` were committed as 5033878 before any v2 game implementation. They are design targets, not gameplay captures. Runtime preserves their composition and interaction hierarchy with simpler geometry, a smaller athlete and orthographic framing. Actual captures are separate in `docs/evidence/rebuild-v2`. See `docs/VISUAL_REVIEW.md`.
+Art uses the original local Chrome/Tripo helmet and arch, a procedurally articulated athlete, sculpted ledges/supports, clustered plants, atmospheric sky/clouds, region terrain and generated local sandstone surface material. No additional Tripo generations or credits. Generated models are static; no rig is claimed.
 
-## Scope and next gate
-
-This is deliberately a short first course, not an expanded replacement of the old 350m corridor. The user should be able to judge the core feel quickly. Spatial choices, multiple valid routes and a longer flow challenge belong after the first loop is understandable and enjoyable. Automated completion is not human fun, comprehension or learning evidence.
+Human enjoyment and understanding remain judged by play, not automated completion. The implementation now supplies the substantial campaign and readable measurements requested; actual captures and remaining fidelity differences are documented in the playtest and visual review.

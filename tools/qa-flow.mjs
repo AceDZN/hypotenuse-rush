@@ -1,3 +1,4 @@
+// HISTORICAL V2: current campaign checks are qa-campaign.mjs and qa-campaign-independent.mjs.
 /** v2 UI acceptance checks, all through actual controls; no position/win injection. */
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';

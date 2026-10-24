@@ -72,3 +72,10 @@ The two normal generations were already submitted when the latest image-first ta
 ## Flow v2 reuse, 24 October 2026
 
 The rebuild reuses the same optimized local Chrome/Tripo arch and helmet with unchanged file bytes/provenance. No additional model generation or credits. `src/canyon.ts` positions a small hazy arch behind the course; the helmet remains mounted on the procedural articulated athlete. Launch pads, hooks, cantilevers and collision rectangles are authored geometry. The generated rebuild mockups live in `docs/visual-targets/rebuild-v2` with exact prompts and are never used as the runtime scene.
+
+
+## Campaign v3 additions · 25 October 2026
+
+The original two local Chrome/Tripo GLBs are reused unchanged; no new Tripo generation/credits. The articulated procedural athlete has a broader continuous silhouette, neck/goggles/scarf and joint-local geometry batching; no generated rig is claimed. Region ledges/supports and decorative plants are authored geometry, separate from measured coordinates.
+
+Built-in imagegen produced two presentation mockups before implementation (`docs/visual-targets/campaign-v3`). A follow-up edit removed all baked UI/markers/text from the map image, yielding the real menu background `public/art/campaign-map.webp`. The gameplay scene is actual Three.js geometry. A separate generated sandstone surface is bundled as `public/art/sandstone.webp`, multiplied by rock vertex colours and used for fine bump detail. Exact prompts, source generation filenames and export settings are in MAP_ART.md/STONE_ART.md beside the mockups. Both runtime assets are local; no remote texture service is used.

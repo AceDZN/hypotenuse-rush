@@ -1,6 +1,15 @@
 # Curriculum and mathematical contract
 
-## Active flow v2 after human feedback
+## Active campaign v3
+
+Twelve levels contain 36 authored choices. The player inspects any of three neutral hooks, reads perpendicular quantities, compares the actual harness-to-hook diagonal with the prominently stated rope limit, then commits a launch. Clicking a hook does not attempt it. Exactly one hook is in range at each choice; correct positions are balanced 12/12/12. Planar and spatial witnesses vary, including non-triples and near-boundary values. The floor face diagonal is an intermediate quantity in spatial stages, not the full reach.
+
+The world construction and flat inspection diagram share authoritative measurements. Cyan is X, gold Y and purple Z. P is feet+1.05m. Length decisions use Euclidean distance with1e-7m tolerance; rounding is only display. A rejection snapshots its measured length, rope length and shortfall and shows at least two decimals. A first-try star requires a correct first commitment without calculation help; errors/help never block completion. Saved checkpoint history preserves those observations across reloads. Stars and completion describe observed actions, not mastery or learning gains.
+
+The rope reaches the hook; an assisted physical launch carries the athlete to a separate landing. Camera/texture/decorative volume does not decide reach. Original reviewed Workbook sources below remain the curriculum basis; historical v1/v2 controls are superseded.
+
+
+## Historical flow v2 after human feedback
 
 The active game is the three-flight pilot in `src/flight.ts`, not the historical course described below. First a guided `(8,6,0)` flight at R=10 teaches one-click traversal; then `(6,9,0)` versus `(8,6,0)` at R=10 exposes the horizontal-only misconception; then `(5,12,0)` versus `(3,13,0)` at R=13 changes height/reach. The actual harness at feet+1.05m is the origin. Connected perpendicular guides and a right-angle mark show the selected construction; the optional calculation reveals the diagonal. Both hooks have neutral styling before commitment. A rejected choice stays safe with immediate retry, and physical floor contact advances the course. No typed answer gates movement.
 

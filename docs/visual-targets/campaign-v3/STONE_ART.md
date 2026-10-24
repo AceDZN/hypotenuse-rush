@@ -1,0 +1,6 @@
+# Sandstone surface material
+
+Built-in imagegen, 25 October 2026. New texture, no references. Generated PNG exec-7e87cf53-4570-40d0-9559-a7c09a85c47f.png; resized to1024square and exported Pillow WebP quality90/method6. It is a material asset, not a gameplay capture. Tiling is an artistic target, not a mathematically certified seamless boundary.
+
+Use case: product-mockup. Asset type: seamless tileable square albedo texture for real 3D sandstone game geometry, NOT a scene. Generate a perfectly front-facing orthographic surface scan of fine-grained pale neutral sandstone. Entire image is uninterrupted stone, 1:1 square. Delicate porous sand grains, many tiny nicks and narrow fissures, subtle gently wandering horizontal sediment seams, natural low-contrast variation. Desaturated ivory/light neutral gray base, suitable for multiplication by orange or blue vertex colours. Even diffuse shadow-free illumination, no baked cast shadows, no highlights, no perspective, no vignette, no objects, no text, no border. Opposite edges should tile seamlessly. Material detail should read at medium scale; avoid dramatic black cracks, repetitive stripes or wood grain. Output intended as an actual game texture, not a screenshot.
+

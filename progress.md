@@ -47,3 +47,16 @@ Latest user request: "It's weird, I barely understood what to do, it feels weird
 - Production browser QA covers mouse/keyboard/touch full course, failure/recovery, pause, hints, explicit reach change, phone resize, finish/replay and opt-in timed records; errors[]. Installed skill client used and screenshot inspected. Direct CUA real-time clicks confirmed operation.
 - Fixed orthographic background walls, raw decimal labels, overlapping portrait touch targets, footer/athlete overlap and Space handling after button focus.
 - Human comprehension/enjoyment still unverified. Keep next iteration driven by the user's actual playtest; do not expand spatial/long-course content before the first loop is understandable and enjoyable.
+
+
+## 25 October — campaign v3 after screenshot feedback
+
+User feedback: barely any levels (three jumps then start over), barely visible perspective triangles, no clear jump/rope distance so options can be blindly retried, and weak visuals.
+
+- Generated two new mockups and committed plan527baac before presentation code. Generated clean menu-map illustration and neutral stone surface as actual local art assets; no new Tripo spend.
+- Added12 levels/36 authored crossings across4 regions, three neutral inspectable hooks per choice, balanced valid positions, varied planar/spatial cases, saved checkpoints/unlocks/stars/bests and Next Level progression.
+- Split inspection from launch. Rope specification is central; strong world construction and a flat diagram communicate the measured diagonal. Rejection states required length, available rope and shortfall. First-try help/attempt history survives reload.
+- Integrated perspective camera, closer aerial view, polished/batched athlete, richer region terrain/sky/clouds/plants/water/natural supports and stone material.
+-48 tests pass, including21 current campaign tests; all36 physical crossings verified numerically and through normal browser inputs. Independent review catches/fixes stale help/map, map reset, hint eligibility, tiny solved diagrams and transient hook contrast.
+- Actual captures caught sky clipping, decorative support stems on the landing, vegetation in front of P, and overly broad camera footer fitting. Fixed against actual rendered frames, not only mockups.
+- Human fun/comprehension remain determined by the user's next playtest; no test count substitutes for it.
