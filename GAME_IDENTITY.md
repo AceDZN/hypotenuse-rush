@@ -1,21 +1,25 @@
-# Hypotenuse Rush · ריצת היתר
+# Hypotenuse Rush · ריצת היתר — flow v2
 
-Core verbs: sprint, inspect, choose, attach, steer, release, land, chain. The player judges a hook's true distance from the moving harness, then commits to an airborne route. Velocity, height, line of sight, time, checkpoint and assistance change. No collection, cargo, rescue or vehicle.
+**Choose → fly → land → choose again.** A short 3D canyon grapple game with automatic flight assistance. The current course has three complete flights, a finish, replay and an optional timed replay. It replaces the rejected v1 navigation/hold/release course after direct human feedback on 24 October 2026.
 
-First minute: move across a broad starting ridge; inspect two hooks from the marked stance; reject a horizontally closer but too-high hook; attach to (8,6,0), swing/reel forward, release and steer onto the broad landing; cross checkpoint 1 and read a changed gap. A mistake gives a reason; a fall returns locally in under one second. The timer keeps running through retries.
+Visual thesis: a coral-helmet athlete and ivory cable sweep between warm polygon sandstone shelves; launch, hook and landing read together in one authored elevated view.
 
-One continuous time-attack course: opening ridge, branching canyon, high shelf, spatial finish. Three ordered physical checkpoints unlock the finish. Safe landings trade route length for forgiveness; narrower shelves reward release timing. A complete run can be replayed to compare assisted and unassisted times separately.
+Content plan: immediately playable launch with one hook → satisfying first landing → calm two-hook distance choice → changed height/reach → finish/replay. One contextual instruction, three progress dots, cable reach and pause. No initial instruction wall or countdown.
 
-Camera: low third-person chase looking into an open canyon, mouse orbit, wall avoidance. Silhouette: human athlete, bent limbs and forward lean, jacket/scarf, expressive jumping/releasing. Palette: red sandstone, cobalt sky, sunlit cream and coral hook fixtures. Sound: wind, footfalls, cable snap, landing dust, brief checkpoint tones. Motion: chase-camera damping, cable tension, articulated running/jumping, dust trails; reduced motion removes shake/trails.
+Interaction thesis: a subtle target pulse invites the first click; constant-acceleration launch and automatic release communicate cable tension; landing compression/dust/chime signals success. Reduced motion removes pulse, trail and body rotation. The automatic camera fits player, hooks and destination above the instruction footer. Narrow/portrait views separate overlapping numbered touch targets with leader lines.
 
-Portfolio review: this is anchor choice and momentum traversal. It shares no manipulation, combat, zone allocation, card-duel or retrieval loop with the other approved games. Mathematical triangles are explicit scientific indicators independent of art meshes and perspective.
+One click or tap chooses a hook and launches. Keyboard: left/right selects, Space launches. Another Space/click in flight performs one optional cosmetic flip; it cannot affect landing. The player does not move, aim, hold, release or steer manually. A wrong reach choice stays safely on the launch pad with a reason and immediate retry. Each physical landing saves progression.
 
-Visual thesis: sun-warmed red cliffs and an athletic coral silhouette against airy blue, with a white cable as the dominant motion line. Content plan: full-world title overlay → sparse time/reach HUD → optional survey diagram → local finish/replay summary. Interaction thesis: smooth chase pull, body lean on acceleration, and quick cable/landing pulses communicate action without pausing play.
+The pilot stages are guided `(8,6,0)` at R=10; choice `(6,9,0)` versus `(8,6,0)` at R=10; height choice `(5,12,0)` versus `(3,13,0)` at R=13. Both options have neutral fixtures before commitment. Selected world-space construction begins at the actual harness and shows perpendicular legs/right-angle mark; optional calculation reveals the diagonal. Numeric display rounding never decides reach.
 
-## Generated visual target · reviewed 24 October
+One unit = one metre. Flight is an explicitly assisted arcade mechanic: solve an initial impulse, apply constant acceleration along the initial harness-to-hook direction for .45s, retain velocity at release, integrate gravity for ~1.05s, then resolve actual downward floor contact. No animation spline or checkpoint teleport carries the athlete. A .65s landing celebration precedes the next ready state.
 
-Reference: `docs/visual-targets/gameplay-v1.png` (generated image, not capture). Its medium chase framing places a large human athlete on the left foreground, neutral A/B hooks across an open gap, warm layered rock with distant mesas, and a clear sky. The HUD uses centered time/checkpoints, isolated reach at the top edge, and a slim bottom action strip. Temporary survey construction begins at harness P, draws perpendicular legs with a right angle, and leaves the diagonal unsolved. Actual first stance has checkpoint0/3; the target's1/3 caption is illustrative. Hebrew replaces English controls and reach text.
+Art: original local Chrome/Tripo helmet and a small hazy natural arch; procedural articulated athlete and exact authored polygon ledges/gantries. These static generated models have no rig and no mathematical authority. No additional model generation or credits were used for the rebuild.
 
-Asset breakdown: original Tripo natural sandstone arch for canyon silhouettes; original Tripo coral/ivory helmet mounted on the articulated human; code-authored exact flat ledges/capsule colliders and neutral ring hooks; procedural rock grain/strata, sparse sage, dust; locally bundled Hebrew font. A static helmet has no rig: motion comes from explicit hip/knee/shoulder/elbow joints. Model/camera shape follows the target while world-unit rules remain authoritative.
+## Image-first workflow
 
-Iteration after target review: lower/closer chase camera with lateral angle, dynamic framing for high hooks, larger athlete, navy shirt/tan trousers/coral gear, centered time/checkpoints, separate reach, functional bottom actions, harness-origin dashed diagonal and leg labels. Nine chained grapples now span ~350m, with a45.83s continuous numerical route. Learning/retries/replays can occupy5–10minutes; no automated test establishes enjoyment or human learning gains.
+The three generated mockups in `docs/visual-targets/rebuild-v2` and `docs/REBUILD_V2.md` were committed as 5033878 before any v2 game implementation. They are design targets, not gameplay captures. Runtime preserves their composition and interaction hierarchy with simpler geometry, a smaller athlete and orthographic framing. Actual captures are separate in `docs/evidence/rebuild-v2`. See `docs/VISUAL_REVIEW.md`.
+
+## Scope and next gate
+
+This is deliberately a short first course, not an expanded replacement of the old 350m corridor. The user should be able to judge the core feel quickly. Spatial choices, multiple valid routes and a longer flow challenge belong after the first loop is understandable and enjoyable. Automated completion is not human fun, comprehension or learning evidence.

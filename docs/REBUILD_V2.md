@@ -14,7 +14,7 @@ Visual thesis: a coral-helmet athlete and bright ivory cable sweep between warm 
 
 Content plan: immediately playable launch with one ring; first successful landing; calm two-hook distance choice; a changed-height choice; short finish and replay. One contextual instruction at a time. The first course has three complete flights. Add a longer route only after a human can understand and enjoy this loop.
 
-Interaction thesis: visible ring hover/pulse; brisk physical launch with a readable auto-release; squash/dust/chime landing and immediate next destination. Reduced motion removes pulse, trail and camera shake. No manual camera or movement before launch. Click/tap a numbered hook or select with left/right and press Space. Flight steering is optional and bounded; a correct hook always reaches the broad safe ledge. No hold/release skill gate.
+Interaction thesis: visible ring hover/pulse; brisk physical launch with a readable auto-release; squash/dust/chime landing and immediate next destination. Reduced motion removes pulse, trail and camera shake. No manual camera or movement before launch. Click/tap a numbered hook or select with left/right and press Space. An optional air flip is cosmetic and cannot alter the flight; a correct hook always reaches the broad safe ledge. No hold/release skill gate.
 
 ## First minute
 
@@ -29,7 +29,7 @@ Interaction thesis: visible ring hover/pulse; brisk physical launch with a reada
 
 One world unit = one metre. The origin is the athlete’s fixed harness at feet+1.05m on each known launch pad. True Euclidean length and separate authored line-of-sight determine attachment. A press is one attempt; holding cannot repeat or spoil a valid shot.
 
-Use an explicitly arcade assisted flight: initial physical acceleration towards the accepted hook, automatically release at an authored time, then integrate gravity with a solved launch velocity towards the landing pad. The camera and rendering never set distances. Assistance is disclosed in game help; do not pretend to simulate an unassisted pendulum. No coordinate teleport or animation spline for traversal. Ground contact advances the stage. Optional air lean is bounded inside the safe landing area.
+Use an explicitly arcade assisted flight: initial physical acceleration towards the accepted hook, automatically release at an authored time, then integrate gravity with continuous release velocity. The initial impulse is solved before launch to reach the landing pad. The camera and rendering never set distances. Assistance is disclosed in game help; do not pretend to simulate an unassisted pendulum. No coordinate teleport or animation spline for traversal. Ground contact advances the stage. An optional air flip changes only pose/score, preserving the exact next launch stance.
 
 Longer spatial choices (3,12,4) and obstruction belong after this first playable loop passes the human interest gate. Preserve the existing mathematical modules/tests as historical v1 evidence, and add current-flight rules/tests.
 

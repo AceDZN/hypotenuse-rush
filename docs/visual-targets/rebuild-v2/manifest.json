@@ -1,0 +1,23 @@
+{
+  "mode": "built-in image_gen",
+  "date": "2026-10-24",
+  "status": "design targets generated and reviewed before gameplay implementation",
+  "not_actual_gameplay_captures": true,
+  "preimplementation_commit": "5033878",
+  "prompts": "PROMPTS.md",
+  "images": [
+    {
+      "file": "01-first-click.png",
+      "sha256": "2b0f3131c4d84f99f6bf101afb41cb2f70a37de98d1d1d9c1b88f0c4a87f2141"
+    },
+    {
+      "file": "02-flight.png",
+      "sha256": "feb0dea3220c053d63d9e22a56e919714291be7f11fce7ab52172596d92053fa"
+    },
+    {
+      "file": "03-choice.png",
+      "sha256": "3ea0e506cc6af650afb29a88422783bb4532a0451cee95488872b1209b528fe8"
+    }
+  ],
+  "review": "../../VISUAL_REVIEW.md"
+}

@@ -34,3 +34,16 @@ btw,create it as a new public repo on my github (AceDZN). I think that I'll depl
 
 - Final installed skill action client completed against the current production preview; canvas PNG and state were inspected and saved under docs/evidence/skill-client.*. Both Tripo assets loaded; short attach/release and release feedback agree. Full-page proof remains separate because the installed client crops to canvas.
 - Final asset inspection,27tests, static build, localhostHTTP200 and Git whitespace checks pass. All crew helpers have finished their bounded work without staging/committing; lead owns final commit/push.
+
+
+## 24 October — human-rejected v1, image-first flow v2 rebuild
+
+Latest user request: "It's weird, I barely understood what to do, it feels weird af, it's boring, its too hard (not because the math - because the gameflow / controls / etc...) Let's plan and rebuild it in a fun way. don't forget to create mockup screenshots before starting working on it... we may need a full replanning for this".
+
+- Read-only crew diagnosed excessive simultaneous motor/control requirements, unclear destination and camera/world-axis conflict. Previous test passes did not prove fun.
+- Generated three new gameplay mockups with built-in imagegen; saved exact prompts and plan. Commit5033878 precedes v2 gameplay implementation.
+- Rebuilt current loop as choose→fly→land, with a short three-flight complete course. One click/tap/Space supplies assisted physical traversal; automatic camera/release/landing. No manual movement, aiming or hold timing. Wrong choices remain safe and retry immediately.
+- Added flight.ts +16 meaningful tests;43total pass including27historical tests. Original Tripo assets reused without spending. Canyon authored to the new target composition.
+- Production browser QA covers mouse/keyboard/touch full course, failure/recovery, pause, hints, explicit reach change, phone resize, finish/replay and opt-in timed records; errors[]. Installed skill client used and screenshot inspected. Direct CUA real-time clicks confirmed operation.
+- Fixed orthographic background walls, raw decimal labels, overlapping portrait touch targets, footer/athlete overlap and Space handling after button focus.
+- Human comprehension/enjoyment still unverified. Keep next iteration driven by the user's actual playtest; do not expand spatial/long-course content before the first loop is understandable and enjoyable.

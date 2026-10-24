@@ -1,5 +1,7 @@
 # Hypotenuse Rush builder crew
 
+Active game: **flow v2**. The user rejected v1 controls/gameflow on24October2026 and requested an image-first replan/rebuild. Read `docs/REBUILD_V2.md` and current GAME_IDENTITY.md first; they supersede the original handoff's control/course design. Original handoff/user instruction files remain historical context. No further Tripo spending occurred; reuse the two existing models.
+
 This is the standalone Hypotenuse Rush repository, origin https://github.com/AceDZN/hypotenuse-rush, main branch. Read docs/BUILD_HANDOFF.md, docs/CREW_COMMON.md and docs/USER_REQUEST.md before coding.
 
 The user explicitly approved this new game and an independent builder crew. Delegate real visual/Chrome-Tripo and independent math/playability review work; the lead integrates and serializes Git commits/pushes on main. Follow the game-specific loop, controls and art direction. Do not revive or reskin the canceled retrieval/courier prototypes.

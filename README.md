@@ -1,56 +1,51 @@
 # Hypotenuse Rush · ריצת היתר
 
-A real third-person 3D grapple-parkour browser game in Hebrew. Read perpendicular distances from the athlete's current harness, choose a hook, launch, steer and release momentum across an open sandstone course.
+A short 3D canyon grapple game in Hebrew. **Choose a ring, click once, fly and land.** The game handles the camera, release and landing; the player chooses hooks using their actual distance from the harness.
 
-## Play locally
+The current **flow v2** rebuild follows direct feedback that the original controls and gameflow were confusing. Three imagegen gameplay mockups and the [rebuild plan](docs/REBUILD_V2.md) were created and committed before changing gameplay.
+
+## Play
 
 ```sh
 npm install
-npm run dev      # http://localhost:5183, strict port
-npm test
+npm run dev      # http://localhost:5183
 npm run build
-npm run preview  # http://localhost:4183, strict port
+npm run preview  # http://localhost:4183
+npm test
+node tools/qa-flow.mjs http://localhost:4183
 ```
 
-The static Vite build uses relative paths. No backend, account, API key, remote font/model fetch, microphone or analytics is required at runtime. WebGL hardware acceleration is recommended. Keep both ports available; scripts never kill another process.
+Both server ports are strict. Static Vite build, no backend/account/key/runtime API, remote font/model fetch or analytics. WebGL is required. `vercel.json` is ready for the later requested deployment; no deployment was performed.
 
-## Implemented slice
+## Current course
 
-One continuous ~350m multi-route course, nine broad-route grapple launches, a narrower shortcut, three ordered checkpoints and a physical finish. The numerical continuous-input witness takes45.83s (shortcut45.20s); human learning, local retries and improvement runs are intended to supply5–10minutes. Automation does not establish enjoyment or learning gains.
-
-- Initial10m reach: `(8,6,0)` is exactly reachable; `(6,9,0)` is too far despite a shorter horizontal leg.
-- Separate in-range-but-obstructed hook, changed approach values and high shelf; reach explicitly grows to13m at checkpoint2.
-- Spatial `(3,12,4)` uses a5m horizontal face diagonal, then a13m body diagonal. Optional survey constructs both right triangles.
-- Fixed120Hz integration; swept vertical capsule versus exact authored boxes; reel-assisted arcade grapple. Release preserves velocity; hold1.25s maximum, cooldown.25s. There is no teleport/spline movement.
-- Failure reasons, fast local recovery, pause/focus loss, restart, camera wall avoidance, fullscreen, resize, reduced motion, mute and touch controls.
-- Separately labeled assisted/unassisted local records, scoped to this course version. No student identifiers or external event transmission.
-- Original Chrome/Tripo art, locally bundled Hebrew font, an explicitly articulated human athlete and generated-target/actual-capture review.
+- Start directly on a launch pad with one obvious ring and marked destination.
+- One click/tap supplies a complete assisted physical flight. No movement, aiming, holding, release timing or manual camera.
+- The first landing introduces `(8,6)` versus `(6,9)` at cable reach10m; the final height choice uses `(5,12)` versus `(3,13)` at reach13m.
+- Wrong choices remain safe and allow immediate retry. Physical landings advance progress.
+- First run is untimed. Finish offers replay or an optional timed challenge with a local best.
+- Pause, help, optional calculation, mute, reduced motion, fullscreen and responsive touch targets.
+- Original local Chrome/Tripo arch/helmet reused; no additional model credits spent.
 
 ## Controls
 
-| Action | Keyboard / mouse | Touch |
+| Action | Mouse / touch | Keyboard |
 |---|---|---|
-| Move / sprint | WASD or arrows / Shift | Left movement pad; full deflection sprints |
-| Jump | Space | Jump button |
-| Select / aim hook | Point at a hook, or Q/E for visible lock-on | Tap hook badge |
-| Grapple / release | Hold / release left mouse; bottom action also works | Hold / release cable button |
-| Camera | Right mouse drag | Drag world view |
-| Survey | Tab; slows movement and timer together to20% | Survey button |
-| Optional calculation | H | Calculation button |
-| Retry checkpoint / new run | R / Shift+R | Retry / finish replay |
-| Pause / fullscreen | Escape or P / F | Pause; browser fullscreen support varies |
+| Choose and launch | Click/tap a numbered ring | Left/right selects; Space launches; 1/2 directly attempts that ring |
+| Optional air flip | Click world or air-action button | Space once in flight |
+| Pause | Pause button | Escape / P |
+| Help / calculation | ? / √ | Tab focuses ordinary UI controls |
+| Fullscreen | Browser controls | F |
+| Replay / timed replay | Finish buttons | Tab/Enter |
 
-A lock-on must remain inside the camera view to acquire; camera position never enters reach mathematics. Survey/hints mark the run assisted, including after they are switched off. Retry keeps the run clock. New run resets it.
+The flip is cosmetic and never changes the trajectory. The game discloses its arcade landing assistance in help. Reach uses true Euclidean distance with a separate numerical epsilon; camera/projection/model dimensions do not enter the rule. Flight integrates a solved initial impulse, hook-directed constant acceleration, continuous release velocity and gravity until actual floor contact. It does not carry the player on a spline or teleport between pads.
 
-## Deployment preparation
+## Verification and design
 
-`npm run build` produces `dist/`. Import this existing public repository in the user's chosen Vercel project, use Vite, build command `npm run build`, output `dist`, no environment variables. `vercel.json` is included. No public deployment has been requested or performed.
+- [Rebuild plan and human acceptance gate](docs/REBUILD_V2.md), [identity](GAME_IDENTITY.md), [curriculum](CURRICULUM.md), [assets](ASSETS.md).
+- [Current playtest](PLAYTEST.md), [target/actual comparison](docs/VISUAL_REVIEW.md), [actual captures](docs/evidence/rebuild-v2).
+- Three generated targets: [first click](docs/visual-targets/rebuild-v2/01-first-click.png), [flight](docs/visual-targets/rebuild-v2/02-flight.png), [choice](docs/visual-targets/rebuild-v2/03-choice.png). These are mockups, not screenshots of the game.
+- `src/flight.ts` and 16 flight tests govern the active v2 game. The 27 older `src/rules.ts` tests and old evidence/tools remain historical v1 material; they do not describe current controls or prove current enjoyment.
+- `window.render_game_to_text()` exposes current stage, authoritative quantities, input outcomes, event trace, asset status and records. `window.advanceTime(ms, draw=true)` enters deterministic manual stepping; false skips GPU draw while updating simulation/UI. Normal play uses real elapsed animation frames.
 
-## Evidence and provenance
-
-- [Game identity](GAME_IDENTITY.md), [curriculum mapping](CURRICULUM.md), [asset provenance](ASSETS.md).
-- [Independent playtest](PLAYTEST.md), [visual target vs actual review](docs/VISUAL_REVIEW.md).
-- [Generated target](docs/visual-targets/gameplay-v1.png) is a design reference, **not an actual screenshot**. Actual browser captures live separately in `docs/evidence/`. A complete normal-control browser run finished in51.69s with9grapples,3checkpoints,0falls and no console errors.
-- `window.render_game_to_text()` reports world/harness/anchor quantities and live state; `window.advanceTime(ms)` enters deterministic manual stepping for automated tests. Its optional second argument `false` skips the GPU draw while still updating physics, camera, poses and HUD; captures use the default draw. Real play uses the animation loop.
-
-The generated meshes are decorative and have no mathematical authority. The athlete's joints are procedural; the generated helmet/arch are static, not rigged characters. Remaining fidelity, feel and device limitations are recorded in the playtest/review rather than treated as proven polish.
+A three-choice automated route takes6.45 simulation seconds plus decision time. This pilot intentionally establishes the core loop before adding a longer course. Human comprehension, interest and learning remain to be tested by people.

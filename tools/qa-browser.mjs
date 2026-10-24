@@ -1,3 +1,4 @@
+// HISTORICAL V1 TOOL: active flow-v2 verification is tools/qa-flow.mjs.
 /** Supplemental UI checks: the installed action client cannot express Shift/Tab/resize/multi-touch. */
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';

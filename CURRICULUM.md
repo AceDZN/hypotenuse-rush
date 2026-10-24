@@ -1,5 +1,13 @@
 # Curriculum and mathematical contract
 
+## Active flow v2 after human feedback
+
+The active game is the three-flight pilot in `src/flight.ts`, not the historical course described below. First a guided `(8,6,0)` flight at R=10 teaches one-click traversal; then `(6,9,0)` versus `(8,6,0)` at R=10 exposes the horizontal-only misconception; then `(5,12,0)` versus `(3,13,0)` at R=13 changes height/reach. The actual harness at feet+1.05m is the origin. Connected perpendicular guides and a right-angle mark show the selected construction; the optional calculation reveals the diagonal. Both hooks have neutral styling before commitment. A rejected choice stays safe with immediate retry, and physical floor contact advances the course. No typed answer gates movement.
+
+Flight assistance handles the motor execution separately from the distance choice. The solved impulse, constant hook-directed acceleration, automatic continuous-velocity release and gravity are an arcade mechanic, not an unassisted pendulum claim. Spatial/obstruction scenarios remain historical v1 material until introduced in a later course. Local traces record actual decisions/retries/calculation use; neither completion nor a timed best is a mastery claim. The original source snapshots below remain the reviewed mathematical basis. The remaining v1 mapping, survey controls and records are historical, superseded by `docs/REBUILD_V2.md`.
+
+## Historical v1 mapping and reviewed sources
+
 Hypotenuse Rush applies the two Workbook grade 8, chapter 9 modules below to a newly authored grapple course. The cliff setting, hooks, positions and traversal challenges are original game examples; they are not quoted Workbook exercises. This is an arcade reel-assisted grapple. Its ideal straight harness-to-anchor segment is a reach test, not a model of a sagging rope or a claim that a reachable hook guarantees a safe landing.
 
 ## Sources actually reviewed

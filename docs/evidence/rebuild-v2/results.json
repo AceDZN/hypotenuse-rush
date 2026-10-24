@@ -1,0 +1,14 @@
+{
+  "url": "http://localhost:4183",
+  "date": "2026-10-24T12:27:02.898Z",
+  "checks": [
+    "Starts directly in a playable world; one target; untimed; corrupt records tolerated; both Tripo GLBs loaded",
+    "One press launches; optional air trick; pause freezes; actual landing and next choice without movement/release input",
+    "Wrong hook leaves progress/position safe; immediate correct retry; optional calculation; explicit reach change",
+    "Phone resize retains stage and usable targets; keyboard selection and launch; all three flights finish",
+    "Timed replay is opt-in; counters reset; best saved after actual finish",
+    "Touch-only three-flight run finishes with one tap per valid hook"
+  ],
+  "errors": [],
+  "humanFeelVerified": false
+}

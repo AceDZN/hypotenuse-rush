@@ -1,0 +1,173 @@
+{
+  "game": "Hypotenuse Rush",
+  "version": "flow-v2",
+  "coordinateSystem": "metres; +X route forward, +Y up, +Z lateral; player feet; harness feet +1.05m",
+  "mode": "landing",
+  "stage": 0,
+  "stageTitle": "הזינוק הראשון",
+  "landed": 1,
+  "player": {
+    "position": {
+      "x": 14.999999999999938,
+      "y": 1,
+      "z": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 14.999999999999938,
+      "y": 2.05,
+      "z": 0
+    },
+    "grounded": true
+  },
+  "selected": "intro-1",
+  "attached": null,
+  "reach": 10,
+  "hooks": [
+    {
+      "id": "intro-1",
+      "label": "1",
+      "position": {
+        "x": 8,
+        "y": 7.05,
+        "z": 0
+      },
+      "dx": -6.999999999999938,
+      "dy": 5,
+      "dz": 0,
+      "distance": 8.602325267042577,
+      "squared": 73.99999999999913,
+      "reachable": true,
+      "reason": "ready"
+    }
+  ],
+  "destination": {
+    "x": 15,
+    "y": 1,
+    "z": 0
+  },
+  "launches": 1,
+  "mistakes": 0,
+  "tricks": 1,
+  "elapsed": 1.5499999999999952,
+  "timed": false,
+  "message": "landed",
+  "recoilTarget": null,
+  "phaseTime": 0.049999999999999996,
+  "camera": {
+    "position": {
+      "x": 3.7,
+      "y": 14.2,
+      "z": 27
+    },
+    "type": "authored automatic orthographic"
+  },
+  "art": "loaded",
+  "archLoaded": true,
+  "helmetLoaded": true,
+  "help": false,
+  "hint": false,
+  "hintUses": 0,
+  "reducedMotion": false,
+  "muted": false,
+  "best": null,
+  "events": [
+    {
+      "type": "attempt",
+      "stage": 0,
+      "time": 0,
+      "hook": "intro-1",
+      "origin": {
+        "x": 0,
+        "y": 1.05,
+        "z": 0
+      },
+      "reach": 10,
+      "dx": 8,
+      "dy": 6,
+      "dz": 0,
+      "distance": 10,
+      "squared": 100,
+      "reachable": true,
+      "reason": "ready",
+      "accepted": true
+    },
+    {
+      "type": "launch",
+      "stage": 0,
+      "time": 0,
+      "hook": "intro-1",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "velocity": {
+        "x": 1.432000000000001,
+        "y": 2.325666666666669,
+        "z": 0
+      },
+      "acceleration": {
+        "x": 22.4,
+        "y": 16.799999999999997,
+        "z": 0
+      },
+      "assisted": true
+    },
+    {
+      "type": "trick",
+      "stage": 0,
+      "time": 0.3000000000000001
+    },
+    {
+      "type": "pause",
+      "stage": 0,
+      "time": 0.4000000000000004
+    },
+    {
+      "type": "resume",
+      "stage": 0,
+      "time": 0.4000000000000004
+    },
+    {
+      "type": "release",
+      "stage": 0,
+      "time": 0.45,
+      "position": {
+        "x": 2.912399999999993,
+        "y": 2.747549999999994,
+        "z": 0
+      },
+      "velocity": {
+        "x": 11.511999999999999,
+        "y": 9.88566666666666,
+        "z": 0
+      }
+    },
+    {
+      "type": "land",
+      "stage": 0,
+      "time": 1.4999999999999953,
+      "position": {
+        "x": 14.999999999999938,
+        "y": 1,
+        "z": 0
+      },
+      "approachVelocity": {
+        "x": 11.511999999999999,
+        "y": -13.214333333333323,
+        "z": 0
+      }
+    }
+  ],
+  "performance": {
+    "sampleFrames": 33,
+    "meanFrameMs": 19.178787890347564,
+    "calls": 57,
+    "triangles": 55858
+  }
+}

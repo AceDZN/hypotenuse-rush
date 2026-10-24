@@ -67,3 +67,8 @@ The two normal generations were already submitted when the latest image-first ta
 - The finishing pass merges coincident split vertices at tolerance 0.00001, removes degenerate edges at 0.0000001, recalculates face normals, applies a 0.06 decimation to the already smaller mesh and exports normal GLB. Blender 5.2.0 LTS, glTF Transform 4.5.1. No compressed geometry decoder is required.
 - `python3 tools/inspect-glb.py` passed for both final assets: self-contained buffers/images, triangle indices, UVs/normals, sampled finite unit normals and JPEG dimensions <=1024. Exact output is `docs/ASSET_INSPECTION.json`.
 - Both static assets have no skeleton or animation clips. Actual body articulation comes from the procedural athlete joints. The helmet moves rigidly with its head mount.
+
+
+## Flow v2 reuse, 24 October 2026
+
+The rebuild reuses the same optimized local Chrome/Tripo arch and helmet with unchanged file bytes/provenance. No additional model generation or credits. `src/canyon.ts` positions a small hazy arch behind the course; the helmet remains mounted on the procedural articulated athlete. Launch pads, hooks, cantilevers and collision rectangles are authored geometry. The generated rebuild mockups live in `docs/visual-targets/rebuild-v2` with exact prompts and are never used as the runtime scene.

@@ -1,0 +1,128 @@
+{
+  "game": "Hypotenuse Rush",
+  "version": "flow-v2",
+  "coordinateSystem": "metres; +X route forward, +Y up, +Z lateral; player feet; harness feet +1.05m",
+  "mode": "flying",
+  "stage": 0,
+  "stageTitle": "הזינוק הראשון",
+  "landed": 0,
+  "player": {
+    "position": {
+      "x": 1.4375999999999993,
+      "y": 1.4537000000000002,
+      "z": 0
+    },
+    "velocity": {
+      "x": 8.151999999999997,
+      "y": 7.365666666666662,
+      "z": 0
+    },
+    "harness": {
+      "x": 1.4375999999999993,
+      "y": 2.5037000000000003,
+      "z": 0
+    },
+    "grounded": false
+  },
+  "selected": "intro-1",
+  "attached": "intro-1",
+  "reach": 10,
+  "hooks": [
+    {
+      "id": "intro-1",
+      "label": "1",
+      "position": {
+        "x": 8,
+        "y": 7.05,
+        "z": 0
+      },
+      "dx": 6.5624,
+      "dy": 4.5463,
+      "dz": 0,
+      "distance": 7.983353772068479,
+      "squared": 63.73393745,
+      "reachable": true,
+      "reason": "ready"
+    }
+  ],
+  "destination": {
+    "x": 15,
+    "y": 1,
+    "z": 0
+  },
+  "launches": 1,
+  "mistakes": 0,
+  "tricks": 0,
+  "elapsed": 0.3000000000000001,
+  "timed": false,
+  "message": "launch",
+  "recoilTarget": null,
+  "phaseTime": 0.3000000000000001,
+  "camera": {
+    "position": {
+      "x": 3.7,
+      "y": 14.2,
+      "z": 27
+    },
+    "type": "authored automatic orthographic"
+  },
+  "art": "loaded",
+  "archLoaded": true,
+  "helmetLoaded": true,
+  "help": false,
+  "hint": false,
+  "hintUses": 0,
+  "reducedMotion": false,
+  "muted": false,
+  "best": null,
+  "events": [
+    {
+      "type": "attempt",
+      "stage": 0,
+      "time": 0,
+      "hook": "intro-1",
+      "origin": {
+        "x": 0,
+        "y": 1.05,
+        "z": 0
+      },
+      "reach": 10,
+      "dx": 8,
+      "dy": 6,
+      "dz": 0,
+      "distance": 10,
+      "squared": 100,
+      "reachable": true,
+      "reason": "ready",
+      "accepted": true
+    },
+    {
+      "type": "launch",
+      "stage": 0,
+      "time": 0,
+      "hook": "intro-1",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "velocity": {
+        "x": 1.432000000000001,
+        "y": 2.325666666666669,
+        "z": 0
+      },
+      "acceleration": {
+        "x": 22.4,
+        "y": 16.799999999999997,
+        "z": 0
+      },
+      "assisted": true
+    }
+  ],
+  "performance": {
+    "sampleFrames": 33,
+    "meanFrameMs": 19.178787890347564,
+    "calls": 58,
+    "triangles": 55858
+  }
+}

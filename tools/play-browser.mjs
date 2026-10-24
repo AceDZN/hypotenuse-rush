@@ -1,3 +1,4 @@
+// HISTORICAL V1 TOOL: active flow-v2 verification is tools/qa-flow.mjs.
 import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';

@@ -1,0 +1,219 @@
+{
+  "game": "Hypotenuse Rush",
+  "version": "flow-v2",
+  "coordinateSystem": "metres; +X route forward, +Y up, +Z lateral; player feet; harness feet +1.05m",
+  "mode": "ready",
+  "stage": 2,
+  "stageTitle": "עולים לגובה",
+  "landed": 2,
+  "player": {
+    "position": {
+      "x": 30.000000000000114,
+      "y": 2,
+      "z": 0
+    },
+    "velocity": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "harness": {
+      "x": 30.000000000000114,
+      "y": 3.05,
+      "z": 0
+    },
+    "grounded": true
+  },
+  "selected": "rise-1",
+  "attached": null,
+  "reach": 13,
+  "hooks": [
+    {
+      "id": "rise-1",
+      "label": "1",
+      "position": {
+        "x": 35,
+        "y": 15.05,
+        "z": 0
+      },
+      "dx": 4.999999999999886,
+      "dy": 12,
+      "dz": 0,
+      "distance": 12.999999999999957,
+      "squared": 168.99999999999886,
+      "reachable": true,
+      "reason": "ready"
+    },
+    {
+      "id": "rise-2",
+      "label": "2",
+      "position": {
+        "x": 33,
+        "y": 16.05,
+        "z": 0
+      },
+      "dx": 2.9999999999998863,
+      "dy": 13,
+      "dz": 0,
+      "distance": 13.34166406412631,
+      "squared": 177.99999999999932,
+      "reachable": false,
+      "reason": "overreach"
+    }
+  ],
+  "destination": {
+    "x": 46,
+    "y": 5,
+    "z": 0
+  },
+  "launches": 2,
+  "mistakes": 1,
+  "tricks": 1,
+  "elapsed": 4.450000000000006,
+  "timed": false,
+  "message": "choose-hook",
+  "recoilTarget": null,
+  "phaseTime": 0.049999999999999996,
+  "camera": {
+    "position": {
+      "x": 12,
+      "y": 24.6,
+      "z": 8
+    },
+    "type": "authored automatic orthographic"
+  },
+  "art": "loaded",
+  "archLoaded": true,
+  "helmetLoaded": true,
+  "help": false,
+  "hint": false,
+  "hintUses": 1,
+  "reducedMotion": false,
+  "muted": false,
+  "best": null,
+  "events": [
+    {
+      "type": "land",
+      "stage": 0,
+      "time": 1.4999999999999953,
+      "position": {
+        "x": 14.999999999999938,
+        "y": 1,
+        "z": 0
+      },
+      "approachVelocity": {
+        "x": 11.511999999999999,
+        "y": -13.214333333333323,
+        "z": 0
+      }
+    },
+    {
+      "type": "ready",
+      "stage": 1,
+      "time": 2.1499999999999932
+    },
+    {
+      "type": "attempt",
+      "stage": 1,
+      "time": 2.249999999999993,
+      "hook": "fork-1",
+      "origin": {
+        "x": 14.999999999999938,
+        "y": 2.05,
+        "z": 0
+      },
+      "reach": 10,
+      "dx": 6.000000000000062,
+      "dy": 9,
+      "dz": 0,
+      "distance": 10.816653826392002,
+      "squared": 117.00000000000074,
+      "reachable": false,
+      "reason": "overreach",
+      "accepted": false
+    },
+    {
+      "type": "attempt",
+      "stage": 1,
+      "time": 2.249999999999993,
+      "hook": "fork-2",
+      "origin": {
+        "x": 14.999999999999938,
+        "y": 2.05,
+        "z": 0
+      },
+      "reach": 10,
+      "dx": 8.000000000000062,
+      "dy": 6.000000000000001,
+      "dz": 0,
+      "distance": 10.000000000000052,
+      "squared": 100.00000000000101,
+      "reachable": true,
+      "reason": "ready",
+      "accepted": true
+    },
+    {
+      "type": "launch",
+      "stage": 1,
+      "time": 2.249999999999993,
+      "hook": "fork-2",
+      "position": {
+        "x": 14.999999999999938,
+        "y": 1,
+        "z": 0
+      },
+      "velocity": {
+        "x": 1.4320000000000188,
+        "y": 2.3256666666667,
+        "z": 0
+      },
+      "acceleration": {
+        "x": 22.40000000000006,
+        "y": 16.799999999999915,
+        "z": 0
+      },
+      "assisted": true
+    },
+    {
+      "type": "release",
+      "stage": 1,
+      "time": 2.699999999999991,
+      "position": {
+        "x": 17.91239999999995,
+        "y": 3.747550000000003,
+        "z": 0
+      },
+      "velocity": {
+        "x": 11.512000000000041,
+        "y": 9.885666666666657,
+        "z": 0
+      }
+    },
+    {
+      "type": "land",
+      "stage": 1,
+      "time": 3.7499999999999862,
+      "position": {
+        "x": 30.000000000000114,
+        "y": 2,
+        "z": 0
+      },
+      "approachVelocity": {
+        "x": 11.512000000000041,
+        "y": -13.214333333333334,
+        "z": 0
+      }
+    },
+    {
+      "type": "ready",
+      "stage": 2,
+      "time": 4.400000000000004
+    }
+  ],
+  "performance": {
+    "sampleFrames": 33,
+    "meanFrameMs": 19.178787890347564,
+    "calls": 63,
+    "triangles": 18844
+  }
+}
